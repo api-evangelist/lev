@@ -1,0 +1,100 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/lev-openapi-original.json
+docs: https://www.lev.com/docs/build/authentication
+summary:
+  types:
+  - http
+  - oauth2
+  http_schemes:
+  - bearer
+  oauth2_flows:
+  - authorizationCode
+  credential_kinds:
+  - api-key
+  - jwt
+  note: The OpenAPI declares a single `bearerAuth` HTTP bearer scheme whose bearerFormat
+    is "API Key or JWT". The docs expand this into two distinct credential kinds carried
+    on the same Authorization header, plus a separate OAuth 2.1 authorization-code
+    flow used by the hosted MCP server.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API Key or JWT
+  header: 'Authorization: Bearer <token>'
+  sources:
+  - openapi/lev-openapi-original.json
+  docs: https://www.lev.com/docs/build/authentication
+  credential_kinds:
+  - kind: api-key
+    prefix: lev_sk_
+    lifetime: long-lived
+    use: server-to-server integrations
+    account_binding: API keys are bound to one account at creation time
+    validate_operation: postAuthValidateApiKey
+    validate_endpoint: POST /api/external/v2/auth/validate-api-key
+    management_operations:
+    - postApiKeys
+    - getApiKeys
+    - deleteApiKeysKeyId
+  - kind: jwt
+    issuer: https://auth.lev.com/
+    provider: Auth0
+    algorithm: RS256
+    lifetime: short-lived
+    use: interactive clients
+    multi_account: JWT users with membership on multiple accounts must send X-Active-Account
+      with the account slug; this header does not apply to API keys.
+- name: mcpOAuth
+  type: oauth2
+  source: well-known/lev-oauth-authorization-server.json
+  docs: https://www.lev.com/docs/build/mcp/auth
+  applies_to: hosted MCP server at https://mcp.lev.com/mcp
+  issuer: https://auth.lev.com/
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.lev.com/authorize
+    tokenUrl: https://auth.lev.com/oauth/token
+    revocationUrl: https://auth.lev.com/oauth/revoke
+    registrationUrl: https://auth.lev.com/oidc/register
+    pkce: true
+    code_challenge_methods:
+    - S256
+    scopes:
+    - openid
+    - email
+    - offline_access
+  dynamic_client_registration: true
+  protected_resource_metadata: well-known/lev-oauth-protected-resource.json
+required_headers:
+- name: Authorization
+  value: Bearer <token>
+  required: true
+- name: X-Origin-App
+  value: <client-name>
+  required: true
+  description: Identifies the calling application (for example "my-integration").
+- name: X-Active-Account
+  value: <account-slug>
+  required: false
+  description: Required only for JWT users with active memberships on more than one
+    account. Not applicable to API keys, which are account-bound.
+permission_levels:
+- name: full_access
+  default: true
+  description: All scopes granted to the key.
+- name: read_only
+  default: false
+  description: Read scopes only.
+errors:
+- status: 401
+  type: unauthorized
+  meaning: Missing, invalid, or expired token.
+- status: 403
+  type: forbidden
+  meaning: Valid token but insufficient permissions for the resource.
+related:
+  scopes: scopes/lev-scopes.yml
+  conventions: conventions/lev-conventions.yml
+  well_known: well-known/lev-well-known.yml
