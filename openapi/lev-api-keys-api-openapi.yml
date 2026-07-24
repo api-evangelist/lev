@@ -1,0 +1,223 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team API Keys API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: API Keys
+paths:
+  /api/external/v2/api-keys:
+    post:
+      operationId: postApiKeys
+      summary: Create a new API key for the authenticated user
+      description: 'Create a new API key for the authenticated user
+
+
+        Docs page: https://www.lev.com/docs/build/api-keys'
+      tags:
+      - API Keys
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - label
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: Human-readable label for the key (1–255 characters)
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/ApiKey'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/api-keys
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+    get:
+      operationId: getApiKeys
+      summary: List all API keys for the authenticated user
+      description: 'List all API keys for the authenticated user
+
+
+        Docs page: https://www.lev.com/docs/build/api-keys'
+      tags:
+      - API Keys
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        required: false
+        description: Number of results to skip (default 0)
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiKey'
+                  pagination:
+                    type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/api-keys
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/api-keys/{key_id}:
+    delete:
+      operationId: deleteApiKeysKeyId
+      summary: Permanently revoke an API key
+      description: 'Permanently revoke an API key
+
+
+        Docs page: https://www.lev.com/docs/build/api-keys'
+      tags:
+      - API Keys
+      parameters:
+      - name: key_id
+        in: path
+        required: true
+        description: The ID of the API key to revoke
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/api-keys
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+components:
+  schemas:
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        key_prefix:
+          type: string
+        api_key:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        last_used_at:
+          type: string
+          format: date-time
+          nullable: true
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

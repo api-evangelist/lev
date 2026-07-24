@@ -1,0 +1,910 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Contacts API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Contacts
+paths:
+  /api/external/v2/contacts:
+    get:
+      operationId: getContacts
+      summary: List contacts with pagination
+      description: 'List contacts with pagination
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contact'
+                  pagination:
+                    type: object
+        '400':
+          description: cursor and sort cannot be combined; use offset pagination when sorting
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postContacts
+      summary: Create a new contact
+      description: 'Create a new contact
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - contact_type
+              - company_id
+              type: object
+              properties:
+                contact_type:
+                  type: string
+                  description: 'Contact type: lender_contact or sponsor'
+                company_id:
+                  type: integer
+                  description: Associated company ID
+                first_name:
+                  type: string
+                  description: First name
+                last_name:
+                  type: string
+                  description: Last name
+                email:
+                  type: string
+                  description: Email address
+                title:
+                  type: string
+                  description: Job title
+                department:
+                  type: string
+                  description: Department
+                address:
+                  type: string
+                  description: Street address
+                address2:
+                  type: string
+                  description: Apartment, suite, or unit line
+                city:
+                  type: string
+                  description: City
+                state:
+                  type: string
+                  description: State
+                zip:
+                  type: string
+                  description: ZIP code
+                linkedin_url:
+                  type: string
+                  description: LinkedIn profile URL
+                photo_url:
+                  type: string
+                  description: URL to a profile photo
+                phones:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PhoneIn'
+                  description: 'Phone numbers. Each object: { raw, type?, country?, extension? }. raw accepts any common format and is normalized to E.164 server-side (unparseable numbers return 422). type is mobile, office, or fax (default mobile). country is a 2-letter ISO region used to parse numbers without a + prefix (default US).'
+                is_primary:
+                  type: boolean
+                  description: Whether this is the primary contact at the company
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Contact'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: User not authorized to create contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: contact_type is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/contacts/{contact_id}:
+    get:
+      operationId: getContactsContactId
+      summary: Get a single contact by ID
+      description: 'Get a single contact by ID
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Contact'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    patch:
+      operationId: patchContactsContactId
+      summary: Update a contact
+      description: 'Update a contact
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: First name
+                last_name:
+                  type: string
+                  description: Last name
+                email:
+                  type: string
+                  description: Email address
+                title:
+                  type: string
+                  description: Job title
+                department:
+                  type: string
+                  description: Department
+                address:
+                  type: string
+                  description: Street address
+                address2:
+                  type: string
+                  description: Apartment, suite, or unit line
+                city:
+                  type: string
+                  description: City
+                state:
+                  type: string
+                  description: State
+                zip:
+                  type: string
+                  description: ZIP code
+                linkedin_url:
+                  type: string
+                  description: LinkedIn profile URL
+                photo_url:
+                  type: string
+                  description: URL to a profile photo
+                phones:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PhoneIn'
+                  description: Replaces the contact's entire phone list — send [] to clear all numbers. Same object shape as Create Contact.
+                is_primary:
+                  type: boolean
+                  description: Set to true to make this the primary contact at the company. Promoting one contact demotes the previous primary.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Contact'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '409':
+          description: Changing a contact's email is not supported yet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/contacts/{contact_id}/actions/unlock:
+    post:
+      operationId: postContactsContactIdActionsUnlock
+      summary: Reveal an AI-recommended lender contact — charges credits; requires the ai:actions scope
+      description: 'Reveal an AI-recommended lender contact — charges credits; requires the ai:actions scope
+
+
+        Docs page: https://www.lev.com/docs/build/contacts
+
+
+        Documented response: the revealed [Contact Object](#contact-object), now carrying the contact''s name and other identity fields.'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact to reveal — the `contact_id` returned on the placement
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: the revealed [Contact Object](#contact-object), now carrying the contact's name and other identity fields.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Contact'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '402':
+          description: Insufficient credits to unlock this contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: ai:actions'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/contacts/{contact_id}/notes:
+    get:
+      operationId: getContactsContactIdNotes
+      summary: List notes logged on a contact
+      description: 'List notes logged on a contact
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Note'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postContactsContactIdNotes
+      summary: Add a note to a contact
+      description: 'Add a note to a contact
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Note text. Must be non-empty.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/contacts/{contact_id}/notes/{note_id}:
+    patch:
+      operationId: patchContactsContactIdNotesNoteId
+      summary: Edit a contact note
+      description: 'Edit a contact note
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Replacement note text. Must be non-empty.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '400':
+          description: text cannot be empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+    delete:
+      operationId: deleteContactsContactIdNotesNoteId
+      summary: Permanently delete a contact note
+      description: 'Permanently delete a contact note
+
+
+        Docs page: https://www.lev.com/docs/build/contacts'
+      tags:
+      - Contacts
+      parameters:
+      - name: contact_id
+        in: path
+        required: true
+        description: The contact ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Contact or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/contacts
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+components:
+  schemas:
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    Phone:
+      type: object
+      description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
+      properties:
+        id:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+          description: mobile, office, or fax.
+        raw:
+          type: string
+          nullable: true
+          description: The number as originally entered.
+        country:
+          type: string
+          nullable: true
+        e164:
+          type: string
+          nullable: true
+          description: Normalized E.164 number.
+        extension:
+          type: string
+          nullable: true
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Contact identifier
+        contact_type:
+          type: string
+          nullable: true
+          description: First entry from `contact_types`, kept as a string for backwards compatibility. `lender_contact` or `sponsor`.
+        contact_types:
+          type: array
+          items:
+            type: string
+          description: 'All contact types assigned to the contact (a contact can be both a lender and a sponsor contact). Values: `lender_contact`, `sponsor`.'
+        first_name:
+          type: string
+          nullable: true
+          description: First name
+        last_name:
+          type: string
+          nullable: true
+          description: Last name
+        email:
+          type: string
+          nullable: true
+          description: Email address
+        title:
+          type: string
+          nullable: true
+          description: Job title
+        department:
+          type: string
+          nullable: true
+          description: Department
+        address:
+          type: string
+          nullable: true
+          description: Street address
+        address2:
+          type: string
+          nullable: true
+          description: Apartment, suite, or unit line
+        city:
+          type: string
+          nullable: true
+          description: City
+        state:
+          type: string
+          nullable: true
+          description: State
+        zip:
+          type: string
+          nullable: true
+          description: ZIP code
+        linkedin_url:
+          type: string
+          nullable: true
+          description: LinkedIn profile URL
+        photo_url:
+          type: string
+          nullable: true
+          description: URL to a profile photo
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+          description: 'Phone numbers (`[]` when none). Each: `{id, type, raw, country, e164, extension}` — `e164` is the normalized canonical number (always server-computed from `raw`); `type` is `mobile`, `office`, or `fax`; fields may be null on records created before phone support.'
+        is_primary:
+          type: boolean
+          description: Whether this is the primary contact
+        owner_account_id:
+          type: integer
+          nullable: true
+          description: Owning account ID
+        is_connected:
+          type: boolean
+          description: Whether this is a connected contact
+        created_at:
+          type: string
+          nullable: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    PhoneIn:
+      type: object
+      description: Phone number input. e164 is always computed server-side from raw — caller-supplied values are ignored, so normalization cannot be bypassed.
+      required:
+      - raw
+      properties:
+        raw:
+          type: string
+          description: Phone number in any common format; normalized to E.164 server-side. Unparseable numbers return 422.
+        type:
+          type: string
+          enum:
+          - mobile
+          - office
+          - fax
+          default: mobile
+          description: Phone type.
+        country:
+          type: string
+          default: US
+          description: 2-letter ISO region used to parse numbers without a + prefix.
+        extension:
+          type: string
+          description: Extension digits.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

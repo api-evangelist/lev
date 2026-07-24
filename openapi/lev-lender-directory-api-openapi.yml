@@ -1,0 +1,362 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Lender Directory API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Lender Directory
+paths:
+  /api/external/v2/lenders/directory:
+    get:
+      operationId: getLendersDirectory
+      summary: Browse the lender directory
+      description: 'Browse the lender directory
+
+
+        Docs page: https://www.lev.com/docs/build/lender-directory'
+      tags:
+      - Lender Directory
+      parameters:
+      - name: name
+        in: query
+        required: false
+        description: Search by lender name (case-insensitive)
+        schema:
+          type: string
+      - name: filter[state]
+        in: query
+        required: false
+        description: Filter by state
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        description: 'Sort by: name'
+        schema:
+          type: string
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LenderDirectoryLender'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/lender-directory
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/lenders/{org_id}:
+    get:
+      operationId: getLendersOrgId
+      summary: Get detailed lender information including programs
+      description: 'Get detailed lender information including programs
+
+
+        Docs page: https://www.lev.com/docs/build/lender-directory'
+      tags:
+      - Lender Directory
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        description: Organization ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/LenderDirectoryLender'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Lender not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/lender-directory
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/lenders/{org_id}/programs:
+    get:
+      operationId: getLendersOrgIdPrograms
+      summary: List lending programs for a lender
+      description: 'List lending programs for a lender
+
+
+        Docs page: https://www.lev.com/docs/build/lender-directory'
+      tags:
+      - Lender Directory
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        description: Organization ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LenderProgram'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Lender not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/lender-directory
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+components:
+  schemas:
+    LenderProgram:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Program ID
+        title:
+          type: string
+          nullable: true
+          description: Program name
+        loan_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Supported loan types
+        recourse_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Recourse types
+        min_loan_amount:
+          type: number
+          nullable: true
+          description: Minimum loan amount
+        max_loan_amount:
+          type: number
+          nullable: true
+          description: Maximum loan amount
+        capital_source_type:
+          type: string
+          nullable: true
+          description: Capital source type
+        positions:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Loan positions
+        sponsor_states:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Geographic coverage
+        status:
+          type: string
+          nullable: true
+          description: Program status
+    LenderDirectoryLender:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Organization ID
+        name:
+          type: string
+          nullable: true
+          description: Lender name
+        website:
+          type: string
+          nullable: true
+          description: Website URL
+        logo_url:
+          type: string
+          nullable: true
+          description: Logo image URL
+        address:
+          type: string
+          nullable: true
+          description: Street address
+        city:
+          type: string
+          nullable: true
+          description: City
+        state:
+          type: string
+          nullable: true
+          description: State
+        zip:
+          type: string
+          nullable: true
+          description: ZIP code
+        about:
+          type: string
+          nullable: true
+          description: Description
+        lender_type:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Lender types (e.g., bank, life company, CMBS)
+        category:
+          type: string
+          nullable: true
+          description: Category
+        linkedin_url:
+          type: string
+          nullable: true
+          description: LinkedIn URL (**detail only** — not included in list responses)
+        aliases:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Known aliases (**detail only**)
+        domains:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Email domains (**detail only**)
+        square_logo_url:
+          type: string
+          nullable: true
+          description: Square logo image URL (**detail only**)
+        programs:
+          type: string
+          nullable: true
+          description: Lending programs (**detail only** — see Program Object below)
+        created_at:
+          type: string
+          nullable: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

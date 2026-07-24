@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Account & Team
+paths:
+  /api/external/v2/me:
+    get:
+      operationId: getMe
+      summary: Get the authenticated user's profile, account, and platform details
+      description: 'Get the authenticated user''s profile, account, and platform details
+
+
+        Docs page: https://www.lev.com/docs/build/account'
+      tags:
+      - Account & Team
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/CurrentUserResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/account
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/me/accounts:
+    get:
+      operationId: getMeAccounts
+      summary: List every account the authenticated user has an active membership on
+      description: 'List every account the authenticated user has an active membership on
+
+
+        Docs page: https://www.lev.com/docs/build/account'
+      tags:
+      - Account & Team
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/account
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/me/active-account:
+    patch:
+      operationId: patchMeActiveAccount
+      summary: Persist the authenticated user's active-account preference on the server
+      description: 'Persist the authenticated user''s active-account preference on the server
+
+
+        Docs page: https://www.lev.com/docs/build/account'
+      tags:
+      - Account & Team
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - slug
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: Account slug returned by GET /me (unscoped) or GET /me/accounts. Must match an account the authenticated user has an active membership on.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: object
+        '400':
+          description: slug is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Account not found or user is not a member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/account
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/account/team:
+    get:
+      operationId: getAccountTeam
+      summary: List team members in your account
+      description: 'List team members in your account
+
+
+        Docs page: https://www.lev.com/docs/build/account'
+      tags:
+      - Account & Team
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AccountTeamMember'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/account
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+components:
+  schemas:
+    AccountTeamMember:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        photo_url:
+          type: string
+          nullable: true
+    CurrentUserResponse:
+      type: object
+      properties:
+        user:
+          type: object
+        account:
+          type: object
+        profile:
+          type: object
+        subscription:
+          type: object
+        platform:
+          type: object
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

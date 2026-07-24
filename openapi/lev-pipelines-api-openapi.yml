@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Pipelines API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Pipelines
+paths:
+  /api/external/v2/pipelines:
+    get:
+      operationId: getPipelines
+      summary: List all pipelines available to your account
+      description: 'List all pipelines available to your account
+
+
+        Docs page: https://www.lev.com/docs/build/pipelines'
+      tags:
+      - Pipelines
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: object
+        '400':
+          description: cursor and sort cannot be combined; use offset pagination when sorting
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/pipelines
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/pipelines/{pipeline_id}:
+    get:
+      operationId: getPipelinesPipelineId
+      summary: Get a single pipeline with its statuses
+      description: 'Get a single pipeline with its statuses
+
+
+        Docs page: https://www.lev.com/docs/build/pipelines'
+      tags:
+      - Pipelines
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        description: The pipeline ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Pipeline not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/pipelines
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/pipeline:
+    post:
+      operationId: postDealsDealIdPipeline
+      summary: Move a deal to a pipeline stage
+      description: 'Move a deal to a pipeline stage
+
+
+        Docs page: https://www.lev.com/docs/build/pipelines'
+      tags:
+      - Pipelines
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - pipeline_id
+              type: object
+              properties:
+                pipeline_id:
+                  type: integer
+                  description: Target pipeline ID
+                pipeline_status_id:
+                  type: integer
+                  description: Target status within the pipeline. Defaults to the first status in the pipeline.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: object
+        '400':
+          description: Pipeline not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/pipelines
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+components:
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

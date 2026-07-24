@@ -1,0 +1,3310 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Deals API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Deals
+paths:
+  /api/external/v2/deals:
+    get:
+      operationId: getDeals
+      summary: List deals with pagination, filtering, and sorting
+      description: 'List deals with pagination, filtering, and sorting
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page (mutually exclusive with sort)
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        description: Offset for pagination (requires sort)
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        required: false
+        description: 'Sort fields: title, loan_amount, created_at, updated_at. Prefix with - for descending'
+        schema:
+          type: string
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields to include (id always included)
+        schema:
+          type: string
+      - name: include
+        in: query
+        required: false
+        description: 'Sub-resources to embed: financials, properties, team, pipelines'
+        schema:
+          type: string
+      - name: filter[loan_type]
+        in: query
+        required: false
+        description: Filter by loan type enum name, such as heavy_bridge or permanent
+        schema:
+          $ref: '#/components/schemas/LoanType'
+      - name: filter[transaction_type]
+        in: query
+        required: false
+        description: Filter by transaction type enum name, such as acquisition or refinance
+        schema:
+          $ref: '#/components/schemas/TransactionType'
+      - name: filter[business_plan]
+        in: query
+        required: false
+        description: Filter by business plan enum name
+        schema:
+          $ref: '#/components/schemas/BusinessPlanType'
+      - name: filter[archived]
+        in: query
+        required: false
+        description: Filter by archived state. Omit to return both active and archived deals; pass true for only archived, false for only active
+        schema:
+          type: boolean
+      - name: filter[loan_amount][gte]
+        in: query
+        required: false
+        description: Minimum loan amount
+        schema:
+          type: number
+      - name: filter[loan_amount][lte]
+        in: query
+        required: false
+        description: Maximum loan amount
+        schema:
+          type: number
+      - name: filter[created_at][gte]
+        in: query
+        required: false
+        description: Created after (ISO 8601)
+        schema:
+          type: string
+      - name: filter[created_at][lte]
+        in: query
+        required: false
+        description: Created before (ISO 8601)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Deal'
+                  pagination:
+                    type: object
+        '400':
+          description: cursor and sort cannot be combined; use offset pagination when sorting
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postDeals
+      summary: Create a new deal
+      description: 'Create a new deal
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - title
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Deal title (1–255 characters)
+                loan_amount:
+                  type: number
+                  description: Requested loan amount
+                loan_type:
+                  $ref: '#/components/schemas/LoanType'
+                  description: Loan type enum name, such as construction, heavy_bridge, or permanent
+                transaction_type:
+                  $ref: '#/components/schemas/TransactionType'
+                  description: Transaction type enum name, such as acquisition, refinance, or new_construction
+                business_plan:
+                  $ref: '#/components/schemas/BusinessPlanType'
+                  description: 'Business plan enum name: stabilized, value_add, construction, or land'
+                description:
+                  type: string
+                  description: Deal description
+                estimated_close_date:
+                  type: string
+                  description: Estimated close date (ISO 8601)
+                pipeline_ids:
+                  type: array
+                  items:
+                    type: integer
+                  description: Pipeline IDs to add the deal to
+                deal_financials:
+                  $ref: '#/components/schemas/DealFinancialsWrite'
+                  description: Deal-level financial fields to create with the deal
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Deal'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: title is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/deals/{deal_id}:
+    get:
+      operationId: getDealsDealId
+      summary: Get a single deal by ID
+      description: 'Get a single deal by ID
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: include
+        in: query
+        required: false
+        description: 'Sub-resources to embed: financials, properties, team, pipelines'
+        schema:
+          type: string
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Deal'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    patch:
+      operationId: patchDealsDealId
+      summary: Update a deal (partial update)
+      description: 'Update a deal (partial update)
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Deal title (min 1 character)
+                loan_amount:
+                  type: number
+                  description: Requested loan amount
+                loan_type:
+                  $ref: '#/components/schemas/LoanType'
+                  description: Loan type enum name
+                transaction_type:
+                  $ref: '#/components/schemas/TransactionType'
+                  description: Transaction type enum name
+                business_plan:
+                  $ref: '#/components/schemas/BusinessPlanType'
+                  description: Business plan enum name
+                description:
+                  type: string
+                  description: Deal description
+                estimated_close_date:
+                  type: string
+                  description: Estimated close date (ISO 8601)
+                deal_financials:
+                  $ref: '#/components/schemas/DealFinancialsWrite'
+                  description: Deal-level financial fields to update
+              minProperties: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Deal'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+    delete:
+      operationId: deleteDealsDealId
+      summary: Archive (soft-delete) a deal
+      description: 'Archive (soft-delete) a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/deals/{deal_id}/index/search:
+    post:
+      operationId: postDealsDealIdIndexSearch
+      summary: Search canonical indexed deal facts by natural-language context
+      description: 'Search canonical indexed deal facts by natural-language context
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - context
+              type: object
+              properties:
+                context:
+                  type: string
+                  minLength: 1
+                  maxLength: 4000
+                  description: Natural-language search context. Be specific about the metric or topic you want.
+                min_score:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                  default: 0.3
+                  description: Minimum similarity threshold from 0 to 1.
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 200
+                  default: 20
+                  description: Maximum ranked facts to return. Values are clamped to 1-200.
+                include_signed_urls:
+                  type: boolean
+                  default: false
+                  description: When true, document-backed source records may include short-lived signed URLs.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealIndexSearchResult'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: context must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '503':
+          description: Deal data search is temporarily unavailable. Try again shortly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/deals/{deal_id}/index/observations:
+    post:
+      operationId: postDealsDealIdIndexObservations
+      summary: List per-document candidate values behind a deal fact
+      description: 'List per-document candidate values behind a deal fact
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              anyOf:
+              - required:
+                - sot_id
+              - required:
+                - metric_id
+              properties:
+                sot_id:
+                  type: string
+                  pattern: ^[A-Za-z]+:[A-Za-z0-9:_-]+$
+                  description: Prefixed SOT id from a prior /index/search result (e.g. 'd:5362', 'a:123:property:690'). At least one of sot_id or metric_id is required.
+                metric_id:
+                  type: integer
+                  minimum: 1
+                  description: Numeric metric definition id. Use to fetch every observation for a metric across entities.
+                entity_ref:
+                  type: string
+                  description: Optional entity scoping (e.g. property:690). Intended for use with metric_id; combining with sot_id has no additional effect.
+                page:
+                  type: integer
+                  minimum: 1
+                  default: 1
+                  description: 1-based page number.
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 200
+                  default: 20
+                  description: Observations per page. Values are clamped to 1-200.
+                include_signed_urls:
+                  type: boolean
+                  default: false
+                  description: When true, document-backed source records may include short-lived signed URLs.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealIndexObservation'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: Provide at least one of sot_id or metric_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '503':
+          description: Deal observations are temporarily unavailable. Please try again shortly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/deals/{deal_id}/index/facts:
+    patch:
+      operationId: patchDealsDealIdIndexFacts
+      summary: Update a single canonical deal fact value
+      description: 'Update a single canonical deal fact value
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - sot_id
+              type: object
+              oneOf:
+              - required:
+                - value
+              - required:
+                - observation_id
+              properties:
+                sot_id:
+                  type: string
+                  pattern: ^[A-Za-z]+:[A-Za-z0-9:_-]+$
+                  description: Prefixed SOT id from a prior /index/search result (e.g. 'd:5362', 'a:123:property:690'). Identifies the fact to update.
+                value:
+                  type: string
+                  description: Free-text replacement value. Provide exactly one of value or observation_id.
+                observation_id:
+                  type: integer
+                  minimum: 1
+                  description: Observation id to promote as the new canonical value. Returned by /index/observations and preserves source document, page range, and confidence.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/DealIndexFact'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: Provide exactly one of value or observation_id; Metric is not editable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '503':
+          description: Deal fact update is temporarily unavailable. Please try again shortly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+    post:
+      operationId: postDealsDealIdIndexFacts
+      summary: Record one or more user-supplied metric values on a deal
+      description: 'Record one or more user-supplied metric values on a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deals
+
+
+        Documented response: `results` reports the outcome of each submitted value in request order; `metric_sot_values` aggregates the SOTs that were written. Each `results[].sot` has the same shape as a `metric_sot_values` entry.'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - values
+              properties:
+                values:
+                  type: array
+                  minItems: 1
+                  description: One or more metric values to record. Must contain at least one item.
+                  items:
+                    type: object
+                    required:
+                    - metric_id
+                    - value
+                    properties:
+                      metric_id:
+                        type: integer
+                        minimum: 1
+                        description: Metric definition id from /index/metric-definitions.
+                      value:
+                        type: string
+                        minLength: 1
+                        description: User-supplied value to record. Must not be blank.
+                      entity_ref:
+                        type: string
+                        nullable: true
+                        description: Entity to attach the value to, from /index/entities (e.g. 'property:690'). Must match the metric's entity type.
+                      group_ref:
+                        type: string
+                        nullable: true
+                        description: Groups several submitted values under the same not-yet-created entity. Use only when no entity_ref is available.
+      responses:
+        '200':
+          description: '`results` reports the outcome of each submitted value in request order; `metric_sot_values` aggregates the SOTs that were written. Each `results[].sot` has the same shape as a `metric_sot_values` entry.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/DealIndexFactInsertResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: values must contain at least one item; value must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '503':
+          description: Deal fact insert is temporarily unavailable. Please try again shortly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/deals/{deal_id}/index/metric-definitions:
+    get:
+      operationId: getDealsDealIdIndexMetricDefinitions
+      summary: List the metric definitions that can be recorded on a deal
+      description: 'List the metric definitions that can be recorded on a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: metric_label
+        in: query
+        required: false
+        description: Case-insensitive search term to filter by metric label (for example, noi).
+        schema:
+          type: string
+      - name: category_id
+        in: query
+        required: false
+        description: Filter to a single metric category id (greater than 0).
+        schema:
+          type: integer
+      - name: page
+        in: query
+        required: false
+        description: 1-based page number. Defaults to 1.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Metric definitions per page. Defaults to 100 and is clamped to 1-200.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealIndexMetricDefinition'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: limit must be an integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '503':
+          description: Deal metric definitions are temporarily unavailable. Please try again shortly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/index/entities:
+    get:
+      operationId: getDealsDealIdIndexEntities
+      summary: List the entities you can attach recorded facts to
+      description: 'List the entities you can attach recorded facts to
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealIndexEntity'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '503':
+          description: Deal entities are temporarily unavailable. Please try again shortly.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/vaults:
+    get:
+      operationId: getDealsDealIdVaults
+      summary: List a deal's vaults — its private Resources area and any shared Deal Rooms
+      description: 'List a deal''s vaults — its private Resources area and any shared Deal Rooms
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Vault'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: documents:read'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/documents:
+    get:
+      operationId: getDealsDealIdDocuments
+      summary: List a deal's uploaded documents across all of its vaults
+      description: 'List a deal''s uploaded documents across all of its vaults
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Documents per page. Defaults to 50 and is clamped to 1-200.
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for the next page.
+        schema:
+          type: string
+      - name: search
+        in: query
+        required: false
+        description: Case-insensitive substring match on the document file name.
+        schema:
+          type: string
+      - name: extension
+        in: query
+        required: false
+        description: Filter to one file extension, e.g. `pdf` or `xlsx`. Omit the leading dot.
+        schema:
+          type: string
+      - name: folder_id
+        in: query
+        required: false
+        description: Only documents directly inside this folder. Omit to span the whole vault.
+        schema:
+          type: integer
+      - name: vault_id
+        in: query
+        required: false
+        description: Only documents in this vault (a Deal Room or Resources). Get ids from [List Vaults](#list-vaults). Omit to span every vault on the deal.
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields to include. `id` and `vault` are always included.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealDocument'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: documents:read'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found; Vault not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: This endpoint does not accept filter parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/documents/{document_id}:
+    get:
+      operationId: getDealsDealIdDocumentsDocumentId
+      summary: Fetch metadata for one uploaded document
+      description: 'Fetch metadata for one uploaded document
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: document_id
+        in: path
+        required: true
+        description: The document ID from the list endpoint
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields to include. `id` is always included.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/DealDocument'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: documents:read'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/documents/{document_id}/download:
+    get:
+      operationId: getDealsDealIdDocumentsDocumentIdDownload
+      summary: Fetch a short-lived signed download link for one uploaded document
+      description: 'Fetch a short-lived signed download link for one uploaded document
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: document_id
+        in: path
+        required: true
+        description: The document ID from the list endpoint
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/DealDocumentDownload'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: documents:read'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/checklists:
+    get:
+      operationId: getDealsDealIdChecklists
+      summary: List a deal's checklists — one per shared Deal Room, with sections, tasks, document types, and task-linked files
+      description: 'List a deal''s checklists — one per shared Deal Room, with sections, tasks, document types, and task-linked files
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: vault_id
+        in: query
+        required: false
+        description: Only return the checklist for one shared Deal Room. Omit to return every Deal Room checklist on the deal.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealChecklist'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: checklists:read'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/memos:
+    get:
+      operationId: getDealsDealIdMemos
+      summary: List a deal's generated memos (deal books)
+      description: 'List a deal''s generated memos (deal books)
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Memos per page. Defaults to 50 and is clamped to 1-200.
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        required: false
+        description: 0-based index of the first memo to return. Defaults to 0.
+        schema:
+          type: integer
+      - name: search
+        in: query
+        required: false
+        description: Case-insensitive substring match on the memo title.
+        schema:
+          type: string
+      - name: filter[title]
+        in: query
+        required: false
+        description: Exact match on the full memo title. Use search for a substring match instead.
+        schema:
+          type: string
+      - name: filter[status]
+        in: query
+        required: false
+        description: 'Filter by publish state: draft or published.'
+        schema:
+          type: string
+      - name: filter[memo_type]
+        in: query
+        required: false
+        description: 'Filter by memo type: debt_financing_om, credit_memo, investment_sales, debt_brokerage, equity_raise, broker_opinion_of_value, investment_committee, invoice, or other.'
+        schema:
+          type: string
+      - name: filter[pdf_ready]
+        in: query
+        required: false
+        description: Filter to memos whose downloadable PDF has rendered (true) or not yet (false).
+        schema:
+          type: boolean
+      - name: vault_id
+        in: query
+        required: false
+        description: Only memos in this vault (a Deal Room or Resources). Get ids from [List Vaults](#list-vaults). Omit to span every vault on the deal.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealMemo'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/memos/{memo_uuid}:
+    get:
+      operationId: getDealsDealIdMemosMemoUuid
+      summary: Fetch one memo with signed PDF download links
+      description: 'Fetch one memo with signed PDF download links
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: memo_uuid
+        in: path
+        required: true
+        description: The memo's UUID, from the `uuid` field on a List Memos row.
+        schema:
+          type: string
+      - name: quality
+        in: query
+        required: false
+        description: 'Which rendered variant `pdf_url` points at: `original` (default), `high`, `medium`, or `low`. An unknown value returns 400.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/DealMemoDetail'
+        '400':
+          description: 'Invalid quality: bogus. Allowed: original, high, medium, low'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Memo not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+  /api/external/v2/deals/{deal_id}/notes:
+    get:
+      operationId: getDealsDealIdNotes
+      summary: List notes logged on a deal
+      description: 'List notes logged on a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Note'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postDealsDealIdNotes
+      summary: Add a note to a deal
+      description: 'Add a note to a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Note text. Must be non-empty.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/deals/{deal_id}/notes/{note_id}:
+    patch:
+      operationId: patchDealsDealIdNotesNoteId
+      summary: Edit a deal note
+      description: 'Edit a deal note
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Replacement note text. Must be non-empty.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '400':
+          description: text cannot be empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+    delete:
+      operationId: deleteDealsDealIdNotesNoteId
+      summary: Permanently delete a deal note
+      description: 'Permanently delete a deal note
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/checklist-tasks/{task_id}/notes:
+    get:
+      operationId: getChecklistTasksTaskIdNotes
+      summary: List comments on a checklist task
+      description: 'List comments on a checklist task
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: The checklist task ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Note'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Checklist task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postChecklistTasksTaskIdNotes
+      summary: Add a comment to a checklist task
+      description: 'Add a comment to a checklist task
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: The checklist task ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Comment text. Must be non-empty.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Checklist task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/checklist-tasks/{task_id}/notes/{note_id}:
+    patch:
+      operationId: patchChecklistTasksTaskIdNotesNoteId
+      summary: Edit a checklist task comment
+      description: 'Edit a checklist task comment
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: The checklist task ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Replacement comment text. Must be non-empty.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '400':
+          description: text cannot be empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Checklist task or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+    delete:
+      operationId: deleteChecklistTasksTaskIdNotesNoteId
+      summary: Permanently delete a checklist task comment
+      description: 'Permanently delete a checklist task comment
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: The checklist task ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Checklist task or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/checklist-tasks:
+    post:
+      operationId: postChecklistTasks
+      summary: Add a task to a deal's checklist
+      description: 'Add a task to a deal''s checklist
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - title
+              oneOf:
+              - required:
+                - section_id
+              - required:
+                - checklist_id
+              - required:
+                - parent_task_id
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  description: Task title. Must be non-empty.
+                section_id:
+                  type: integer
+                  description: Add the task inside this checklist section. Provide exactly one of section_id, checklist_id, or parent_task_id.
+                checklist_id:
+                  type: integer
+                  description: Add the task at the checklist root, outside any section. Provide exactly one of section_id, checklist_id, or parent_task_id.
+                parent_task_id:
+                  type: integer
+                  description: Add the task as a subtask of this task (one level deep). Provide exactly one of section_id, checklist_id, or parent_task_id.
+                description:
+                  type: string
+                  description: Optional longer detail.
+                status:
+                  type: string
+                  enum:
+                  - to_do
+                  - requested
+                  - reviewing
+                  - updates_needed
+                  - approved
+                  - cancelled
+                  default: to_do
+                  description: Initial review state. Defaults to to_do.
+                assigned_user_id:
+                  type: integer
+                  description: Lev user id to assign. Must be an active teammate in your account.
+                due_date:
+                  type: string
+                  format: date
+                  description: Due date, YYYY-MM-DD.
+                document_type_ids:
+                  type: array
+                  items:
+                    type: integer
+                  description: Expected document type ids for the request.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/ChecklistTask'
+        '400':
+          description: assigned_user_id must belong to an active user in your account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: checklists:write'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Section, checklist, or parent task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: Provide exactly one of section_id, checklist_id, or parent_task_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/checklist-tasks/{task_id}:
+    patch:
+      operationId: patchChecklistTasksTaskId
+      summary: Change a checklist task's fields
+      description: 'Change a checklist task''s fields
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: The checklist task ID
+        schema:
+          type: integer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  description: New title. Must be non-empty if provided.
+                description:
+                  type: string
+                  nullable: true
+                  description: New description. Send null to clear.
+                status:
+                  type: string
+                  enum:
+                  - to_do
+                  - requested
+                  - reviewing
+                  - updates_needed
+                  - approved
+                  - cancelled
+                  description: New review state.
+                assigned_user_id:
+                  type: integer
+                  nullable: true
+                  description: New assignee. Send null to unassign. Must be an active teammate in your account.
+                due_date:
+                  type: string
+                  format: date
+                  nullable: true
+                  description: New due date, YYYY-MM-DD. Send null to clear.
+                is_completed:
+                  type: boolean
+                  enum:
+                  - false
+                  description: Pass false to reopen a completed task. To mark a task complete use POST /checklist-tasks/{task_id}/complete.
+                document_type_ids:
+                  type: array
+                  items:
+                    type: integer
+                  nullable: true
+                  description: Replace the expected document type ids. Send null to clear.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/ChecklistTask'
+        '400':
+          description: assigned_user_id must belong to an active user in your account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: checklists:write'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Checklist task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: is_completed accepts false only; to mark a task complete use the complete endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/checklist-tasks/{task_id}/complete:
+    post:
+      operationId: postChecklistTasksTaskIdComplete
+      summary: Mark a checklist task complete
+      description: 'Mark a checklist task complete
+
+
+        Docs page: https://www.lev.com/docs/build/deals'
+      tags:
+      - Deals
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: The checklist task ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/ChecklistTask'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: 'Missing required scope: checklists:write'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Checklist task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deals
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+components:
+  schemas:
+    VaultTag:
+      type: object
+      description: A compact reference to one vault — the `id`, `type`, and `title` subset of the full [Vault Object](#vault-object), embedded to tag a memo with a vault it lives in.
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          description: 'Structural category: `resources` (the deal''s private working vault) or `shared` (a Deal Room).'
+        title:
+          type: string
+          nullable: true
+    DealIndexSearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        sot_id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_id:
+          type: integer
+          nullable: true
+        metric_label:
+          type: string
+          nullable: true
+        value_text:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        context:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        period_type:
+          type: string
+          nullable: true
+        period_value:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        entity_ref:
+          type: string
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+        category_label:
+          type: string
+          nullable: true
+        needs_review:
+          type: boolean
+          nullable: true
+        score:
+          type: number
+          nullable: true
+        source:
+          $ref: '#/components/schemas/DealIndexSearchSource'
+    DealIndexFact:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        sot_id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_id:
+          type: integer
+          nullable: true
+        value_text:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        period_type:
+          type: string
+          nullable: true
+        period_value:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        entity_ref:
+          type: string
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+        source_type:
+          type: string
+          nullable: true
+        source_id:
+          type: string
+          nullable: true
+        observation_id:
+          type: integer
+          nullable: true
+        weight:
+          type: integer
+          nullable: true
+        origin:
+          type: string
+          nullable: true
+        editable:
+          type: boolean
+          nullable: true
+    ChecklistVaultRef:
+      type: object
+      description: The shared Deal Room vault a checklist belongs to.
+      properties:
+        id:
+          type: integer
+          description: Vault id. Pass as vault_id on the checklist endpoint to read one room.
+        type:
+          type: string
+          description: Vault type. Always shared for checklist responses.
+        title:
+          type: string
+          nullable: true
+          description: Human-readable Deal Room name.
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ChecklistDocumentType:
+      type: object
+      description: Expected document type for a checklist task.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          nullable: true
+    ChecklistAssignedTeam:
+      type: object
+      description: The account, lender, or borrower team assigned to a checklist task.
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum:
+          - account
+          - private_company
+        name:
+          type: string
+          nullable: true
+          description: Human-readable team name. Null when the reference is stale or outside the active account.
+    DealIndexEntity:
+      type: object
+      properties:
+        entity_ref:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        identifying_metrics:
+          type: array
+          items:
+            type: object
+            properties:
+              metric_key:
+                type: string
+                nullable: true
+              metric_label:
+                type: string
+                nullable: true
+              value_text:
+                type: string
+                nullable: true
+              support_multiple_values:
+                type: boolean
+                nullable: true
+    DealChecklist:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique checklist identifier
+        vault:
+          $ref: '#/components/schemas/ChecklistVaultRef'
+          description: 'The Deal Room this checklist belongs to: `id`, `type`, and `title`. `type` is always `shared`; checklists do not live on the private Resources vault.'
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistSection'
+          description: Ordered sections, each carrying its own tasks. See the [Checklist Section Object](#checklist-section-object).
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTask'
+          description: Root-level tasks that sit outside any section, in display order. See the [Checklist Task Object](#checklist-task-object).
+    ChecklistSection:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique section identifier
+        name:
+          type: string
+          description: Section name
+        position:
+          type: integer
+          description: Display order inside the checklist
+        start_date:
+          type: string
+          nullable: true
+          description: Optional section start date (ISO 8601)
+        end_date:
+          type: string
+          nullable: true
+          description: Optional section end date (ISO 8601)
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTask'
+          description: The section's tasks in display order. See the [Checklist Task Object](#checklist-task-object).
+    TransactionType:
+      type: string
+      enum:
+      - tbd
+      - acquisition
+      - refinance
+      - new_construction
+      description: Deal transaction_type enum name.
+    BusinessPlanType:
+      type: string
+      enum:
+      - stabilized
+      - value_add
+      - construction
+      - land
+      description: Deal business_plan enum name.
+    DealMemoDetail:
+      type: object
+      properties:
+        uuid:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        memo_type:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        published_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+              nullable: true
+            name:
+              type: string
+              nullable: true
+        pdf_generation_status:
+          type: string
+          nullable: true
+        pdf_ready:
+          type: boolean
+          nullable: true
+        memo_url:
+          type: string
+          nullable: true
+        vaults:
+          type: array
+          description: The vaults this memo lives in — each a `VaultTag` (`id`, `type`, `title`), the embedded subset of the [Vault Object](#vault-object). Scoped to the vaults the caller can see; empty when the memo is in no vault you can see.
+          items:
+            $ref: '#/components/schemas/VaultTag'
+        pdf_url:
+          type: string
+          nullable: true
+        pdf_versions:
+          type: array
+          items:
+            type: object
+            properties:
+              quality:
+                type: string
+                nullable: true
+              status:
+                type: string
+                nullable: true
+              pdf_url:
+                type: string
+                nullable: true
+    DealMemo:
+      type: object
+      properties:
+        uuid:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        memo_type:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        published_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+              nullable: true
+            name:
+              type: string
+              nullable: true
+        pdf_generation_status:
+          type: string
+          nullable: true
+        pdf_ready:
+          type: boolean
+          nullable: true
+        memo_url:
+          type: string
+          nullable: true
+        vaults:
+          type: array
+          description: The vaults this memo lives in — each a `VaultTag` (`id`, `type`, `title`), the embedded subset of the [Vault Object](#vault-object). Scoped to the vaults the caller can see; empty when the memo is in no vault you can see.
+          items:
+            $ref: '#/components/schemas/VaultTag'
+    Vault:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique vault identifier. Pass as `vault_id` on [List Documents](#list-documents) to browse just this vault.
+        type:
+          type: string
+          description: 'Structural category: `resources` (the deal''s single private working vault) or `shared` (a vault the borrower can share with other parties). Present the `title` to users, not this raw value.'
+        title:
+          type: string
+          nullable: true
+          description: Human-readable vault name — `Deal Resources` for the private vault; shared vaults carry names like `Deal Room`, `Closing`, or a per-lender room.
+        is_default:
+          type: boolean
+          description: true` for the deal's primary Deal Room (its default shared vault). Returned by [List Vaults](#list-vaults); omitted from the embedded document `vault` tag.
+        document_count:
+          type: integer
+          description: Number of documents in the vault. Returned by [List Vaults](#list-vaults); omitted from the embedded document `vault` tag.
+    DealIndexObservation:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_id:
+          type: integer
+          nullable: true
+        value_text:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        original_text:
+          type: string
+          nullable: true
+        context:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        period_type:
+          type: string
+          nullable: true
+        period_value:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        entity_ref:
+          type: string
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+        confidence:
+          type: number
+          nullable: true
+        weight:
+          type: integer
+          nullable: true
+        source:
+          $ref: '#/components/schemas/DealIndexSearchSource'
+    ChecklistTaskFile:
+      type: object
+      description: Uploaded file already linked to a checklist task.
+      properties:
+        vault_resource_id:
+          type: integer
+          description: Vault-resource id for the linked file inside the Deal Room.
+        document_id:
+          type: integer
+          nullable: true
+          description: Deal document id for the linked file.
+        name:
+          type: string
+          nullable: true
+        origin:
+          type: string
+          enum:
+          - auto_match
+          - manually_added
+          description: How the file was linked to the task.
+    ChecklistAssignee:
+      type: object
+      description: The Lev user assigned to a checklist task.
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+    DealIndexSearchSource:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        document_id:
+          type: integer
+          nullable: true
+        document_type:
+          type: string
+          nullable: true
+        file_name:
+          type: string
+          nullable: true
+        file_extension:
+          type: string
+          nullable: true
+        pages:
+          type: array
+          items:
+            type: integer
+          nullable: true
+        observation_count:
+          type: integer
+          nullable: true
+        signed_url:
+          type: string
+          nullable: true
+        signed_url_error:
+          type: string
+          nullable: true
+    LoanType:
+      type: string
+      enum:
+      - construction
+      - heavy_bridge
+      - light_bridge
+      - permanent
+      - land
+      - predevelopment
+      - tbd
+      description: Deal loan_type enum name.
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    ChecklistCollaborator:
+      type: object
+      description: A person looped into a checklist task. id is null for external parties without a Lev account.
+      properties:
+        id:
+          type: integer
+          nullable: true
+        email:
+          type: string
+          nullable: true
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    DealIndexMetricDefinition:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_label:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    DealIndexFactInsertResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          nullable: true
+        error:
+          type: string
+          nullable: true
+        metric_sot_values:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealIndexFact'
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+                nullable: true
+              metric_id:
+                type: integer
+                nullable: true
+              success:
+                type: boolean
+                nullable: true
+              sot:
+                allOf:
+                - $ref: '#/components/schemas/DealIndexFact'
+                nullable: true
+              error:
+                type: string
+                nullable: true
+    DealDocument:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique document identifier. Use this value in the document detail and download endpoints.
+        file_name:
+          type: string
+          nullable: true
+          description: Original file name.
+        extension:
+          type: string
+          nullable: true
+          description: File extension without the leading dot.
+        size_bytes:
+          type: integer
+          nullable: true
+          description: File size in bytes. May be null for older records whose size was not stored.
+        folder_path:
+          type: string
+          nullable: true
+          description: Slash-delimited path inside the vault, or null for files at the vault root.
+        uploaded_at:
+          type: string
+          nullable: true
+          description: Upload timestamp (ISO 8601).
+        vault:
+          $ref: '#/components/schemas/DocumentVaultRef'
+          description: The vault this document lives in — the compact `id`, `type`, `title` subset of the [Vault Object](#vault-object) (omits the list-only `is_default` and `document_count`). Always present, even under a sparse `fields` request.
+    Deal:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique deal identifier
+        title:
+          type: string
+          nullable: true
+          description: Deal title
+        loan_amount:
+          type: number
+          nullable: true
+          description: Requested loan amount
+        loan_type:
+          $ref: '#/components/schemas/LoanType'
+          nullable: true
+          description: Loan type enum name
+        transaction_type:
+          $ref: '#/components/schemas/TransactionType'
+          nullable: true
+          description: Transaction type enum name
+        business_plan:
+          $ref: '#/components/schemas/BusinessPlanType'
+          nullable: true
+          description: Business plan enum name
+        description:
+          type: string
+          nullable: true
+          description: Deal description
+        estimated_close_date:
+          type: string
+          nullable: true
+          description: Estimated close date (ISO 8601)
+        close_date:
+          type: string
+          nullable: true
+          description: Actual close date (ISO 8601)
+        owner_account_id:
+          type: integer
+          nullable: true
+          description: Owning account ID
+        created_at:
+          type: string
+          nullable: true
+          description: Creation timestamp (ISO 8601)
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp (ISO 8601)
+        archived:
+          type: boolean
+          description: Whether the deal has been archived. Archiving is separate from pipeline status, so an archived deal keeps its last stage
+        archived_at:
+          type: string
+          nullable: true
+          description: When the deal was archived (ISO 8601), or null when active
+        financials:
+          type: object
+          nullable: true
+          description: Included when `?include=financials` (see [Deal Financials](/build/deal-financials))
+        properties:
+          type: string
+          nullable: true
+          description: Included when `?include=properties` (see [Deal Properties](/build/deal-properties))
+        team:
+          type: string
+          nullable: true
+          description: Included when `?include=team` (see [Deal Team](/build/deal-team))
+        pipelines:
+          type: string
+          nullable: true
+          description: Included when `?include=pipelines`. Up to 10 current pipeline rows per deal, each with `pipeline_id`, `status_name`, `updated_at` (see [Pipelines](/build/pipelines))
+    ChecklistTask:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique task identifier
+        title:
+          type: string
+          description: Task title
+        description:
+          type: string
+          nullable: true
+          description: Task description
+        status:
+          type: string
+          description: 'Review state: `to_do`, `requested`, `reviewing`, `updates_needed`, `approved`, or `cancelled`.'
+        is_completed:
+          type: boolean
+          description: Separate done flag. A task can be approved but not marked complete.
+        position:
+          type: integer
+          description: Display order inside its section or root task list
+        due_date:
+          type: string
+          nullable: true
+          description: Due date (ISO 8601)
+        role:
+          type: string
+          nullable: true
+          description: Role responsible for the task, such as borrower or lender
+        assignee:
+          $ref: '#/components/schemas/ChecklistAssignee'
+          nullable: true
+          description: The Lev user assigned to the task, or null when unassigned.
+        assigned_team:
+          $ref: '#/components/schemas/ChecklistAssignedTeam'
+          nullable: true
+          description: The account, lender, or borrower team assigned to the task. `name` can be null for stale or out-of-scope team references.
+        collaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistCollaborator'
+          description: People looped into the task. Each carries `id` and `email`; `id` is null for external parties without a Lev account.
+        document_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistDocumentType'
+          description: Expected document types for the request, such as Appraisal or Rent roll.
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTaskFile'
+          description: Uploaded files already linked to this task. Each file includes `document_id`, `vault_resource_id`, `name`, and `origin`.
+        subtasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTask'
+          description: Nested subtasks, one level deep, in the same task shape.
+    DealDocumentDownload:
+      type: object
+      description: Short-lived signed download link for one uploaded deal document.
+      properties:
+        file_name:
+          type: string
+          nullable: true
+        download_url:
+          type: string
+        expires_in:
+          type: integer
+          description: Signed URL lifetime in seconds.
+    DealFinancialsWrite:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      description: Writable deal-level financial fields for POST /deals and PATCH /deals/{deal_id}. Send at least one supported field. Omitted fields are unchanged on PATCH; null clears an existing value but cannot create a financials record by itself.
+      properties:
+        purchase_price:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Purchase price.
+        estimated_value:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Estimated value.
+        total_cost:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Total cost.
+        total_cost_basis:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Total cost basis.
+        land_cost:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Land cost.
+    DocumentVaultRef:
+      type: object
+      description: The vault a document lives in, embedded on each document. The compact subset of the Vault object — intentionally omits the list-only is_default and document_count fields returned by the enumerate endpoint.
+      properties:
+        id:
+          type: integer
+          description: Vault id. Pass as vault_id on the documents list to drill into this vault.
+        type:
+          type: string
+          description: 'Structural category: resources (the private vault) or shared (a Deal Room).'
+        title:
+          type: string
+          nullable: true
+          description: Human-readable vault name, e.g. Deal Resources or Deal Room.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

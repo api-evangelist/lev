@@ -1,0 +1,747 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Placements API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Placements
+paths:
+  /api/external/v2/placements:
+    get:
+      operationId: getPlacements
+      summary: List placements with pagination
+      description: 'List placements with pagination
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Placement'
+                  pagination:
+                    type: object
+        '400':
+          description: cursor and sort cannot be combined; use offset pagination when sorting
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postPlacements
+      summary: Create a placement against a deal
+      description: 'Create a placement against a deal
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - deal_id
+              - private_company_id
+              type: object
+              properties:
+                deal_id:
+                  type: integer
+                  description: ID of the deal this placement belongs to
+                private_company_id:
+                  type: integer
+                  description: ID of the lender private company (use `GET /companies` to find candidates)
+                contact_id:
+                  type: integer
+                  description: ID of the lender contact for this outreach. Must belong to the lender at `private_company_id`. Omit it and Lev runs an async AI match to recommend a contact at that lender; the recommended contact's name stays masked until you unlock it
+                status:
+                  type: string
+                  description: Placement status enum name. Defaults to `new`. Cannot be `archived` on create
+                visibility:
+                  type: string
+                  description: Placement visibility (`hidden`, `masked`, `shared`)
+                description:
+                  type: string
+                  description: Free-text note (e.g. lender-specific feedback)
+                score:
+                  type: number
+                  description: Manual relevance score (0–100)
+                outreach_date:
+                  type: string
+                  description: ISO 8601 timestamp the lender was first contacted
+                lender_status:
+                  type: string
+                  description: Lender-side status enum name
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Placement'
+        '400':
+          description: Cannot create a placement with status='archived'; create an active placement and PATCH to archive; A placement already exists for this deal, contact, and lender; use PATCH to update it
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found; Private company not found; Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: 'status: input is not a valid enum member'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/placements/{placement_id}:
+    get:
+      operationId: getPlacementsPlacementId
+      summary: Get a single placement by ID
+      description: 'Get a single placement by ID
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: placement_id
+        in: path
+        required: true
+        description: The placement ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Placement'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    patch:
+      operationId: patchPlacementsPlacementId
+      summary: Update a placement (partial update)
+      description: 'Update a placement (partial update)
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: placement_id
+        in: path
+        required: true
+        description: The placement ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Placement status enum name. Use `archived` to remove the placement
+                visibility:
+                  type: string
+                  description: Placement visibility (`hidden`, `masked`, `shared`)
+                description:
+                  type: string
+                  description: Free-text note. Changing it also appends a note to the placement's notes (List Placement Notes)
+                score:
+                  type: number
+                  description: Manual relevance score (0–100)
+                outreach_date:
+                  type: string
+                  description: ISO 8601 timestamp the lender was first contacted
+                lender_status:
+                  type: string
+                  description: Lender-side status enum name
+              minProperties: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Placement'
+        '400':
+          description: Request body must contain at least one field to update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: 'status: input is not a valid enum member'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/placements/{placement_id}/notes:
+    get:
+      operationId: getPlacementsPlacementIdNotes
+      summary: List notes logged on a placement
+      description: 'List notes logged on a placement
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: placement_id
+        in: path
+        required: true
+        description: The placement ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Note'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postPlacementsPlacementIdNotes
+      summary: Add a note to a placement
+      description: 'Add a note to a placement
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: placement_id
+        in: path
+        required: true
+        description: The placement ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Note text. Must be non-empty.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/placements/{placement_id}/notes/{note_id}:
+    patch:
+      operationId: patchPlacementsPlacementIdNotesNoteId
+      summary: Edit a placement note
+      description: 'Edit a placement note
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: placement_id
+        in: path
+        required: true
+        description: The placement ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Replacement note text. Must be non-empty.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '400':
+          description: text cannot be empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+    delete:
+      operationId: deletePlacementsPlacementIdNotesNoteId
+      summary: Permanently delete a placement note
+      description: 'Permanently delete a placement note
+
+
+        Docs page: https://www.lev.com/docs/build/placements'
+      tags:
+      - Placements
+      parameters:
+      - name: placement_id
+        in: path
+        required: true
+        description: The placement ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/placements
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+components:
+  schemas:
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Placement:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Placement identifier
+        deal_id:
+          type: integer
+          description: Associated deal ID
+        private_company_id:
+          type: integer
+          nullable: true
+          description: Lender private company ID. Null on masked non-owner reads
+        lender_name:
+          type: string
+          nullable: true
+          description: Display lender name. Masked non-owner reads use borrower-portal labels such as Lender A
+        contact_id:
+          type: integer
+          nullable: true
+          description: Lender contact ID. Null on masked non-owner reads
+        contact_name:
+          type: string
+          nullable: true
+          description: Lender contact name. Null on masked non-owner reads, and null for an AI-recommended contact until you reveal it via [Unlock Contact](/build/contacts#unlock-contact) — `contact_id` is still present so you can unlock it
+        status:
+          type: string
+          nullable: true
+          description: Current placement status
+        lender_status:
+          type: string
+          nullable: true
+          description: Lender-side status
+        description:
+          type: string
+          nullable: true
+          description: Placement description
+        lev_score:
+          type: number
+          nullable: true
+          description: AI-generated match score
+        score:
+          type: number
+          nullable: true
+          description: Manual score
+        outreach_date:
+          type: string
+          nullable: true
+          description: Date of initial outreach
+        outreach_source:
+          type: string
+          nullable: true
+          description: Source of outreach
+        last_communication_date:
+          type: string
+          nullable: true
+          description: Date of last communication
+        lender_first_response_date:
+          type: string
+          nullable: true
+          description: Date of lender's first response
+        visibility:
+          type: string
+          nullable: true
+          description: Placement visibility
+        created_at:
+          type: string
+          nullable: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

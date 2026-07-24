@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Deal Financials API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Deal Financials
+paths:
+  /api/external/v2/deals/{deal_id}/financials:
+    get:
+      operationId: getDealsDealIdFinancials
+      summary: Get financial details for a deal
+      description: 'Get financial details for a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deal-financials'
+      tags:
+      - Deal Financials
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/DealFinancials'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deal-financials
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+components:
+  schemas:
+    DealFinancials:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Financials record identifier
+        deal_id:
+          type: integer
+          nullable: true
+          description: Associated deal ID
+        purchase_price:
+          type: number
+          nullable: true
+          description: Purchase price
+        asking_price:
+          type: number
+          nullable: true
+          description: Asking price
+        estimated_value:
+          type: number
+          nullable: true
+          description: Estimated value
+        in_place_noi:
+          type: number
+          nullable: true
+          description: In-place Net Operating Income
+        stabilized_noi:
+          type: number
+          nullable: true
+          description: Stabilized NOI
+        stabilized_value:
+          type: number
+          nullable: true
+          description: Stabilized value
+        stabilized_occupancy:
+          type: number
+          nullable: true
+          description: Stabilized occupancy rate
+        going_in_cap_rate:
+          type: number
+          nullable: true
+          description: Going-in cap rate
+        going_in_cap_rate_as_of_date:
+          type: string
+          nullable: true
+          description: As-of date for going-in cap rate
+        capex:
+          type: number
+          nullable: true
+          description: Capital expenditures
+        historical_capex:
+          type: number
+          nullable: true
+          description: Historical capital expenditures
+        land_cost:
+          type: number
+          nullable: true
+          description: Land cost
+        total_cost:
+          type: number
+          nullable: true
+          description: Total cost
+        total_cost_basis:
+          type: number
+          nullable: true
+          description: Total cost basis
+        cost_basis_to_date:
+          type: number
+          nullable: true
+          description: Cost basis to date
+        imputed_land_value:
+          type: number
+          nullable: true
+          description: Imputed land value
+        existing_debt:
+          type: number
+          nullable: true
+          description: Existing debt amount
+        estimated_cost_basis_if_refinance:
+          type: number
+          nullable: true
+          description: Estimated cost basis if refinance
+        exchange_amount:
+          type: number
+          nullable: true
+          description: 1031 exchange amount
+        exchange_required_closing_date:
+          type: string
+          nullable: true
+          description: Exchange required closing date
+        outstanding_loan_amount_at_closing:
+          type: number
+          nullable: true
+          description: Outstanding loan amount at closing
+        investment_sales_brokerage_fee:
+          type: number
+          nullable: true
+          description: Investment sales brokerage fee
+        debt_placement_brokerage_fee:
+          type: number
+          nullable: true
+          description: Debt placement brokerage fee
+        environmental_cost:
+          type: number
+          nullable: true
+          description: Environmental report cost
+        appraisal_cost:
+          type: number
+          nullable: true
+          description: Appraisal cost
+        survey_cost:
+          type: number
+          nullable: true
+          description: Survey cost
+        snda_and_estoppel_cost:
+          type: number
+          nullable: true
+          description: SNDA and estoppel cost
+        estimated_borrower_counsel_cost:
+          type: number
+          nullable: true
+          description: Estimated borrower counsel cost
+        estimated_lender_counsel_cost:
+          type: number
+          nullable: true
+          description: Estimated lender counsel cost
+        other_closing_costs:
+          type: integer
+          nullable: true
+          description: Other closing costs
+        date_of_purchase_if_refinance:
+          type: string
+          nullable: true
+          description: Date of purchase (if refinance)
+        construction_start_date:
+          type: string
+          nullable: true
+          description: Construction start date
+        construction_completion_date:
+          type: string
+          nullable: true
+          description: Construction completion date
+        debt_maturity_date:
+          type: string
+          nullable: true
+          description: Debt maturity date
+        cash_out:
+          type: boolean
+          nullable: true
+          description: Whether this is a cash-out transaction
+        recent_phase_available:
+          type: boolean
+          nullable: true
+          description: Whether a recent phase report is available
+        recent_appraisal_available:
+          type: boolean
+          nullable: true
+          description: Whether a recent appraisal is available
+        survey_available:
+          type: boolean
+          nullable: true
+          description: Whether a survey is available
+        borrower_counsel_engaged:
+          type: boolean
+          nullable: true
+          description: Whether borrower counsel has been engaged
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

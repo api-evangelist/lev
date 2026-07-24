@@ -1,0 +1,761 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Term Sheets API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Term Sheets
+paths:
+  /api/external/v2/deals/{deal_id}/term-sheets:
+    get:
+      operationId: getDealsDealIdTermSheets
+      summary: List term sheets for a deal
+      description: 'List term sheets for a deal
+
+
+        Docs page: https://www.lev.com/docs/build/term-sheets'
+      tags:
+      - Term Sheets
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TermSheet'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/term-sheets
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postDealsDealIdTermSheets
+      summary: Create a new term sheet against a placement
+      description: 'Create a new term sheet against a placement
+
+
+        Docs page: https://www.lev.com/docs/build/term-sheets
+
+
+        Documented response: returns the full term-sheet detail object (see [Term Sheet Object](#term-sheet-object)).'
+      tags:
+      - Term Sheets
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - placement_id
+              - total_rate
+              - initial_funding
+              - quote_type
+              - rate_type
+              type: object
+              properties:
+                placement_id:
+                  type: integer
+                  description: ID of the placement (lender outreach) this quote belongs to. Must be a placement on this deal
+                total_rate:
+                  type: number
+                  description: Rate as a percent. Send the spread when `base_rate` is set, and send the all-in fixed rate when `base_rate` is omitted or `none-fixed`
+                initial_funding:
+                  type: integer
+                  description: Provided loan amount (whole dollars)
+                quote_type:
+                  type: string
+                  description: Quote type enum (see [Enums](#enums))
+                rate_type:
+                  type: string
+                  description: Rate type enum (`fixed` or `floating`)
+                title:
+                  type: string
+                  description: Free-text title
+                winning:
+                  type: boolean
+                  description: Mark as the winning quote on the deal. Defaults to `false`
+                is_visible_to_borrower:
+                  type: boolean
+                  description: Whether the term sheet is visible to the borrower. Defaults to `true`
+                base_rate:
+                  type: string
+                  description: Base-rate identifier — accepts either an enum key (e.g. `treasury_y5`, `sofr_m1`, `prime_rate`) or the display value returned by [`GET /market/base-rates`](/build/market-data#base-rates) (e.g. `Treasury 5-Yr`, `SOFR 30-Day Avg`, `Prime Rate`). Use `none-fixed` for fixed-rate quotes with no underlying benchmark. When this is a real base-rate identifier, send `total_rate` as the spread over that base rate
+                max_ltv:
+                  type: number
+                  description: Maximum loan-to-value as a decimal ratio (e.g. `0.70` for 70%)
+                max_ltc:
+                  type: number
+                  description: Maximum loan-to-cost as a decimal ratio (e.g. `0.65` for 65%)
+                additional_funding:
+                  type: integer
+                  description: Additional funding amount
+                floor:
+                  type: number
+                  description: Rate floor as a percent (e.g. `5.00` for 5%)
+                floor_type:
+                  type: string
+                  description: Floor type (`base_rate` or `total_rate`)
+                term:
+                  type: integer
+                  description: Term length in months
+                amortization:
+                  type: integer
+                  description: Amortization period in months
+                io_period:
+                  type: integer
+                  description: Interest-only period in months
+                extension_one:
+                  type: integer
+                  description: First extension period in months
+                extension_two:
+                  type: integer
+                  description: Second extension period in months
+                extension_three:
+                  type: integer
+                  description: Third extension period in months
+                recourse:
+                  type: string
+                  description: Recourse category enum
+                recourse_type:
+                  type: string
+                  description: Recourse type enum
+                prepayment_penalty:
+                  type: string
+                  description: Prepayment penalty enum
+                prepayment_penalty_details:
+                  type: string
+                  description: Free-text prepayment penalty details
+                min_dscr:
+                  type: number
+                  description: Minimum debt-service coverage ratio (e.g. `1.25`)
+                min_debt_yield:
+                  type: number
+                  description: Minimum debt yield as a decimal ratio (e.g. `0.08` for 8%)
+                origination_fee:
+                  type: number
+                  description: Origination fee as a decimal ratio (e.g. `0.01` for 1%)
+                extension_fee:
+                  type: number
+                  description: Extension fee as a decimal ratio (e.g. `0.0025` for 0.25%)
+                exit_fee:
+                  type: number
+                  description: Exit fee as a decimal ratio (e.g. `0.005` for 0.5%)
+                good_faith_deposit:
+                  type: number
+                  description: Good-faith deposit amount
+                notes:
+                  type: string
+                  description: Free-text notes
+                ir_details:
+                  type: string
+                  description: Free-text interest reserve details
+                payment_method:
+                  type: string
+                  description: Payment method enum
+                capital_source_type:
+                  type: string
+                  description: Capital source type enum (lender program classification)
+      responses:
+        '201':
+          description: returns the full term-sheet detail object (see [Term Sheet Object](#term-sheet-object)).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/TermSheet'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Placement not found; Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: 'quote_type: input is not a valid enum member; base_rate: not a valid BaseRateNames member'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/term-sheets
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/deals/{deal_id}/term-sheets/{term_sheet_id}:
+    get:
+      operationId: getDealsDealIdTermSheetsTermSheetId
+      summary: Get a single term sheet
+      description: 'Get a single term sheet
+
+
+        Docs page: https://www.lev.com/docs/build/term-sheets'
+      tags:
+      - Term Sheets
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: term_sheet_id
+        in: path
+        required: true
+        description: The term sheet ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/TermSheet'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Term sheet not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/term-sheets
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    patch:
+      operationId: patchDealsDealIdTermSheetsTermSheetId
+      summary: Update a term sheet (partial update)
+      description: 'Update a term sheet (partial update)
+
+
+        Docs page: https://www.lev.com/docs/build/term-sheets
+
+
+        Documented response: returns the updated term-sheet detail object.'
+      tags:
+      - Term Sheets
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: term_sheet_id
+        in: path
+        required: true
+        description: The term sheet ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Free-text title
+                winning:
+                  type: boolean
+                  description: Mark or unmark as the winning quote on the deal
+                total_rate:
+                  type: number
+                  description: 'Rate as a percent. Interpreted against the resulting `base_rate`: spread when `base_rate` is set, all-in fixed rate when `base_rate` is `null` or `none-fixed`. Omitting `base_rate` leaves the existing base-rate setting unchanged'
+                initial_funding:
+                  type: integer
+                  description: Provided loan amount (whole dollars)
+                quote_type:
+                  type: string
+                  description: Quote type enum (see [Enums](#enums))
+                rate_type:
+                  type: string
+                  description: Rate type enum (`fixed` or `floating`)
+                base_rate:
+                  type: string
+                  nullable: true
+                  description: Base-rate identifier — enum key (e.g. `treasury_y5`) or display value (e.g. `Treasury 5-Yr`). Omit to leave unchanged. Send `null` or `none-fixed` for fixed-rate quotes with no benchmark; see special handling below
+                max_ltv:
+                  type: number
+                  description: Maximum loan-to-value as a decimal ratio (e.g. `0.70` for 70%)
+                max_ltc:
+                  type: number
+                  description: Maximum loan-to-cost as a decimal ratio
+                additional_funding:
+                  type: integer
+                  description: Additional funding amount
+                floor:
+                  type: number
+                  description: Rate floor as a percent
+                floor_type:
+                  type: string
+                  description: Floor type (`base_rate` or `total_rate`)
+                term:
+                  type: integer
+                  description: Term length in months
+                amortization:
+                  type: integer
+                  description: Amortization period in months
+                io_period:
+                  type: integer
+                  description: Interest-only period in months
+                extension_one:
+                  type: integer
+                  description: First extension period in months
+                extension_two:
+                  type: integer
+                  description: Second extension period in months
+                extension_three:
+                  type: integer
+                  description: Third extension period in months
+                recourse:
+                  type: string
+                  description: Recourse category enum
+                recourse_type:
+                  type: string
+                  description: Recourse type enum
+                prepayment_penalty:
+                  type: string
+                  description: Prepayment penalty enum
+                prepayment_penalty_details:
+                  type: string
+                  description: Free-text prepayment penalty details
+                min_dscr:
+                  type: number
+                  description: Minimum debt-service coverage ratio (e.g. `1.25`)
+                min_debt_yield:
+                  type: number
+                  description: Minimum debt yield as a decimal ratio
+                origination_fee:
+                  type: number
+                  description: Origination fee as a decimal ratio (e.g. `0.01` for 1%)
+                extension_fee:
+                  type: number
+                  description: Extension fee as a decimal ratio
+                exit_fee:
+                  type: number
+                  description: Exit fee as a decimal ratio
+                good_faith_deposit:
+                  type: number
+                  description: Good-faith deposit amount
+                notes:
+                  type: string
+                  description: Free-text notes
+                ir_details:
+                  type: string
+                  description: Free-text interest reserve details
+                is_visible_to_borrower:
+                  type: boolean
+                  description: Whether the term sheet is visible to the borrower
+                payment_method:
+                  type: string
+                  description: Payment method enum
+                capital_source_type:
+                  type: string
+                  description: Capital source type enum
+              minProperties: 1
+      responses:
+        '200':
+          description: returns the updated term-sheet detail object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/TermSheet'
+        '400':
+          description: Request body must contain at least one field to update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Term sheet not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: 'winning cannot be null. Send true or false to update it, or omit the field to leave it unchanged.; base_rate: not a valid BaseRateNames member'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/term-sheets
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+    delete:
+      operationId: deleteDealsDealIdTermSheetsTermSheetId
+      summary: Soft-delete a term sheet
+      description: 'Soft-delete a term sheet
+
+
+        Docs page: https://www.lev.com/docs/build/term-sheets'
+      tags:
+      - Term Sheets
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      - name: term_sheet_id
+        in: path
+        required: true
+        description: The term sheet ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Term sheet not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/term-sheets
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+components:
+  schemas:
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    TermSheet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Term sheet identifier
+        deal_id:
+          type: integer
+          nullable: true
+          description: Deal this term sheet belongs to
+        title:
+          type: string
+          nullable: true
+          description: Term sheet title
+        lender_name:
+          type: string
+          nullable: true
+          description: Display lender name. Masked non-owner reads use borrower-portal labels such as Lender A
+        quote_type:
+          type: string
+          nullable: true
+          description: Quote type (`guidance`, `indication`, `soft_quote`, `hard_quote`, `term_sheet`)
+        initial_funding:
+          type: integer
+          nullable: true
+          description: Initial funding amount
+        total_rate:
+          type: number
+          nullable: true
+          description: Conditional rate value. Spread over `base_rate` when a benchmark is set; all-in fixed rate when `base_rate` is null or `none-fixed`.
+        base_rate:
+          type: string
+          nullable: true
+          description: Display value of the base rate (e.g. `Treasury 5-Yr`, `SOFR 30-Day Avg`) or `none-fixed
+        base_rate_value:
+          type: number
+          nullable: true
+          description: Base-rate snapshot as a percent. For base-rate quotes, display all-in rate as `base_rate_value + total_rate` when both values are known
+        effective_spread:
+          type: number
+          nullable: true
+          description: Effective spread as a percent for underwriting and comparison. For base-rate quotes, this normally equals `total_rate`.
+        rate_type:
+          type: string
+          nullable: true
+          description: Rate type (`fixed`, `floating`)
+        term:
+          type: integer
+          nullable: true
+          description: Loan term in months
+        io_period:
+          type: integer
+          nullable: true
+          description: Interest-only period in months
+        recourse:
+          type: string
+          nullable: true
+          description: Recourse type
+        max_ltv:
+          type: number
+          nullable: true
+          description: Maximum Loan-to-Value ratio
+        max_ltc:
+          type: number
+          nullable: true
+          description: Maximum Loan-to-Cost ratio
+        origination_fee:
+          type: number
+          nullable: true
+          description: Origination fee as a decimal ratio
+        exit_fee:
+          type: number
+          nullable: true
+          description: Exit fee as a decimal ratio
+        org_id:
+          type: integer
+          nullable: true
+          description: Lender organization ID. Null on masked non-owner reads
+        placement_id:
+          type: integer
+          nullable: true
+          description: Associated placement ID
+        winning:
+          type: boolean
+          nullable: true
+          description: Whether this is the winning term sheet
+        is_visible_to_borrower:
+          type: boolean
+          description: Whether the term sheet is visible to the borrower
+        notes:
+          type: string
+          nullable: true
+          description: Free-form notes on the term sheet
+        created_at:
+          type: string
+          nullable: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp
+        capital_source_type:
+          type: string
+          nullable: true
+          description: Capital source type
+        recourse_type:
+          type: string
+          nullable: true
+          description: Recourse type detail
+        payment_method:
+          type: string
+          nullable: true
+          description: Payment method
+        prepayment_penalty:
+          type: string
+          nullable: true
+          description: Prepayment penalty type
+        prepayment_penalty_details:
+          type: string
+          nullable: true
+          description: Prepayment penalty details
+        amortization:
+          type: integer
+          nullable: true
+          description: Amortization period in months
+        extension_one:
+          type: integer
+          nullable: true
+          description: First extension option (months)
+        extension_two:
+          type: integer
+          nullable: true
+          description: Second extension option (months)
+        extension_three:
+          type: integer
+          nullable: true
+          description: Third extension option (months)
+        floor:
+          type: number
+          nullable: true
+          description: Rate floor
+        floor_type:
+          type: string
+          nullable: true
+          description: Floor type
+        good_faith_deposit:
+          type: number
+          nullable: true
+          description: Good faith deposit amount
+        min_dscr:
+          type: number
+          nullable: true
+          description: Minimum DSCR requirement
+        min_debt_yield:
+          type: number
+          nullable: true
+          description: Minimum debt yield requirement
+        ir_details:
+          type: string
+          nullable: true
+          description: Interest reserve details
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

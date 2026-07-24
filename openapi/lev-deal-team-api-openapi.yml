@@ -1,0 +1,129 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Deal Team API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Deal Team
+paths:
+  /api/external/v2/deals/{deal_id}/team:
+    get:
+      operationId: getDealsDealIdTeam
+      summary: List all team members assigned to a deal
+      description: 'List all team members assigned to a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deal-team'
+      tags:
+      - Deal Team
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealTeamMember'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deal-team
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+components:
+  schemas:
+    DealTeamMember:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Team assignment identifier
+        user_id:
+          type: integer
+          nullable: true
+          description: User ID
+        first_name:
+          type: string
+          nullable: true
+          description: First name
+        last_name:
+          type: string
+          nullable: true
+          description: Last name
+        email:
+          type: string
+          nullable: true
+          description: Email address
+        deal_role:
+          type: string
+          nullable: true
+          description: Team role (deal_lead, originator, closer, etc.)
+        is_primary:
+          type: boolean
+          description: Whether this is the primary team member
+        permission:
+          type: string
+          nullable: true
+          description: Permission level
+        photo_url:
+          type: string
+          nullable: true
+          description: Profile photo URL
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

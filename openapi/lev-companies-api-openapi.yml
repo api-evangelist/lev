@@ -1,0 +1,681 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Companies API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Companies
+paths:
+  /api/external/v2/companies:
+    get:
+      operationId: getCompanies
+      summary: List companies in your account
+      description: 'List companies in your account
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Company'
+                  pagination:
+                    type: object
+        '400':
+          description: cursor and sort cannot be combined; use offset pagination when sorting
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postCompanies
+      summary: Create a new company
+      description: 'Create a new company
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - name
+              - company_type
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Company name (1–255 characters)
+                company_type:
+                  type: string
+                  description: 'Company type: "lender" or "sponsor" (required)'
+                website:
+                  type: string
+                  description: Company website URL
+                address:
+                  type: string
+                  description: Street address
+                city:
+                  type: string
+                  description: City
+                state:
+                  type: string
+                  description: State
+                zip:
+                  type: string
+                  description: ZIP code
+                org_id:
+                  type: integer
+                  description: Link to a global organization record
+                linkedin_url:
+                  type: string
+                  description: LinkedIn URL
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Company'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: User not authorized to create company
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: name is required; company_type is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/companies/{company_id}:
+    get:
+      operationId: getCompaniesCompanyId
+      summary: Get a single company by ID
+      description: 'Get a single company by ID
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: company_id
+        in: path
+        required: true
+        description: The company ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Company'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Company not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    patch:
+      operationId: patchCompaniesCompanyId
+      summary: Update a company
+      description: 'Update a company
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: company_id
+        in: path
+        required: true
+        description: The company ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Company'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Company not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+  /api/external/v2/companies/{company_id}/notes:
+    get:
+      operationId: getCompaniesCompanyIdNotes
+      summary: List notes logged on a company
+      description: 'List notes logged on a company
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: company_id
+        in: path
+        required: true
+        description: The company ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–200, default 50)
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        required: false
+        description: Cursor for next page
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Note'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Company not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+    post:
+      operationId: postCompaniesCompanyIdNotes
+      summary: Add a note to a company
+      description: 'Add a note to a company
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: company_id
+        in: path
+        required: true
+        description: The company ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Note text. Must be non-empty.
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Company not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+  /api/external/v2/companies/{company_id}/notes/{note_id}:
+    patch:
+      operationId: patchCompaniesCompanyIdNotesNoteId
+      summary: Edit a company note
+      description: 'Edit a company note
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: company_id
+        in: path
+        required: true
+        description: The company ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - text
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Replacement note text. Must be non-empty.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/Note'
+        '400':
+          description: text cannot be empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Company or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '422':
+          description: text must not be blank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+      - 'Idempotency-Key: <uuid>'
+    delete:
+      operationId: deleteCompaniesCompanyIdNotesNoteId
+      summary: Permanently delete a company note
+      description: 'Permanently delete a company note
+
+
+        Docs page: https://www.lev.com/docs/build/companies'
+      tags:
+      - Companies
+      parameters:
+      - name: company_id
+        in: path
+        required: true
+        description: The company ID
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: The note ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    $ref: '#/components/schemas/BooleanDeleteResult'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Company or note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/companies
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+      - 'Content-Type: application/json'
+components:
+  schemas:
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Company identifier
+        name:
+          type: string
+          nullable: true
+          description: Company name
+        website:
+          type: string
+          nullable: true
+          description: Website URL
+        address:
+          type: string
+          nullable: true
+          description: Street address
+        city:
+          type: string
+          nullable: true
+          description: City
+        state:
+          type: string
+          nullable: true
+          description: State
+        zip:
+          type: string
+          nullable: true
+          description: ZIP code
+        org_id:
+          type: integer
+          nullable: true
+          description: Linked global organization ID
+        owner_account_id:
+          type: integer
+          nullable: true
+          description: Owning account ID
+        is_connected:
+          type: boolean
+          description: Whether this is a connected company
+        linkedin_url:
+          type: string
+          nullable: true
+          description: LinkedIn URL
+        created_at:
+          type: string
+          nullable: true
+          description: Creation timestamp
+        updated_at:
+          type: string
+          nullable: true
+          description: Last update timestamp
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT

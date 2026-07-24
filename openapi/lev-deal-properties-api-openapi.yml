@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Lev Account & Team Deal Properties API
+  version: 2026-03
+  description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
+servers:
+- url: https://api.lev.com
+  description: Production API
+tags:
+- name: Deal Properties
+paths:
+  /api/external/v2/deals/{deal_id}/properties:
+    get:
+      operationId: getDealsDealIdProperties
+      summary: List properties associated with a deal
+      description: 'List properties associated with a deal
+
+
+        Docs page: https://www.lev.com/docs/build/deal-properties'
+      tags:
+      - Deal Properties
+      parameters:
+      - name: deal_id
+        in: path
+        required: true
+        description: The deal ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DealProperty'
+                  pagination:
+                    type: object
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+        '404':
+          description: Deal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorEnvelope'
+      security:
+      - bearerAuth: []
+      x-lev-docs-page: https://www.lev.com/docs/build/deal-properties
+      x-lev-headers:
+      - 'Authorization: Bearer <token>'
+      - 'X-Origin-App: <client-name>'
+components:
+  schemas:
+    DealProperty:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Property identifier
+        name:
+          type: string
+          nullable: true
+          description: Property name
+        address:
+          type: string
+          nullable: true
+          description: Street address
+        city:
+          type: string
+          nullable: true
+          description: City
+        state:
+          type: string
+          nullable: true
+          description: State (2-letter code)
+        zip:
+          type: string
+          nullable: true
+          description: ZIP code
+        asset_type_id:
+          type: integer
+          nullable: true
+          description: Asset type ID
+        units:
+          type: integer
+          nullable: true
+          description: Number of units
+        square_footage:
+          type: number
+          nullable: true
+          description: Total square footage
+        year_built:
+          type: integer
+          nullable: true
+          description: Year the property was built
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key or JWT
