@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "ba7d9d2c-6670-43e9-b0da-affdee6afa6d",
+    "name": "Lev Account & Team Deal Team API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:26.000Z",
+    "updatedAt": "2026-07-28T02:05:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ba7d9d2c-6670-43e9-b0da-affdee6afa6d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "deals",
+                  "item": [
+                    {
+                      "name": "{deal_id}",
+                      "item": [
+                        {
+                          "name": "team",
+                          "item": [
+                            {
+                              "name": "List all team members assigned to a deal",
+                              "id": "0e21f059-cbdc-4c03-919f-125d0ffbb03b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/team",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "deals",
+                                    ":deal_id",
+                                    "team"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "72dc1a5e-220e-41bd-bacf-a1d6a6ab457f",
+                                      "key": "deal_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The deal ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List all team members assigned to a deal\n\nDocs page: https://www.lev.com/docs/build/deal-team"
+                              },
+                              "response": [
+                                {
+                                  "id": "17d7a19b-d658-4dbf-88d5-25970728ecf2",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/team",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "team"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"user_id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"deal_role\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"permission\": \"<string>\",\n      \"photo_url\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"user_id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"deal_role\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"permission\": \"<string>\",\n      \"photo_url\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:27.000Z",
+                                  "updatedAt": "2026-07-28T02:05:27.000Z",
+                                  "uid": "35240-17d7a19b-d658-4dbf-88d5-25970728ecf2"
+                                },
+                                {
+                                  "id": "ea8daab0-a8f2-434c-943f-633311a31425",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/team",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "team"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:27.000Z",
+                                  "updatedAt": "2026-07-28T02:05:27.000Z",
+                                  "uid": "35240-ea8daab0-a8f2-434c-943f-633311a31425"
+                                },
+                                {
+                                  "id": "5f232541-902b-45c8-acad-ffcd4bdcd2b9",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/team",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "team"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:27.000Z",
+                                  "updatedAt": "2026-07-28T02:05:27.000Z",
+                                  "uid": "35240-5f232541-902b-45c8-acad-ffcd4bdcd2b9"
+                                },
+                                {
+                                  "id": "31a31d33-b73e-4795-a0d0-b69f2358ce8a",
+                                  "name": "Deal not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/team",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "team"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:27.000Z",
+                                  "updatedAt": "2026-07-28T02:05:27.000Z",
+                                  "uid": "35240-31a31d33-b73e-4795-a0d0-b69f2358ce8a"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:27.000Z",
+                              "updatedAt": "2026-07-28T02:05:27.000Z",
+                              "uid": "35240-0e21f059-cbdc-4c03-919f-125d0ffbb03b"
+                            }
+                          ],
+                          "id": "e140fe4a-f3a6-424a-8c85-3dbbf9fef976",
+                          "createdAt": "2026-07-28T02:05:27.000Z",
+                          "updatedAt": "2026-07-28T02:05:27.000Z",
+                          "uid": "35240-e140fe4a-f3a6-424a-8c85-3dbbf9fef976"
+                        }
+                      ],
+                      "id": "6b134f3a-50cc-46db-be81-662ff6d6e60f",
+                      "createdAt": "2026-07-28T02:05:27.000Z",
+                      "updatedAt": "2026-07-28T02:05:27.000Z",
+                      "uid": "35240-6b134f3a-50cc-46db-be81-662ff6d6e60f"
+                    }
+                  ],
+                  "id": "f96fdb99-f889-42af-99de-efd17fec8b30",
+                  "createdAt": "2026-07-28T02:05:27.000Z",
+                  "updatedAt": "2026-07-28T02:05:27.000Z",
+                  "uid": "35240-f96fdb99-f889-42af-99de-efd17fec8b30"
+                }
+              ],
+              "id": "e0b31a0a-a988-4786-99ee-6245c4520d66",
+              "createdAt": "2026-07-28T02:05:27.000Z",
+              "updatedAt": "2026-07-28T02:05:27.000Z",
+              "uid": "35240-e0b31a0a-a988-4786-99ee-6245c4520d66"
+            }
+          ],
+          "id": "c0251208-dbe5-4668-8198-cab8b19e7858",
+          "createdAt": "2026-07-28T02:05:27.000Z",
+          "updatedAt": "2026-07-28T02:05:27.000Z",
+          "uid": "35240-c0251208-dbe5-4668-8198-cab8b19e7858"
+        }
+      ],
+      "id": "681cd150-9e0f-4143-ae29-35c465732573",
+      "createdAt": "2026-07-28T02:05:27.000Z",
+      "updatedAt": "2026-07-28T02:05:27.000Z",
+      "uid": "35240-681cd150-9e0f-4143-ae29-35c465732573"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

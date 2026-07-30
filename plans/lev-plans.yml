@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/pricing
+docs: https://www.lev.com/pricing
+model: subscription plus a consumption credit pool
+currency: USD
+billing_periods:
+- monthly
+- annual
+notes:
+- Annual billing is advertised at a 20 percent saving over monthly.
+- All paid plans include unlimited Lev Agent access and a shared team credit pool.
+- Annual subscriptions carry monthly credit rollover.
+- Credit consumption drives feature usage (AI lender searches, offering memos,
+  marketing reports); the API surfaces credits via getBillingCreditsBalance and
+  getBillingSummary, and credit-charging actions are gated behind the ai:actions
+  scope.
+- No permanent free tier is listed. A promotional offer of 3,000 free credits with
+  unlimited Lev Agent through August was running when this was captured.
+- The rate-limit documentation names a `free` API tier alongside `standard` and
+  `enterprise`; see rate-limits/lev-rate-limits.yml.
+plans:
+- name: Lev Core
+  price: 80
+  currency: USD
+  period: month
+  audience: individual brokers
+  credits_per_month: 2500
+  cost_per_credit: 0.032
+  limits:
+    ai_lender_searches: 1
+    offering_memos: 5
+    marketing_reports: 3
+  note: Feature limits are approximate equivalents of the credit allowance as
+    published on the pricing page.
+- name: Lev Select
+  price: 200
+  currency: USD
+  period: month
+  audience: growing brokerages
+  credits_per_month: 8500
+  cost_per_credit: 0.024
+  limits:
+    ai_lender_searches: 4
+    offering_memos: 17
+    marketing_reports: 13
+- name: Lev Pro
+  price: 400
+  currency: USD
+  period: month
+  audience: high-volume brokerage teams
+  credits_per_month: null
+  cost_per_credit: 0.016
+  limits:
+    ai_lender_searches: 12
+    offering_memos: 50
+    marketing_reports: 38
+  note: Monthly credit allowance is not stated numerically on the pricing page.
+- name: Enterprise
+  price: null
+  currency: USD
+  period: custom
+  audience: enterprise real estate operators
+  credits_per_month: custom pool with annual rollover
+  features:
+  - CRE agent frameworks
+  - forward-deployed engineering
+  - SSO/SCIM
+  - dedicated support
+related:
+  rate_limits: rate-limits/lev-rate-limits.yml
+  billing_operations:
+  - getBillingCreditsBalance
+  - getBillingSummary

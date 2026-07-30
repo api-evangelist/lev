@@ -1,0 +1,996 @@
+{
+  "info": {
+    "_postman_id": "db493e4a-5272-4797-aab0-b0f1ea2e3b95",
+    "name": "Lev Account & Team API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:05.000Z",
+    "updatedAt": "2026-07-28T02:05:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-db493e4a-5272-4797-aab0-b0f1ea2e3b95"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "me",
+                  "item": [
+                    {
+                      "name": "accounts",
+                      "item": [
+                        {
+                          "name": "List every account the authenticated user has an active membership on",
+                          "id": "e9fb7a55-21bd-4af8-a601-7f495af15828",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/me/accounts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "me",
+                                "accounts"
+                              ]
+                            },
+                            "description": "List every account the authenticated user has an active membership on\n\nDocs page: https://www.lev.com/docs/build/account"
+                          },
+                          "response": [
+                            {
+                              "id": "be8f87a7-3a74-44bc-bc4c-6ffe9c4c1535",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/accounts",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "accounts"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-be8f87a7-3a74-44bc-bc4c-6ffe9c4c1535"
+                            },
+                            {
+                              "id": "19ae7dfb-4787-4ba1-a093-2e70f366c5c4",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/accounts",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "accounts"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-19ae7dfb-4787-4ba1-a093-2e70f366c5c4"
+                            },
+                            {
+                              "id": "ec943fd3-4f72-44f8-b26c-5a1213acd067",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/accounts",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "accounts"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-ec943fd3-4f72-44f8-b26c-5a1213acd067"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:05.000Z",
+                          "updatedAt": "2026-07-28T02:05:05.000Z",
+                          "uid": "35240-e9fb7a55-21bd-4af8-a601-7f495af15828"
+                        }
+                      ],
+                      "id": "3c0cc420-52e7-4589-a222-5130629dbc87",
+                      "createdAt": "2026-07-28T02:05:05.000Z",
+                      "updatedAt": "2026-07-28T02:05:05.000Z",
+                      "uid": "35240-3c0cc420-52e7-4589-a222-5130629dbc87"
+                    },
+                    {
+                      "name": "active-account",
+                      "item": [
+                        {
+                          "name": "Persist the authenticated user's active-account preference on the server",
+                          "id": "30e8126b-dff8-4cb7-95c0-4e792529bd3a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"slug\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/me/active-account",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "me",
+                                "active-account"
+                              ]
+                            },
+                            "description": "Persist the authenticated user's active-account preference on the server\n\nDocs page: https://www.lev.com/docs/build/account"
+                          },
+                          "response": [
+                            {
+                              "id": "8abe5855-c9cb-4833-940c-dbffb04bfdfd",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"slug\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/active-account",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "active-account"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-8abe5855-c9cb-4833-940c-dbffb04bfdfd"
+                            },
+                            {
+                              "id": "46f19efa-b561-438d-a868-da9fd69e6c44",
+                              "name": "slug is required",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"slug\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/active-account",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "active-account"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-46f19efa-b561-438d-a868-da9fd69e6c44"
+                            },
+                            {
+                              "id": "569c7cdf-b0d9-4b91-8ba4-da5618959ab9",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"slug\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/active-account",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "active-account"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-569c7cdf-b0d9-4b91-8ba4-da5618959ab9"
+                            },
+                            {
+                              "id": "f78f9a88-e953-4eea-ada0-b170fd6cc965",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"slug\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/active-account",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "active-account"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-f78f9a88-e953-4eea-ada0-b170fd6cc965"
+                            },
+                            {
+                              "id": "79a488c7-6d35-4bf8-a32f-0e7cf52858de",
+                              "name": "Account not found or user is not a member",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"slug\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/me/active-account",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "me",
+                                    "active-account"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-79a488c7-6d35-4bf8-a32f-0e7cf52858de"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:05.000Z",
+                          "updatedAt": "2026-07-28T02:05:05.000Z",
+                          "uid": "35240-30e8126b-dff8-4cb7-95c0-4e792529bd3a"
+                        }
+                      ],
+                      "id": "5ca92315-69f1-4f5d-ba1c-3653c7996da3",
+                      "createdAt": "2026-07-28T02:05:05.000Z",
+                      "updatedAt": "2026-07-28T02:05:05.000Z",
+                      "uid": "35240-5ca92315-69f1-4f5d-ba1c-3653c7996da3"
+                    },
+                    {
+                      "name": "Get the authenticated user's profile, account, and platform details",
+                      "id": "cd4bfea6-8e61-4eea-96c1-02b97c6c845f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "me"
+                          ]
+                        },
+                        "description": "Get the authenticated user's profile, account, and platform details\n\nDocs page: https://www.lev.com/docs/build/account"
+                      },
+                      "response": [
+                        {
+                          "id": "25f2e9a0-228b-4b29-a510-84f398eade91",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/me",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "me"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"user\": {},\n    \"account\": {},\n    \"profile\": {},\n    \"subscription\": {},\n    \"platform\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:05.000Z",
+                          "updatedAt": "2026-07-28T02:05:05.000Z",
+                          "uid": "35240-25f2e9a0-228b-4b29-a510-84f398eade91"
+                        },
+                        {
+                          "id": "2d7fa8bf-363f-49e1-a557-5dbdc81a5740",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/me",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "me"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:05.000Z",
+                          "updatedAt": "2026-07-28T02:05:05.000Z",
+                          "uid": "35240-2d7fa8bf-363f-49e1-a557-5dbdc81a5740"
+                        },
+                        {
+                          "id": "a51b8a16-13c3-40c0-abb7-50ec7c96e78c",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/me",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "me"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:05.000Z",
+                          "updatedAt": "2026-07-28T02:05:05.000Z",
+                          "uid": "35240-a51b8a16-13c3-40c0-abb7-50ec7c96e78c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:05.000Z",
+                      "updatedAt": "2026-07-28T02:05:05.000Z",
+                      "uid": "35240-cd4bfea6-8e61-4eea-96c1-02b97c6c845f"
+                    }
+                  ],
+                  "id": "c6d69677-7113-492c-86da-7c0bbfd1a6c5",
+                  "createdAt": "2026-07-28T02:05:05.000Z",
+                  "updatedAt": "2026-07-28T02:05:05.000Z",
+                  "uid": "35240-c6d69677-7113-492c-86da-7c0bbfd1a6c5"
+                },
+                {
+                  "name": "account",
+                  "item": [
+                    {
+                      "name": "team",
+                      "item": [
+                        {
+                          "name": "List team members in your account",
+                          "id": "3d1beb9a-e253-4426-a476-5be432230026",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/account/team",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "account",
+                                "team"
+                              ]
+                            },
+                            "description": "List team members in your account\n\nDocs page: https://www.lev.com/docs/build/account"
+                          },
+                          "response": [
+                            {
+                              "id": "e2bf9565-0815-4767-b93e-c07d6e2e59b7",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/account/team",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "account",
+                                    "team"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"user_id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"role\": \"<string>\",\n      \"photo_url\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"role\": \"<string>\",\n      \"photo_url\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-e2bf9565-0815-4767-b93e-c07d6e2e59b7"
+                            },
+                            {
+                              "id": "161a355b-f9cb-4eb4-8d3f-2fc69fc832e3",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/account/team",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "account",
+                                    "team"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-161a355b-f9cb-4eb4-8d3f-2fc69fc832e3"
+                            },
+                            {
+                              "id": "9e1e0e37-b5c8-4597-a948-8e31f5685d66",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/account/team",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "account",
+                                    "team"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:05.000Z",
+                              "updatedAt": "2026-07-28T02:05:05.000Z",
+                              "uid": "35240-9e1e0e37-b5c8-4597-a948-8e31f5685d66"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:05.000Z",
+                          "updatedAt": "2026-07-28T02:05:05.000Z",
+                          "uid": "35240-3d1beb9a-e253-4426-a476-5be432230026"
+                        }
+                      ],
+                      "id": "47b7cea3-bda4-44f5-8723-6a0cc1b379a8",
+                      "createdAt": "2026-07-28T02:05:05.000Z",
+                      "updatedAt": "2026-07-28T02:05:05.000Z",
+                      "uid": "35240-47b7cea3-bda4-44f5-8723-6a0cc1b379a8"
+                    }
+                  ],
+                  "id": "b79fbaae-2d1a-478a-b717-edaba3817234",
+                  "createdAt": "2026-07-28T02:05:05.000Z",
+                  "updatedAt": "2026-07-28T02:05:05.000Z",
+                  "uid": "35240-b79fbaae-2d1a-478a-b717-edaba3817234"
+                }
+              ],
+              "id": "5a91cf6f-d870-460d-a990-7f44fa51873b",
+              "createdAt": "2026-07-28T02:05:05.000Z",
+              "updatedAt": "2026-07-28T02:05:05.000Z",
+              "uid": "35240-5a91cf6f-d870-460d-a990-7f44fa51873b"
+            }
+          ],
+          "id": "3f07b54b-3a3c-45cf-af08-f50a4836fce0",
+          "createdAt": "2026-07-28T02:05:05.000Z",
+          "updatedAt": "2026-07-28T02:05:05.000Z",
+          "uid": "35240-3f07b54b-3a3c-45cf-af08-f50a4836fce0"
+        }
+      ],
+      "id": "414940a6-443e-4e55-bc7a-a7cda5894a45",
+      "createdAt": "2026-07-28T02:05:05.000Z",
+      "updatedAt": "2026-07-28T02:05:05.000Z",
+      "uid": "35240-414940a6-443e-4e55-bc7a-a7cda5894a45"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

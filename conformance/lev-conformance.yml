@@ -1,0 +1,101 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/lev-openapi-original.json
+searched_sources:
+- https://www.lev.com/docs/build/api-overview
+- https://www.lev.com/docs/build/authentication
+- https://www.lev.com/docs/build/errors
+- https://www.lev.com/docs/build/pagination
+- https://www.lev.com/docs/learn/trust
+- https://mcp.lev.com/.well-known/oauth-authorization-server
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: openapi field is "3.1.0" in the published document at
+    https://www.lev.com/docs/openapi.json
+- id: oauth2
+  conforms: true
+  evidence: RFC 8414 authorization-server metadata published at
+    https://mcp.lev.com/.well-known/oauth-authorization-server with
+    authorization_code and refresh_token grants
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: well-known/lev-oauth-authorization-server.json (HTTP 200)
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: well-known/lev-oauth-protected-resource.json (HTTP 200)
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint https://auth.lev.com/oidc/register advertised in
+    authorization-server metadata
+- id: oidc
+  conforms: partial
+  evidence: Auth0-issued RS256 JWTs and the openid/email scopes are used, but no
+    /.well-known/openid-configuration is served on the Lev-branded hosts
+- id: mcp
+  conforms: true
+  evidence: hosted streamable-HTTP MCP server at https://mcp.lev.com/mcp with 60
+    registered tools; see mcp/lev-mcp.yml
+- id: llmstxt
+  conforms: true
+  evidence: https://www.lev.com/llms.txt returns 200; saved at llms/lev-llms.txt
+- id: idempotency
+  conforms: true
+  evidence: Idempotency-Key header declared on 19 write operations via x-lev-headers
+    in the OpenAPI, with documented 409 conflict semantics
+- id: cursor-pagination
+  conforms: true
+  evidence: opaque base64 cursor with next_cursor/has_more on list endpoints
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a proprietary {request_id, error:{status,type,message,details}}
+    envelope over application/json, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.lev.com, api.lev.com, and
+    mcp.lev.com
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns 404 on all probed hosts
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no deprecation or sunset policy published; no operation marked deprecated
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming, or webhook surface documented; the OpenAPI declares
+    no webhooks object
+- id: json-api
+  conforms: false
+  evidence: proprietary request_id/timestamp/data envelope, not JSON:API
+- id: hsts
+  conforms: partial
+  evidence: HSTS with max-age 31536000 on www.lev.com; not observed on api.lev.com
+    (see security/lev-domain-security.yml)
+- id: tls-1.2-plus
+  conforms: true
+  evidence: TLSv1.3 on www.lev.com, TLSv1.2 on api.lev.com; the security docs state
+    TLS 1.2+ with HTTPS enforcement
+compliance_programs:
+- id: soc2-type-ii
+  conforms: true
+  holder: Lev
+  scope: Security, Availability, Confidentiality
+  cadence: annual third-party audit
+  evidence: https://www.lev.com/docs/learn/trust
+- id: iso-27001
+  conforms: false
+  note: Claimed only for the underlying AWS infrastructure, not by Lev.
+  evidence: https://www.lev.com/docs/learn/trust
+- id: hipaa
+  conforms: false
+- id: pci-dss
+  conforms: false
+- id: fedramp
+  conforms: false
+related:
+  trust_center: security/lev-trust-center.yml
+  well_known: well-known/lev-well-known.yml
+  conventions: conventions/lev-conventions.yml

@@ -1,0 +1,172 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/api-overview
+docs:
+  api_overview: https://www.lev.com/docs/build/api-overview
+  authentication: https://www.lev.com/docs/build/authentication
+  pagination: https://www.lev.com/docs/build/pagination
+  filtering_sorting: https://www.lev.com/docs/build/filtering-sorting
+  errors: https://www.lev.com/docs/build/errors
+  rate_limits: https://www.lev.com/docs/build/rate-limits
+base_url: https://api.lev.com/api/external/v2
+authentication:
+  style: bearer
+  header: 'Authorization: Bearer <token>'
+  credential_kinds:
+  - api-key (lev_sk_ prefix, long-lived, server-to-server)
+  - jwt (Auth0 RS256, short-lived, interactive clients)
+  additional_required_headers:
+  - name: X-Origin-App
+    description: Identifies the calling application.
+  - name: X-Active-Account
+    description: Account slug; only for JWT users with multiple account memberships.
+  artifact: authentication/lev-authentication.yml
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  value_format: uuid
+  applies_to: write operations (POST/PATCH/DELETE)
+  operations_declaring_it: 19
+  declared_in_spec_as: x-lev-headers on each write operation in
+    openapi/lev-openapi-original.json
+  conflict_behavior:
+    status: 409
+    type: conflict
+    meaning: The same Idempotency-Key was replayed with a different request body.
+    remediation: Reuse an identical request body for a given idempotency key, or
+      generate a new key for a genuinely different request.
+  retention: not published
+  scope: not published
+  note: The docs and spec establish the header, the uuid value format, and the 409
+    conflict semantics. Key retention window and the exact key scope (per account,
+    per endpoint) are not documented publicly.
+pagination:
+  default_style: cursor
+  styles:
+  - style: cursor
+    when: used by default, when no `sort` parameter is supplied
+    cursor_param: cursor
+    cursor_format: opaque base64 token
+    next_field: next_cursor
+    stability: stable — no duplicates or skips
+    note: Mutually exclusive with the `sort` parameter. Recommended for bulk data
+      synchronization.
+  - style: offset
+    when: activated when a `sort` parameter is supplied
+    offset_param: offset
+    offset_default: 0
+    stability: can skip or duplicate items if rows are inserted or deleted between
+      requests
+  params:
+  - name: limit
+    default: 50
+    minimum: 1
+    maximum: 200
+  - name: cursor
+  - name: offset
+    default: 0
+  - name: sort
+    description: Field name; prefix with `-` for descending. Switches the endpoint
+      to offset pagination.
+  response_object: pagination
+  response_fields:
+  - total
+  - limit
+  - has_more
+  - cursor
+  - next_cursor
+  - offset
+filtering:
+  style: bracketed filter params
+  form: filter[<field>]=<value>
+  range_form: filter[<field>][gte] / filter[<field>][lte]
+  examples:
+  - filter[loan_type]
+  - filter[transaction_type]
+  - filter[business_plan]
+  - filter[archived]
+  - filter[loan_amount][gte]
+  - filter[loan_amount][lte]
+  - filter[created_at][gte]
+  - filter[created_at][lte]
+  - filter[status]
+  - filter[title]
+  free_text_param: search
+field_selection:
+  sparse_fields:
+    param: fields
+    description: Comma-separated list of fields to return. `id` is always included.
+  expansion:
+    param: include
+    description: Embed sub-resources on a parent record.
+    examples:
+    - financials
+    - properties
+    - team
+response_envelope:
+  shape:
+    request_id: UUID v4, present on every response
+    timestamp: ISO 8601
+    data: the payload
+  note: Errors use the same envelope with an `error` object in place of `data`.
+error_envelope:
+  format: custom-json
+  rfc9457: false
+  content_type: application/json
+  shape:
+    request_id: UUID v4
+    error:
+      status: HTTP status code, repeated in the body
+      type: machine-readable error type string
+      message: human-readable message
+      details: object
+  optional_fields:
+  - prerequisites
+  - upgrade_url
+  - retry_after_seconds
+  artifact: errors/lev-problem-types.yml
+request_tracing:
+  header: null
+  response_field: request_id
+  format: UUID v4
+  note: Every response, success or error, carries request_id. The docs direct you to
+    quote it when contacting support. The MCP server forwards request IDs to the
+    backend. No inbound request-id header is documented.
+versioning:
+  scheme: uri-path
+  current_path_version: v2
+  path: /api/external/v2
+  spec_version: '2026-03'
+  note: The URI carries a major version (v2) while the OpenAPI info.version is a
+    calendar release string (2026-03).
+  artifact: lifecycle/lev-lifecycle.yml
+rate_limit_signaling:
+  status: 429
+  error_type: rate_limit_exceeded
+  retry_field: retry_after_seconds
+  headers: not published
+  discovery_operation: getMe
+  discovery_fields:
+  - platform.api_tier
+  - platform.rate_limits
+  guidance:
+  - exponential backoff
+  - prefer bulk endpoints over many single requests
+  - cache static data such as market data
+  artifact: rate-limits/lev-rate-limits.yml
+content_types:
+  request: application/json
+  response: application/json
+enums:
+  case: lowercase on the wire
+deletes:
+  soft_delete: true
+  note: deleteDealsDealId archives a deal rather than permanently removing it, and
+    deleteDealsDealIdTermSheetsTermSheetId soft-deletes. Note deletes
+    (deleteDealsDealIdNotesNoteId and siblings) are permanent.
+related:
+  errors: errors/lev-problem-types.yml
+  lifecycle: lifecycle/lev-lifecycle.yml
+  authentication: authentication/lev-authentication.yml
+  scopes: scopes/lev-scopes.yml
+  rate_limits: rate-limits/lev-rate-limits.yml

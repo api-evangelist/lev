@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the Lev web, API, and MCP hosts
+summary: Lev publishes no /.well-known/ surface on its marketing/docs host (www.lev.com)
+  or on the REST API host (api.lev.com). It does publish a complete OAuth 2.1 discovery
+  pair on the hosted MCP host (mcp.lev.com) — RFC 8414 authorization-server metadata
+  and RFC 9728 protected-resource metadata — which is what lets MCP clients discover
+  the Auth0 authorization server and run the browser sign-in flow.
+hosts:
+- host: https://mcp.lev.com
+  role: hosted MCP server
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    standard: RFC 8414
+    status: 200
+    file: lev-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    standard: RFC 9728
+    status: 200
+    file: lev-oauth-protected-resource.json
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://www.lev.com
+  role: marketing site and documentation
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/lev-llms.txt
+    note: Not a /.well-known/ path, but the AI-discovery document for this host.
+- host: https://api.lev.com
+  role: REST API
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+gaps:
+- No RFC 9116 security.txt on any host.
+- No /.well-known/api-catalog (RFC 9727) on the API host, despite a published OpenAPI
+  at https://www.lev.com/docs/openapi.json that it could point to.

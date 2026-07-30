@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "14e926cf-5eef-4ce9-a6ee-ad17c311908a",
+    "name": "Lev Account & Team Deal Financials API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:23.000Z",
+    "updatedAt": "2026-07-28T02:05:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-14e926cf-5eef-4ce9-a6ee-ad17c311908a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "deals",
+                  "item": [
+                    {
+                      "name": "{deal_id}",
+                      "item": [
+                        {
+                          "name": "financials",
+                          "item": [
+                            {
+                              "name": "Get financial details for a deal",
+                              "id": "bd8fe667-3287-4c15-9e29-8015e6754246",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/financials",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "deals",
+                                    ":deal_id",
+                                    "financials"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "172f9987-8cf1-411c-a21c-1c51ef51a79d",
+                                      "key": "deal_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The deal ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Get financial details for a deal\n\nDocs page: https://www.lev.com/docs/build/deal-financials"
+                              },
+                              "response": [
+                                {
+                                  "id": "60ae0983-a018-4f28-ac7c-9de83660643a",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/financials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "financials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"purchase_price\": \"<number>\",\n    \"asking_price\": \"<number>\",\n    \"estimated_value\": \"<number>\",\n    \"in_place_noi\": \"<number>\",\n    \"stabilized_noi\": \"<number>\",\n    \"stabilized_value\": \"<number>\",\n    \"stabilized_occupancy\": \"<number>\",\n    \"going_in_cap_rate\": \"<number>\",\n    \"going_in_cap_rate_as_of_date\": \"<string>\",\n    \"capex\": \"<number>\",\n    \"historical_capex\": \"<number>\",\n    \"land_cost\": \"<number>\",\n    \"total_cost\": \"<number>\",\n    \"total_cost_basis\": \"<number>\",\n    \"cost_basis_to_date\": \"<number>\",\n    \"imputed_land_value\": \"<number>\",\n    \"existing_debt\": \"<number>\",\n    \"estimated_cost_basis_if_refinance\": \"<number>\",\n    \"exchange_amount\": \"<number>\",\n    \"exchange_required_closing_date\": \"<string>\",\n    \"outstanding_loan_amount_at_closing\": \"<number>\",\n    \"investment_sales_brokerage_fee\": \"<number>\",\n    \"debt_placement_brokerage_fee\": \"<number>\",\n    \"environmental_cost\": \"<number>\",\n    \"appraisal_cost\": \"<number>\",\n    \"survey_cost\": \"<number>\",\n    \"snda_and_estoppel_cost\": \"<number>\",\n    \"estimated_borrower_counsel_cost\": \"<number>\",\n    \"estimated_lender_counsel_cost\": \"<number>\",\n    \"other_closing_costs\": \"<integer>\",\n    \"date_of_purchase_if_refinance\": \"<string>\",\n    \"construction_start_date\": \"<string>\",\n    \"construction_completion_date\": \"<string>\",\n    \"debt_maturity_date\": \"<string>\",\n    \"cash_out\": \"<boolean>\",\n    \"recent_phase_available\": \"<boolean>\",\n    \"recent_appraisal_available\": \"<boolean>\",\n    \"survey_available\": \"<boolean>\",\n    \"borrower_counsel_engaged\": \"<boolean>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:24.000Z",
+                                  "updatedAt": "2026-07-28T02:05:24.000Z",
+                                  "uid": "35240-60ae0983-a018-4f28-ac7c-9de83660643a"
+                                },
+                                {
+                                  "id": "c427fa7e-8c7d-4a62-bfd4-9322aaab679f",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/financials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "financials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:24.000Z",
+                                  "updatedAt": "2026-07-28T02:05:24.000Z",
+                                  "uid": "35240-c427fa7e-8c7d-4a62-bfd4-9322aaab679f"
+                                },
+                                {
+                                  "id": "41830396-5a5b-468d-aa29-d0745a732791",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/financials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "financials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:24.000Z",
+                                  "updatedAt": "2026-07-28T02:05:24.000Z",
+                                  "uid": "35240-41830396-5a5b-468d-aa29-d0745a732791"
+                                },
+                                {
+                                  "id": "c01a9a5d-b382-4048-b908-4923069f2c4e",
+                                  "name": "Deal not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/financials",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "financials"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:24.000Z",
+                                  "updatedAt": "2026-07-28T02:05:24.000Z",
+                                  "uid": "35240-c01a9a5d-b382-4048-b908-4923069f2c4e"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:24.000Z",
+                              "updatedAt": "2026-07-28T02:05:24.000Z",
+                              "uid": "35240-bd8fe667-3287-4c15-9e29-8015e6754246"
+                            }
+                          ],
+                          "id": "14b88d6b-966a-43c6-8534-8043f54b76a8",
+                          "createdAt": "2026-07-28T02:05:24.000Z",
+                          "updatedAt": "2026-07-28T02:05:24.000Z",
+                          "uid": "35240-14b88d6b-966a-43c6-8534-8043f54b76a8"
+                        }
+                      ],
+                      "id": "700bab8b-bf24-4329-8ead-795cff9ba61e",
+                      "createdAt": "2026-07-28T02:05:24.000Z",
+                      "updatedAt": "2026-07-28T02:05:24.000Z",
+                      "uid": "35240-700bab8b-bf24-4329-8ead-795cff9ba61e"
+                    }
+                  ],
+                  "id": "69f301b6-ebd8-4fc3-ae57-fa26a6a09bc9",
+                  "createdAt": "2026-07-28T02:05:24.000Z",
+                  "updatedAt": "2026-07-28T02:05:24.000Z",
+                  "uid": "35240-69f301b6-ebd8-4fc3-ae57-fa26a6a09bc9"
+                }
+              ],
+              "id": "827769c8-cc2b-4dab-9d99-a880e53faddc",
+              "createdAt": "2026-07-28T02:05:24.000Z",
+              "updatedAt": "2026-07-28T02:05:24.000Z",
+              "uid": "35240-827769c8-cc2b-4dab-9d99-a880e53faddc"
+            }
+          ],
+          "id": "bf2d9865-c47d-4e4b-be86-6068ec6bd7e8",
+          "createdAt": "2026-07-28T02:05:24.000Z",
+          "updatedAt": "2026-07-28T02:05:24.000Z",
+          "uid": "35240-bf2d9865-c47d-4e4b-be86-6068ec6bd7e8"
+        }
+      ],
+      "id": "d49eca03-a604-4c8e-9448-f319003be67d",
+      "createdAt": "2026-07-28T02:05:24.000Z",
+      "updatedAt": "2026-07-28T02:05:24.000Z",
+      "uid": "35240-d49eca03-a604-4c8e-9448-f319003be67d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

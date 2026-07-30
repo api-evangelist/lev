@@ -1,0 +1,2700 @@
+{
+  "info": {
+    "_postman_id": "4a5fc12e-ad56-468d-9ba3-b06a6550baf8",
+    "name": "Lev Account & Team Companies API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:20.000Z",
+    "updatedAt": "2026-07-28T02:05:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4a5fc12e-ad56-468d-9ba3-b06a6550baf8"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "companies",
+                  "item": [
+                    {
+                      "name": "{company_id}",
+                      "item": [
+                        {
+                          "name": "notes",
+                          "item": [
+                            {
+                              "name": "{note_id}",
+                              "item": [
+                                {
+                                  "name": "Edit a company note",
+                                  "id": "6ca65f8d-5a90-4b39-b3c7-2ee8516c03c9",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes",
+                                        ":note_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "76820285-9f09-45ce-bf20-b53371aceaae",
+                                          "key": "company_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The company ID"
+                                        },
+                                        {
+                                          "id": "56f7443d-e26d-4a5d-adfb-364e957dea50",
+                                          "key": "note_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The note ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Edit a company note\n\nDocs page: https://www.lev.com/docs/build/companies"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8527bbf4-a3c2-4183-94ea-a71c9b8dc662",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"text\": \"<string>\",\n    \"created_by\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-8527bbf4-a3c2-4183-94ea-a71c9b8dc662"
+                                    },
+                                    {
+                                      "id": "bd485056-0a2b-447f-9df1-85ec4081b4a3",
+                                      "name": "text cannot be empty",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-bd485056-0a2b-447f-9df1-85ec4081b4a3"
+                                    },
+                                    {
+                                      "id": "0afbea79-0ea0-42e0-b542-0bc9f2213f5f",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-0afbea79-0ea0-42e0-b542-0bc9f2213f5f"
+                                    },
+                                    {
+                                      "id": "ac967d60-d9c7-4aaa-b3a2-b2c348dcddfb",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-ac967d60-d9c7-4aaa-b3a2-b2c348dcddfb"
+                                    },
+                                    {
+                                      "id": "d8a874a3-6ece-43b3-b87f-449971fbe85c",
+                                      "name": "Company or note not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-d8a874a3-6ece-43b3-b87f-449971fbe85c"
+                                    },
+                                    {
+                                      "id": "47e4ba57-4373-4e85-84a7-e4b3ef45681f",
+                                      "name": "text must not be blank",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-47e4ba57-4373-4e85-84a7-e4b3ef45681f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-6ca65f8d-5a90-4b39-b3c7-2ee8516c03c9"
+                                },
+                                {
+                                  "name": "Permanently delete a company note",
+                                  "id": "3c66ae5e-8694-4af1-93db-c28de8bd6c59",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes",
+                                        ":note_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "cbdcb57b-4084-428c-b386-622aaa5b2ccd",
+                                          "key": "company_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The company ID"
+                                        },
+                                        {
+                                          "id": "d0d13d68-4306-48fa-a044-2251c336c415",
+                                          "key": "note_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The note ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Permanently delete a company note\n\nDocs page: https://www.lev.com/docs/build/companies"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a67f2d63-e783-442a-add1-c59c3e375221",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"deleted\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-a67f2d63-e783-442a-add1-c59c3e375221"
+                                    },
+                                    {
+                                      "id": "712f9243-ac63-4c14-919d-0f10159b8119",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-712f9243-ac63-4c14-919d-0f10159b8119"
+                                    },
+                                    {
+                                      "id": "20dd9b12-7caf-4182-87c0-a1c0ada6cfb4",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-20dd9b12-7caf-4182-87c0-a1c0ada6cfb4"
+                                    },
+                                    {
+                                      "id": "0f8b8723-d177-46a5-ba78-b26f54ac3e32",
+                                      "name": "Company or note not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "companies",
+                                            ":company_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "company_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:21.000Z",
+                                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                                      "uid": "35240-0f8b8723-d177-46a5-ba78-b26f54ac3e32"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-3c66ae5e-8694-4af1-93db-c28de8bd6c59"
+                                }
+                              ],
+                              "id": "aa537256-8fbf-43ef-ad39-b5d38d186d42",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-aa537256-8fbf-43ef-ad39-b5d38d186d42"
+                            },
+                            {
+                              "name": "List notes logged on a company",
+                              "id": "c0b69411-3bf2-4078-9cee-dbbb8a4c6be3",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes?limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id",
+                                    "notes"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8d98b7ab-30ab-43ab-aad8-0333eb7795b0",
+                                      "key": "company_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The company ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List notes logged on a company\n\nDocs page: https://www.lev.com/docs/build/companies"
+                              },
+                              "response": [
+                                {
+                                  "id": "d4094ed1-b6ac-4119-a1ee-8bbdd7b5d402",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"text\": \"<string>\",\n      \"created_by\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"text\": \"<string>\",\n      \"created_by\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-d4094ed1-b6ac-4119-a1ee-8bbdd7b5d402"
+                                },
+                                {
+                                  "id": "7e6176e8-7c9c-4e0c-9709-89852a6cd32b",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-7e6176e8-7c9c-4e0c-9709-89852a6cd32b"
+                                },
+                                {
+                                  "id": "f266a36c-0ae5-4833-bf37-a4d113dde2c6",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-f266a36c-0ae5-4833-bf37-a4d113dde2c6"
+                                },
+                                {
+                                  "id": "f8b4adbb-4890-4544-8bc9-1958923cb030",
+                                  "name": "Company not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-f8b4adbb-4890-4544-8bc9-1958923cb030"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-c0b69411-3bf2-4078-9cee-dbbb8a4c6be3"
+                            },
+                            {
+                              "name": "Add a note to a company",
+                              "id": "00d2088b-cfe4-4d94-9edc-3b2caa5bad75",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"text\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id",
+                                    "notes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "37202c0a-967f-44fd-a0d7-9943e2105a93",
+                                      "key": "company_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The company ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Add a note to a company\n\nDocs page: https://www.lev.com/docs/build/companies"
+                              },
+                              "response": [
+                                {
+                                  "id": "5091e727-3c7a-4b2f-b3aa-d490463a2de3",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"text\": \"<string>\",\n    \"created_by\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-5091e727-3c7a-4b2f-b3aa-d490463a2de3"
+                                },
+                                {
+                                  "id": "866c4150-ec3b-4aae-a6f3-31d2663d8311",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-866c4150-ec3b-4aae-a6f3-31d2663d8311"
+                                },
+                                {
+                                  "id": "5b5eeeac-8259-4422-b7e7-539ab17b136c",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-5b5eeeac-8259-4422-b7e7-539ab17b136c"
+                                },
+                                {
+                                  "id": "35e211fd-9077-4151-9316-1d9548b3679c",
+                                  "name": "Company not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-35e211fd-9077-4151-9316-1d9548b3679c"
+                                },
+                                {
+                                  "id": "3fa84c90-dabe-4fa2-ab27-32876527c555",
+                                  "name": "text must not be blank",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/companies/:company_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "companies",
+                                        ":company_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "company_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:21.000Z",
+                                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                                  "uid": "35240-3fa84c90-dabe-4fa2-ab27-32876527c555"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-00d2088b-cfe4-4d94-9edc-3b2caa5bad75"
+                            }
+                          ],
+                          "id": "1d5d0e3a-ccd1-4f36-bd7b-adefb69b241d",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-1d5d0e3a-ccd1-4f36-bd7b-adefb69b241d"
+                        },
+                        {
+                          "name": "Get a single company by ID",
+                          "id": "41d0a340-d39e-4297-8c90-b3c344837461",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies",
+                                ":company_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9c3af975-459d-41bd-9672-a907af03f90c",
+                                  "key": "company_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The company ID"
+                                }
+                              ]
+                            },
+                            "description": "Get a single company by ID\n\nDocs page: https://www.lev.com/docs/build/companies"
+                          },
+                          "response": [
+                            {
+                              "id": "c31b7be7-7658-4639-9ef8-f709566fb25c",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"website\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"org_id\": \"<integer>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"linkedin_url\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-c31b7be7-7658-4639-9ef8-f709566fb25c"
+                            },
+                            {
+                              "id": "44cdaf1e-bb7a-4acc-b48a-3d5ab941577c",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-44cdaf1e-bb7a-4acc-b48a-3d5ab941577c"
+                            },
+                            {
+                              "id": "6fd95a17-1c50-4e61-982f-0fba75e658fc",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-6fd95a17-1c50-4e61-982f-0fba75e658fc"
+                            },
+                            {
+                              "id": "187badfe-1d0b-49bd-af44-7e9b6f3aef3f",
+                              "name": "Company not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-187badfe-1d0b-49bd-af44-7e9b6f3aef3f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-41d0a340-d39e-4297-8c90-b3c344837461"
+                        },
+                        {
+                          "name": "Update a company",
+                          "id": "880d82ee-3e71-41b9-94e3-19b4c9b6b8ae",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies",
+                                ":company_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "84f536cb-371a-426a-88d4-63e438a2ade2",
+                                  "key": "company_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The company ID"
+                                }
+                              ]
+                            },
+                            "description": "Update a company\n\nDocs page: https://www.lev.com/docs/build/companies"
+                          },
+                          "response": [
+                            {
+                              "id": "7ea43cf5-ea5d-4f25-a730-62101bdca4ed",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"website\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"org_id\": \"<integer>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"linkedin_url\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-7ea43cf5-ea5d-4f25-a730-62101bdca4ed"
+                            },
+                            {
+                              "id": "95b5d545-8bb3-4f51-932e-947287bf0267",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-95b5d545-8bb3-4f51-932e-947287bf0267"
+                            },
+                            {
+                              "id": "1e630e66-054d-4711-a334-093a890fa2c8",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-1e630e66-054d-4711-a334-093a890fa2c8"
+                            },
+                            {
+                              "id": "52d49af8-2ccc-47c4-a4e5-b4cec15a7b1f",
+                              "name": "Company not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/companies/:company_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "companies",
+                                    ":company_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "company_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:21.000Z",
+                              "updatedAt": "2026-07-28T02:05:21.000Z",
+                              "uid": "35240-52d49af8-2ccc-47c4-a4e5-b4cec15a7b1f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-880d82ee-3e71-41b9-94e3-19b4c9b6b8ae"
+                        }
+                      ],
+                      "id": "dbdab1c1-d92b-4895-b794-5de36b742d68",
+                      "createdAt": "2026-07-28T02:05:21.000Z",
+                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                      "uid": "35240-dbdab1c1-d92b-4895-b794-5de36b742d68"
+                    },
+                    {
+                      "name": "List companies in your account",
+                      "id": "9fb91ec4-3484-4d17-905f-648048dff243",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/companies?limit=<integer>&cursor=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "companies"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results per page (1\u2013200, default 50)",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Cursor for next page",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated fields to include",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "List companies in your account\n\nDocs page: https://www.lev.com/docs/build/companies"
+                      },
+                      "response": [
+                        {
+                          "id": "aca10ec2-dea9-444c-aa65-265a38dfabaa",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"website\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"org_id\": \"<integer>\",\n      \"owner_account_id\": \"<integer>\",\n      \"is_connected\": \"<boolean>\",\n      \"linkedin_url\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"website\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"org_id\": \"<integer>\",\n      \"owner_account_id\": \"<integer>\",\n      \"is_connected\": \"<boolean>\",\n      \"linkedin_url\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-aca10ec2-dea9-444c-aa65-265a38dfabaa"
+                        },
+                        {
+                          "id": "6deff723-2a6b-472d-b4fe-80d41b789ddf",
+                          "name": "cursor and sort cannot be combined; use offset pagination when sorting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-6deff723-2a6b-472d-b4fe-80d41b789ddf"
+                        },
+                        {
+                          "id": "8de3eda4-6153-4539-b022-a7dccb11d863",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-8de3eda4-6153-4539-b022-a7dccb11d863"
+                        },
+                        {
+                          "id": "b2c97318-72e2-447b-97eb-1a1bd3db0314",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-b2c97318-72e2-447b-97eb-1a1bd3db0314"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:21.000Z",
+                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                      "uid": "35240-9fb91ec4-3484-4d17-905f-648048dff243"
+                    },
+                    {
+                      "name": "Create a new company",
+                      "id": "b55d87d9-acc8-4c56-ba74-b2f900f3ce3d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"company_type\": \"<string>\",\n  \"website\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"org_id\": \"<integer>\",\n  \"linkedin_url\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/companies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "companies"
+                          ]
+                        },
+                        "description": "Create a new company\n\nDocs page: https://www.lev.com/docs/build/companies"
+                      },
+                      "response": [
+                        {
+                          "id": "ce248146-cebb-4557-88ea-7e57796c03da",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"company_type\": \"<string>\",\n  \"website\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"org_id\": \"<integer>\",\n  \"linkedin_url\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"website\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"org_id\": \"<integer>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"linkedin_url\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-ce248146-cebb-4557-88ea-7e57796c03da"
+                        },
+                        {
+                          "id": "51c91270-982e-438e-9f6a-e33a3675fffb",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"company_type\": \"<string>\",\n  \"website\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"org_id\": \"<integer>\",\n  \"linkedin_url\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-51c91270-982e-438e-9f6a-e33a3675fffb"
+                        },
+                        {
+                          "id": "11499006-c4a7-4a0d-8be6-1d10b8021ceb",
+                          "name": "User not authorized to create company",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"company_type\": \"<string>\",\n  \"website\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"org_id\": \"<integer>\",\n  \"linkedin_url\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-11499006-c4a7-4a0d-8be6-1d10b8021ceb"
+                        },
+                        {
+                          "id": "18a0ef2f-4c9d-450b-baf0-dc1909758baf",
+                          "name": "name is required; company_type is required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"company_type\": \"<string>\",\n  \"website\": \"<string>\",\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"org_id\": \"<integer>\",\n  \"linkedin_url\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/companies",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "companies"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:21.000Z",
+                          "updatedAt": "2026-07-28T02:05:21.000Z",
+                          "uid": "35240-18a0ef2f-4c9d-450b-baf0-dc1909758baf"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:21.000Z",
+                      "updatedAt": "2026-07-28T02:05:21.000Z",
+                      "uid": "35240-b55d87d9-acc8-4c56-ba74-b2f900f3ce3d"
+                    }
+                  ],
+                  "id": "1a8a762b-73d2-4cd1-b681-1ca668c82795",
+                  "createdAt": "2026-07-28T02:05:21.000Z",
+                  "updatedAt": "2026-07-28T02:05:21.000Z",
+                  "uid": "35240-1a8a762b-73d2-4cd1-b681-1ca668c82795"
+                }
+              ],
+              "id": "2284fa58-2601-4d6c-b100-d5afdbcaecfd",
+              "createdAt": "2026-07-28T02:05:21.000Z",
+              "updatedAt": "2026-07-28T02:05:21.000Z",
+              "uid": "35240-2284fa58-2601-4d6c-b100-d5afdbcaecfd"
+            }
+          ],
+          "id": "8bc4abab-14a7-4ca3-b42a-d3dfee9fa09c",
+          "createdAt": "2026-07-28T02:05:21.000Z",
+          "updatedAt": "2026-07-28T02:05:21.000Z",
+          "uid": "35240-8bc4abab-14a7-4ca3-b42a-d3dfee9fa09c"
+        }
+      ],
+      "id": "d6d9fc1c-0b5b-41e1-8a14-ee791563a37a",
+      "createdAt": "2026-07-28T02:05:21.000Z",
+      "updatedAt": "2026-07-28T02:05:21.000Z",
+      "uid": "35240-d6d9fc1c-0b5b-41e1-8a14-ee791563a37a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

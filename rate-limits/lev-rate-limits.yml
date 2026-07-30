@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/rate-limits
+docs: https://www.lev.com/docs/build/rate-limits
+window: minute
+scope: per account, plus a separate per-endpoint ceiling
+limits:
+- tier: free
+  limit_count: 30
+  window: minute
+  scope: account-wide
+- tier: free
+  limit_count: 10
+  window: minute
+  scope: per-endpoint
+- tier: standard
+  limit_count: 100
+  window: minute
+  scope: account-wide
+- tier: standard
+  limit_count: 20
+  window: minute
+  scope: per-endpoint
+- tier: enterprise
+  limit_count: 500
+  window: minute
+  scope: account-wide
+- tier: enterprise
+  limit_count: 60
+  window: minute
+  scope: per-endpoint
+endpoint_limits:
+- endpoint: POST /api/external/v2/auth/validate-api-key
+  operationId: postAuthValidateApiKey
+  limit_count: 10
+  window: minute
+  note: Fixed limit for this public endpoint regardless of tier.
+- endpoint: GET /api/external/v2/health
+  operationId: getHealth
+  limit_count: 100
+  window: minute
+  note: Fixed limit for this public unauthenticated endpoint.
+exceeded:
+  status: 429
+  error_type: rate_limit_exceeded
+  retry_field: retry_after_seconds
+  example: |
+    {
+      "error": {
+        "status": 429,
+        "type": "rate_limit_exceeded",
+        "retry_after_seconds": 60
+      }
+    }
+headers: not published
+discovery:
+  operationId: getMe
+  endpoint: GET /api/external/v2/me
+  fields:
+  - platform.api_tier
+  - platform.rate_limits
+  note: Callers can read their own current tier and limits at runtime.
+  cli: lev auth status also reports account, scopes, and rate limits.
+guidance:
+- Implement exponential backoff with progressively longer waits between retries.
+- Use bulk endpoints rather than many individual requests.
+- Cache responses for static data such as market base rates and asset types.
+related:
+  errors: errors/lev-problem-types.yml
+  conventions: conventions/lev-conventions.yml
+  plans: plans/lev-plans.yml

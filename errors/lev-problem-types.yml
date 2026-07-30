@@ -1,0 +1,114 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/errors
+derived_from: openapi/lev-openapi-original.json
+docs: https://www.lev.com/docs/build/errors
+format: custom-json
+rfc9457: false
+content_type: application/json
+envelope:
+  request_id: UUID v4 — quote this when contacting support
+  error:
+    status: HTTP status code
+    type: machine-readable error type string
+    message: human-readable description
+    details: object with error-specific context
+  optional:
+  - prerequisites
+  - upgrade_url
+  - retry_after_seconds
+example: |
+  {
+    "request_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "error": {
+      "status": 404,
+      "type": "not_found",
+      "message": "Deal with id 999 not found",
+      "details": {}
+    }
+  }
+schemas:
+- ApiError
+- ApiErrorEnvelope
+- ErrorFormat
+problems:
+- status: 400
+  type: bad_request
+  title: Bad request
+  meaning: Invalid request body, missing required fields, or malformed query
+    parameters.
+  remediation: Review the request format and required fields against the OpenAPI.
+  spec_occurrences: 18
+- status: 401
+  type: unauthorized
+  title: Unauthorized
+  meaning: Missing, invalid, or expired authentication token.
+  remediation: Verify or refresh the API key or JWT; validate a key with
+    postAuthValidateApiKey.
+  spec_occurrences: 81
+- status: 402
+  type: payment_required
+  title: Payment required
+  meaning: The action requires credits or a plan the account does not currently
+    have. Responses may carry upgrade_url and prerequisites.
+  remediation: Check the credit balance with getBillingCreditsBalance or the
+    subscription with getBillingSummary, then follow upgrade_url.
+  spec_occurrences: 1
+- status: 403
+  type: forbidden
+  title: Forbidden
+  meaning: Valid token but insufficient permissions for the resource — a missing
+    scope, a read_only key attempting a write, or an account tier restriction.
+  remediation: Check the key's scopes and permission level; confirm account tier.
+  spec_occurrences: 81
+- status: 404
+  type: not_found
+  title: Resource not found
+  meaning: The resource does not exist or is not accessible to this account.
+  remediation: Confirm the resource ID and that the authenticated account has
+    access to it.
+  spec_occurrences: 60
+- status: 409
+  type: conflict
+  title: Idempotency conflict
+  meaning: An Idempotency-Key was replayed with a different request body.
+  remediation: Reuse an identical request body for a given idempotency key, or
+    generate a new key.
+  spec_occurrences: 1
+  related: conventions/lev-conventions.yml
+- status: 422
+  type: validation_error
+  title: Validation error
+  meaning: Syntactically valid JSON that is semantically invalid — for example an
+    invalid enum value.
+  remediation: Validate field values against the schema; note that enum values are
+    lowercase on the wire.
+  spec_occurrences: 25
+- status: 429
+  type: rate_limit_exceeded
+  title: Rate limit exceeded
+  meaning: The account-wide or per-endpoint request rate was exceeded.
+  remediation: Wait retry_after_seconds and retry with exponential backoff.
+  spec_occurrences: 0
+  note: Documented in the error reference and the rate-limit page but not enumerated
+    as a response in the OpenAPI.
+  related: rate-limits/lev-rate-limits.yml
+- status: 500
+  type: internal_error
+  title: Internal error
+  meaning: Unexpected server error.
+  remediation: Retry, then contact support with the request_id.
+  spec_occurrences: 0
+- status: 503
+  type: service_unavailable
+  title: Service unavailable
+  meaning: A dependency is temporarily unavailable. Present on health, market-data,
+    and index-search operations in the spec.
+  remediation: Retry with backoff; check https://lev.statuspage.io/.
+  spec_occurrences: 6
+  note: Present in the OpenAPI responses but not listed in the published error
+    reference table.
+related:
+  conventions: conventions/lev-conventions.yml
+  rate_limits: rate-limits/lev-rate-limits.yml
+  openapi: openapi/lev-openapi-original.json

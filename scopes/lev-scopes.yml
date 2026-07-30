@@ -1,0 +1,103 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/authentication
+docs: https://www.lev.com/docs/build/authentication
+summary: Lev runs two distinct scope surfaces. The REST API uses a domain-based
+  read/write scope list attached to each API key (the OpenAPI does not declare an
+  oauth2 securityScheme, so these scopes are documented rather than machine-readable
+  in the spec). The hosted MCP server uses OAuth 2.1 against Auth0 with standard
+  OIDC scopes; per-user Lev permissions are enforced behind the token rather than
+  expressed as OAuth scopes.
+schemes:
+- name: apiKeyScopes
+  kind: api-key
+  source: https://www.lev.com/docs/build/authentication
+  note: Each API key carries a scopes list controlling which endpoints it can access.
+    Keys are issued at one of two permission levels — full_access (default, all
+    scopes) or read_only (read scopes only). The authenticated scope list is
+    returned by postAuthValidateApiKey and by getMe.
+- name: mcpOAuth
+  kind: oauth2
+  source: well-known/lev-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.lev.com/authorize
+    tokenUrl: https://auth.lev.com/oauth/token
+scopes:
+- scope: deals:read
+  description: Read access to deals and their sub-resources (financials, properties,
+    team, documents, vaults, checklists, memos, notes, indexed facts).
+  domain: deals
+  access: read
+  schemes:
+  - apiKeyScopes
+- scope: deals:write
+  description: Create, update, archive deals and write deal sub-resources including
+    notes, checklist tasks, and recorded index facts.
+  domain: deals
+  access: write
+  schemes:
+  - apiKeyScopes
+- scope: contacts:read
+  description: Read access to CRM contacts and contact notes.
+  domain: contacts
+  access: read
+  schemes:
+  - apiKeyScopes
+- scope: contacts:write
+  description: Create and update CRM contacts and contact notes.
+  domain: contacts
+  access: write
+  schemes:
+  - apiKeyScopes
+- scope: companies:read
+  description: Read access to CRM companies and company notes.
+  domain: companies
+  access: read
+  schemes:
+  - apiKeyScopes
+- scope: companies:write
+  description: Create and update CRM companies and company notes.
+  domain: companies
+  access: write
+  schemes:
+  - apiKeyScopes
+- scope: lenders:read
+  description: Read access to the lender directory, individual lender records, and
+    their lending programs. Read-only — the docs list no lenders:write counterpart.
+  domain: lenders
+  access: read
+  schemes:
+  - apiKeyScopes
+- scope: ai:actions
+  description: Gates AI-powered, credit-consuming actions separately from ordinary
+    reads and writes. Required by postContactsContactIdActionsUnlock, which reveals
+    an AI-recommended lender contact and charges credits.
+  domain: ai
+  access: action
+  schemes:
+  - apiKeyScopes
+- scope: openid
+  description: Standard OIDC scope requested by MCP clients during the Auth0
+    authorization-code flow.
+  domain: oidc
+  access: identity
+  schemes:
+  - mcpOAuth
+- scope: email
+  description: Standard OIDC scope granting the user's email address to the MCP
+    client.
+  domain: oidc
+  access: identity
+  schemes:
+  - mcpOAuth
+- scope: offline_access
+  description: Requests a refresh token so the MCP client can silently refresh
+    without re-prompting the user.
+  domain: oidc
+  access: identity
+  schemes:
+  - mcpOAuth
+related:
+  authentication: authentication/lev-authentication.yml
+  well_known: well-known/lev-well-known.yml

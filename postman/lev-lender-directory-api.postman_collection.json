@@ -1,0 +1,913 @@
+{
+  "info": {
+    "_postman_id": "7cb4e29e-a78f-4b6e-9116-3f107efd529e",
+    "name": "Lev Account & Team Lender Directory API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:31.000Z",
+    "updatedAt": "2026-07-28T02:05:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7cb4e29e-a78f-4b6e-9116-3f107efd529e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "lenders",
+                  "item": [
+                    {
+                      "name": "directory",
+                      "item": [
+                        {
+                          "name": "Browse the lender directory",
+                          "id": "6147cc9c-6677-4d1b-9891-e1e2b0d2d397",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/lenders/directory?name=<string>&filter[state]=<string>&sort=<string>&fields=<string>&limit=<integer>&cursor=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "lenders",
+                                "directory"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Search by lender name (case-insensitive)",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by state",
+                                  "key": "filter[state]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort by: name",
+                                  "key": "sort",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "Browse the lender directory\n\nDocs page: https://www.lev.com/docs/build/lender-directory"
+                          },
+                          "response": [
+                            {
+                              "id": "712ef1b3-b255-4794-b8b3-b9efd78c8588",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/directory?name=<string>&filter[state]=<string>&sort=<string>&fields=<string>&limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    "directory"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Search by lender name (case-insensitive)",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by state",
+                                      "key": "filter[state]",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort by: name",
+                                      "key": "sort",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated fields",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"website\": \"<string>\",\n      \"logo_url\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"about\": \"<string>\",\n      \"lender_type\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"category\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"square_logo_url\": \"<string>\",\n      \"programs\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"website\": \"<string>\",\n      \"logo_url\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"about\": \"<string>\",\n      \"lender_type\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"category\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"aliases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"square_logo_url\": \"<string>\",\n      \"programs\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-712ef1b3-b255-4794-b8b3-b9efd78c8588"
+                            },
+                            {
+                              "id": "38dc97eb-d196-467e-982c-eb5ded3beb77",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/directory?name=<string>&filter[state]=<string>&sort=<string>&fields=<string>&limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    "directory"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Search by lender name (case-insensitive)",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by state",
+                                      "key": "filter[state]",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort by: name",
+                                      "key": "sort",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated fields",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-38dc97eb-d196-467e-982c-eb5ded3beb77"
+                            },
+                            {
+                              "id": "f9ec1973-25bd-484d-bf4e-36030489b14a",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/directory?name=<string>&filter[state]=<string>&sort=<string>&fields=<string>&limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    "directory"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Search by lender name (case-insensitive)",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by state",
+                                      "key": "filter[state]",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort by: name",
+                                      "key": "sort",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated fields",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-f9ec1973-25bd-484d-bf4e-36030489b14a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:31.000Z",
+                          "updatedAt": "2026-07-28T02:05:31.000Z",
+                          "uid": "35240-6147cc9c-6677-4d1b-9891-e1e2b0d2d397"
+                        }
+                      ],
+                      "id": "7878b9c8-4990-4c6a-9912-8472575b5892",
+                      "createdAt": "2026-07-28T02:05:31.000Z",
+                      "updatedAt": "2026-07-28T02:05:31.000Z",
+                      "uid": "35240-7878b9c8-4990-4c6a-9912-8472575b5892"
+                    },
+                    {
+                      "name": "{org_id}",
+                      "item": [
+                        {
+                          "name": "programs",
+                          "item": [
+                            {
+                              "name": "List lending programs for a lender",
+                              "id": "6ed2a179-2cc2-4785-b787-4aaf4eedafc5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id/programs",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    ":org_id",
+                                    "programs"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b2ece943-7d33-43af-ab53-ecd729da7a6d",
+                                      "key": "org_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) Organization ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List lending programs for a lender\n\nDocs page: https://www.lev.com/docs/build/lender-directory"
+                              },
+                              "response": [
+                                {
+                                  "id": "8abc99fa-36fa-405c-aaba-c360eaa994e6",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id/programs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "lenders",
+                                        ":org_id",
+                                        "programs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "org_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"loan_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"recourse_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"min_loan_amount\": \"<number>\",\n      \"max_loan_amount\": \"<number>\",\n      \"capital_source_type\": \"<string>\",\n      \"positions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sponsor_states\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"loan_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"recourse_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"min_loan_amount\": \"<number>\",\n      \"max_loan_amount\": \"<number>\",\n      \"capital_source_type\": \"<string>\",\n      \"positions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sponsor_states\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:31.000Z",
+                                  "updatedAt": "2026-07-28T02:05:31.000Z",
+                                  "uid": "35240-8abc99fa-36fa-405c-aaba-c360eaa994e6"
+                                },
+                                {
+                                  "id": "62f8961a-9d2d-4b4f-930e-4ea30de52eeb",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id/programs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "lenders",
+                                        ":org_id",
+                                        "programs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "org_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:31.000Z",
+                                  "updatedAt": "2026-07-28T02:05:31.000Z",
+                                  "uid": "35240-62f8961a-9d2d-4b4f-930e-4ea30de52eeb"
+                                },
+                                {
+                                  "id": "7a1f6753-2ae1-4e0d-8195-24788bccdfb5",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id/programs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "lenders",
+                                        ":org_id",
+                                        "programs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "org_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:31.000Z",
+                                  "updatedAt": "2026-07-28T02:05:31.000Z",
+                                  "uid": "35240-7a1f6753-2ae1-4e0d-8195-24788bccdfb5"
+                                },
+                                {
+                                  "id": "8d13832f-9b99-44ad-9c44-3c272f674147",
+                                  "name": "Lender not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id/programs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "lenders",
+                                        ":org_id",
+                                        "programs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "org_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:31.000Z",
+                                  "updatedAt": "2026-07-28T02:05:31.000Z",
+                                  "uid": "35240-8d13832f-9b99-44ad-9c44-3c272f674147"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-6ed2a179-2cc2-4785-b787-4aaf4eedafc5"
+                            }
+                          ],
+                          "id": "0e01e243-1e52-42f0-bdfa-faeed84443a8",
+                          "createdAt": "2026-07-28T02:05:31.000Z",
+                          "updatedAt": "2026-07-28T02:05:31.000Z",
+                          "uid": "35240-0e01e243-1e52-42f0-bdfa-faeed84443a8"
+                        },
+                        {
+                          "name": "Get detailed lender information including programs",
+                          "id": "89658298-3c18-4678-a057-1ab7fa6e478a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "lenders",
+                                ":org_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5b83dd6b-d2dd-485d-b93e-e8dbae9cefef",
+                                  "key": "org_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) Organization ID"
+                                }
+                              ]
+                            },
+                            "description": "Get detailed lender information including programs\n\nDocs page: https://www.lev.com/docs/build/lender-directory"
+                          },
+                          "response": [
+                            {
+                              "id": "43b96bb8-82cb-4fdc-859b-54c07eb1b2ad",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    ":org_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"website\": \"<string>\",\n    \"logo_url\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"about\": \"<string>\",\n    \"lender_type\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"category\": \"<string>\",\n    \"linkedin_url\": \"<string>\",\n    \"aliases\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"domains\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"square_logo_url\": \"<string>\",\n    \"programs\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-43b96bb8-82cb-4fdc-859b-54c07eb1b2ad"
+                            },
+                            {
+                              "id": "ff116a0d-f37e-458c-9146-23f09d566f1b",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    ":org_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-ff116a0d-f37e-458c-9146-23f09d566f1b"
+                            },
+                            {
+                              "id": "cebdece7-e124-4a24-9ae9-bc05a18c851e",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    ":org_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-cebdece7-e124-4a24-9ae9-bc05a18c851e"
+                            },
+                            {
+                              "id": "f6eaa4b6-d645-48e3-a8b1-e2ab6504eb2b",
+                              "name": "Lender not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/lenders/:org_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "lenders",
+                                    ":org_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:31.000Z",
+                              "updatedAt": "2026-07-28T02:05:31.000Z",
+                              "uid": "35240-f6eaa4b6-d645-48e3-a8b1-e2ab6504eb2b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:31.000Z",
+                          "updatedAt": "2026-07-28T02:05:31.000Z",
+                          "uid": "35240-89658298-3c18-4678-a057-1ab7fa6e478a"
+                        }
+                      ],
+                      "id": "1e9c0a28-f8b2-4443-91c4-a17a8937d534",
+                      "createdAt": "2026-07-28T02:05:31.000Z",
+                      "updatedAt": "2026-07-28T02:05:31.000Z",
+                      "uid": "35240-1e9c0a28-f8b2-4443-91c4-a17a8937d534"
+                    }
+                  ],
+                  "id": "0c11e7fc-2e7b-4a74-b874-96e435c3faa8",
+                  "createdAt": "2026-07-28T02:05:31.000Z",
+                  "updatedAt": "2026-07-28T02:05:31.000Z",
+                  "uid": "35240-0c11e7fc-2e7b-4a74-b874-96e435c3faa8"
+                }
+              ],
+              "id": "ba711f1f-77c1-41a2-92a4-eac926b76896",
+              "createdAt": "2026-07-28T02:05:31.000Z",
+              "updatedAt": "2026-07-28T02:05:31.000Z",
+              "uid": "35240-ba711f1f-77c1-41a2-92a4-eac926b76896"
+            }
+          ],
+          "id": "940dd403-1eb6-4640-8fcd-870fa61bdc84",
+          "createdAt": "2026-07-28T02:05:31.000Z",
+          "updatedAt": "2026-07-28T02:05:31.000Z",
+          "uid": "35240-940dd403-1eb6-4640-8fcd-870fa61bdc84"
+        }
+      ],
+      "id": "395318bf-b750-4d7c-acb9-377d0ec52857",
+      "createdAt": "2026-07-28T02:05:31.000Z",
+      "updatedAt": "2026-07-28T02:05:31.000Z",
+      "uid": "35240-395318bf-b750-4d7c-acb9-377d0ec52857"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

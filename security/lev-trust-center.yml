@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://www.lev.com/docs/learn/trust
+url: https://www.lev.com/docs/learn/trust
+summary: Lev publishes its trust and compliance posture as a documentation section rather
+  than a third-party trust-portal product. The page states SOC 2 Type II certification
+  audited annually by a third party, quarterly third-party penetration testing, and
+  gives trust@lev.com as the contact for compliance questions and vendor security
+  assessments.
+certifications:
+- name: SOC 2 Type II
+  holder: Lev
+  scope: Security, Availability, and Confidentiality
+  cadence: certified annually by third-party audit
+  evidence: https://www.lev.com/docs/learn/trust
+assessments:
+- name: Penetration testing
+  cadence: quarterly
+  scope: external network, web applications, APIs, and authentication systems
+  evidence: https://www.lev.com/docs/learn/trust
+infrastructure_certifications:
+- name: ISO 27001
+  holder: Amazon Web Services
+  note: Claimed for the underlying AWS infrastructure Lev runs on, NOT independently
+    claimed by Lev. Recorded separately so it is not misread as a Lev certification.
+  evidence: https://www.lev.com/docs/learn/trust
+- name: SOC 2
+  holder: Amazon Web Services
+  note: Underlying AWS infrastructure certification.
+  evidence: https://www.lev.com/docs/learn/trust
+contacts:
+- purpose: compliance questions and vendor security assessments
+  email: trust@lev.com
+related:
+  security_program: https://www.lev.com/docs/learn/security
+  subprocessors: https://www.lev.com/docs/learn/subprocessors
+  privacy_policy: https://www.lev.com/docs/learn/privacy-policy
+  terms: https://www.lev.com/docs/learn/terms
+not_claimed:
+- GDPR certification
+- CCPA certification
+- HIPAA
+- PCI DSS
+- FedRAMP
+evidence:
+- source: https://www.lev.com/docs/learn/trust
+  keywords:
+  - soc 2 type ii
+  - penetration testing
+  - trust

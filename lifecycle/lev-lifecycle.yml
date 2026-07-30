@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/api-overview
+versioning:
+  scheme: uri-path
+  current: v2
+  path_prefix: /api/external/v2
+  spec_version: '2026-03'
+  spec_version_scheme: calendar (YYYY-MM release string in OpenAPI info.version)
+  machine_readable_spec: https://www.lev.com/docs/openapi.json
+  spec_format: OpenAPI 3.1
+  docs: https://www.lev.com/docs/build/api-overview
+  note: The URI carries a major version while the OpenAPI document is stamped with
+    a calendar release string. Both move independently.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: not documented
+  deprecation_header: not documented
+  rfc8594: not documented
+  note: No public deprecation or sunset policy was found on the Lev developer
+    documentation as of this pass, and no operation in the OpenAPI is marked
+    deprecated. Soft-delete/archive semantics exist at the resource level
+    (deleteDealsDealId archives rather than removes) but that is data lifecycle,
+    not API lifecycle.
+deprecated_operations: []
+status_page:
+  url: https://lev.statuspage.io/
+  provider: Atlassian Statuspage
+  linked_from_docs: false
+  note: Reachable and returns 200. Not linked from the developer documentation nav
+    that was crawled; status.lev.com does not resolve.
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime target published. Enterprise plans reference
+    dedicated support; SLA terms are presumably contractual.
+changelog:
+  url: https://www.lev.com/docs/changelog
+  artifact: changelog/lev-changelog.yml
+  cadence: product-dated entries, several per month
+  note: The changelog covers the whole Lev product, not solely the API.
+health:
+  operationId: getHealth
+  endpoint: GET /api/external/v2/health
+  authentication: none
+  rate_limit: 100 requests per minute per caller
+related:
+  conventions: conventions/lev-conventions.yml
+  changelog: changelog/lev-changelog.yml

@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/cli-setup
+summary: Lev publishes no first-party client SDK in any public package registry as
+  of this pass. The only first-party distributable named in the documentation is the
+  Python CLI, `lev-cli`, which the docs themselves describe as not yet published to
+  PyPI (early access via a Lev representative). Integrators are directed at the raw
+  REST API, the hosted MCP server, or the CLI.
+packages:
+- language: python
+  registry: pypi
+  name: lev-cli
+  kind: cli
+  install: pipx install lev-cli
+  official: true
+  published: false
+  url: null
+  docs: https://www.lev.com/docs/build/cli-setup
+  artifact: cli/lev-cli.yml
+  note: Documented install command, but the package is not resolvable on PyPI.
+    Verified 2026-07-19 — https://pypi.org/pypi/lev-cli/json returns HTTP 404, and
+    the Lev docs state it is not yet published.
+registries_checked:
+- registry: pypi
+  queries:
+  - lev-cli
+  - lev
+  result: lev-cli returns 404; the `lev` name is an unrelated placeholder project,
+    not first-party.
+- registry: npm
+  queries:
+  - '@lev/sdk'
+  - lev-sdk
+  - levapi
+  - '@levcom/sdk'
+  result: no first-party package found (all 404).
+- registry: maven-central
+  result: none found
+- registry: nuget
+  result: none found
+- registry: pkg.go.dev
+  result: none found
+- registry: rubygems
+  result: none found
+- registry: packagist
+  result: none found
+- registry: crates.io
+  result: none found
+alternatives:
+- kind: mcp-server
+  url: https://mcp.lev.com/mcp
+  artifact: mcp/lev-mcp.yml
+  note: Hosted remote MCP server — the supported path for AI clients, no package
+    install required.
+- kind: openapi
+  url: https://www.lev.com/docs/openapi.json
+  artifact: openapi/lev-openapi-original.json
+  note: OpenAPI 3.1 document suitable for generating a client.

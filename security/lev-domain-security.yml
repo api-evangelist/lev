@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.lev.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 28 12:15:05 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.lev.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Dec  3 23:59:59 2026 GMT
+  hsts: false
+  note: No Strict-Transport-Security header observed on the API host, though the
+    marketing/docs host sets one with a one-year max-age. The Lev security docs
+    state HSTS is enforced.
+- host: mcp.lev.com
+  https: true
+  hsts: false
+  role: hosted MCP server
+domains:
+- domain: lev.com
+  dnssec: false
+  caa: []
+  caa_note: Re-queried against 8.8.8.8 on 2026-07-19 — the zone genuinely publishes
+    no CAA records. (An earlier probe pass recorded a resolver timeout here; that
+    was a lookup artifact, not a record.)
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+findings:
+- severity: info
+  finding: Strong email posture — SPF present and DMARC at policy `reject`.
+- severity: low
+  finding: No DNSSEC on lev.com.
+- severity: low
+  finding: No CAA records, so certificate issuance is not restricted to named CAs.
+- severity: low
+  finding: HSTS is set on www.lev.com but not observed on api.lev.com or
+    mcp.lev.com — the two hosts that carry bearer tokens.
+- severity: info
+  finding: api.lev.com negotiated TLSv1.2 while www.lev.com negotiated TLSv1.3.
+    Both meet the documented TLS 1.2+ floor.

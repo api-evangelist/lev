@@ -1,0 +1,116 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/lev-openapi-original.json + https://www.lev.com/docs/build
+note: Packaged Agent Skills for the Lev API. Every operationId referenced below was
+  verified against the harvested OpenAPI 3.1 document — none are invented. Lev
+  publishes no AGENTS.md or first-party skill files; these are API Evangelist
+  generations grounded in the real spec plus the documented conventions.
+api: openapi/lev-openapi-original.json
+skills:
+- file: lev-create-deal-and-place.md
+  name: Create a Lev deal and place it with a lender
+  description: Originate a CRE deal, move it into a pipeline stage, place it with a
+    capital source, and record the resulting term sheet.
+  api: openapi/lev-openapi-original.json
+  scopes:
+  - deals:write
+  operations:
+  - postDeals
+  - getDealsDealId
+  - getPipelines
+  - getPipelinesPipelineId
+  - postDealsDealIdPipeline
+  - postPlacements
+  - getPlacementsPlacementId
+  - postDealsDealIdTermSheets
+  - getDealsDealIdTermSheets
+- file: lev-source-backed-deal-facts.md
+  name: Answer deal questions with source-backed facts
+  description: Search canonical indexed deal facts, trace each value to its source
+    document, and correct or record values without losing provenance.
+  api: openapi/lev-openapi-original.json
+  scopes:
+  - deals:read
+  - deals:write
+  operations:
+  - getDeals
+  - getDealsDealId
+  - postDealsDealIdIndexSearch
+  - postDealsDealIdIndexObservations
+  - getDealsDealIdIndexMetricDefinitions
+  - getDealsDealIdIndexEntities
+  - postDealsDealIdIndexFacts
+  - patchDealsDealIdIndexFacts
+  - getDealsDealIdDocuments
+  - getDealsDealIdDocumentsDocumentIdDownload
+- file: lev-lender-search-and-outreach.md
+  name: Find lenders for a deal and prepare outreach
+  description: Browse the lender directory, inspect lending programs, and build a CRM
+    contact list — including the credit-charging AI contact unlock.
+  api: openapi/lev-openapi-original.json
+  scopes:
+  - lenders:read
+  - contacts:read
+  - contacts:write
+  - ai:actions
+  operations:
+  - getDealsDealId
+  - getDealsDealIdFinancials
+  - getLendersDirectory
+  - getLendersOrgId
+  - getLendersOrgIdPrograms
+  - getContacts
+  - getContactsContactId
+  - postContactsContactIdActionsUnlock
+  - postContacts
+  - postCompanies
+  - postDealsDealIdNotes
+  - getBillingCreditsBalance
+- file: lev-deal-room-documents.md
+  name: Run a Lev deal room and its diligence checklist
+  description: Navigate vaults and documents, work the Deal Room checklist, and drive
+    tasks to completion.
+  api: openapi/lev-openapi-original.json
+  scopes:
+  - deals:read
+  - deals:write
+  operations:
+  - getDealsDealId
+  - getDealsDealIdVaults
+  - getDealsDealIdDocuments
+  - getDealsDealIdDocumentsDocumentId
+  - getDealsDealIdDocumentsDocumentIdDownload
+  - getDealsDealIdChecklists
+  - postChecklistTasks
+  - patchChecklistTasksTaskId
+  - postChecklistTasksTaskIdComplete
+  - getChecklistTasksTaskIdNotes
+  - postChecklistTasksTaskIdNotes
+  - getDealsDealIdMemos
+  - getDealsDealIdMemosMemoUuid
+- file: lev-sync-deals.md
+  name: Sync Lev deals into an external system
+  description: Bulk-read deals and sub-resources correctly — cursor pagination,
+    incremental filters, field selection, and rate-limit backoff.
+  api: openapi/lev-openapi-original.json
+  scopes:
+  - deals:read
+  - contacts:read
+  - companies:read
+  operations:
+  - getMe
+  - postAuthValidateApiKey
+  - getDeals
+  - getDealsDealId
+  - getDealsDealIdFinancials
+  - getDealsDealIdProperties
+  - getDealsDealIdTeam
+  - getContacts
+  - getCompanies
+  - getPlacements
+  - getHealth
+related:
+  conventions: conventions/lev-conventions.yml
+  errors: errors/lev-problem-types.yml
+  scopes: scopes/lev-scopes.yml
+  mcp: mcp/lev-mcp.yml

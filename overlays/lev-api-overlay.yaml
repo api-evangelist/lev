@@ -1,0 +1,163 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Lev API
+  version: 1.0.0
+extends: openapi/lev-openapi-original.json
+x-generated: '2026-07-19'
+x-method: generated
+x-source: >-
+  Derived from the harvested Lev OpenAPI 3.1 document plus the Lev developer
+  documentation (api-overview, authentication, pagination, errors, rate-limits).
+  Captures API Evangelist enrichment only — the original specification is never
+  mutated.
+actions:
+- target: $.info
+  description: Attach API Evangelist provenance and enrichment pointers.
+  update:
+    x-apievangelist-slug: lev
+    x-apievangelist-enriched: '2026-07-19'
+    x-apievangelist-artifacts:
+      conventions: conventions/lev-conventions.yml
+      errors: errors/lev-problem-types.yml
+      authentication: authentication/lev-authentication.yml
+      scopes: scopes/lev-scopes.yml
+      rate-limits: rate-limits/lev-rate-limits.yml
+      lifecycle: lifecycle/lev-lifecycle.yml
+      data-model: data-model/lev-data-model.yml
+      mcp: mcp/lev-mcp.yml
+      skills: skills/_index.yml
+      agentic-access: agentic-access/lev-agentic-access.yml
+- target: $.info
+  description: >-
+    Record the documentation host, which differs from the API server host. The
+    OpenAPI is served from www.lev.com while the API itself is api.lev.com.
+  update:
+    x-apievangelist-docs: https://www.lev.com/docs/build/api-overview
+    x-apievangelist-spec-source: https://www.lev.com/docs/openapi.json
+- target: $
+  description: >-
+    Declare the tag set that the operations already reference. The source document
+    uses 16 distinct tags on its operations but ships an empty top-level tags array,
+    so tooling that renders navigation from tags[] gets nothing. This supplies
+    descriptions without altering any operation.
+  update:
+    tags:
+    - name: Deals
+      description: Deals and their sub-resources — financials, properties, team,
+        documents, vaults, checklists, memos, notes, and source-backed indexed facts.
+    - name: Contacts
+      description: CRM contacts, contact notes, and AI lender-contact unlock.
+    - name: Companies
+      description: CRM companies and company notes.
+    - name: Placements
+      description: Placements of a deal with capital sources, and placement notes.
+    - name: Term Sheets
+      description: Term sheets issued against a placement on a deal.
+    - name: Lender Directory
+      description: Browse lenders and their lending programs.
+    - name: Pipelines
+      description: Pipelines, their statuses, and moving a deal between stages.
+    - name: Market Data
+      description: Current base rates (SOFR, CMT, Prime) and asset-type definitions.
+    - name: Account & Team
+      description: Authenticated user profile, account memberships, and team roster.
+    - name: API Keys
+      description: Create, list, and revoke scoped API keys.
+    - name: Billing
+      description: Credit balance and subscription summary for the active account.
+    - name: Deal Financials
+      description: Financial detail for a single deal.
+    - name: Deal Properties
+      description: Properties associated with a deal.
+    - name: Deal Team
+      description: Team members assigned to a deal.
+    - name: Quickstart
+      description: API-key validation used to confirm credentials and read scopes.
+    - name: Lev API Documentation
+      description: Public liveness endpoint.
+- target: $
+  description: >-
+    Declare the security scheme globally. Every operation in the source document
+    already carries `security: [{bearerAuth: []}]` individually, but the document
+    sets no root-level `security`, so a reader cannot tell the API is authenticated
+    by default. getHealth is documented as the only unauthenticated operation.
+  update:
+    security:
+    - bearerAuth: []
+- target: $.components.securitySchemes.bearerAuth
+  description: >-
+    Expand the bearer scheme with the two credential kinds the documentation
+    describes and the API-key prefix, which the source bearerFormat only hints at.
+  update:
+    description: >-
+      Two credential kinds share this header. API keys carry the `lev_sk_` prefix,
+      are long-lived, are bound to one account at creation, and are intended for
+      server-to-server use; validate one with postAuthValidateApiKey. JWTs are
+      short-lived Auth0-issued RS256 tokens for interactive clients. Every request
+      must also send `X-Origin-App`; JWT users with multiple account memberships
+      must also send `X-Active-Account`.
+    x-credential-kinds:
+    - kind: api-key
+      prefix: lev_sk_
+    - kind: jwt
+      issuer: https://auth.lev.com/
+- target: $
+  description: >-
+    Record the request headers the API requires but does not model as parameters.
+    The source document carries them as an `x-lev-headers` vendor array on each
+    operation rather than as OpenAPI parameters, so generated clients omit them.
+  update:
+    x-apievangelist-required-headers:
+    - name: Authorization
+      value: Bearer <token>
+      required: true
+    - name: X-Origin-App
+      value: <client-name>
+      required: true
+    - name: X-Active-Account
+      value: <account-slug>
+      required: false
+    - name: Idempotency-Key
+      value: <uuid>
+      required: false
+      applies_to: write operations
+- target: $
+  description: >-
+    Capture the cross-cutting runtime semantics documented outside the spec —
+    envelope, pagination, idempotency, and rate limiting.
+  update:
+    x-apievangelist-conventions:
+      response_envelope:
+        request_id: UUID v4
+        timestamp: ISO 8601
+        data: payload
+      pagination:
+        default: cursor
+        cursor_param: cursor
+        next_field: next_cursor
+        has_more_field: has_more
+        limit_default: 50
+        limit_max: 200
+        offset_when: a sort parameter is supplied
+        mutually_exclusive: cursor pagination and the sort parameter
+      idempotency:
+        header: Idempotency-Key
+        format: uuid
+        conflict_status: 409
+        conflict_type: conflict
+      errors:
+        envelope: '{request_id, error:{status, type, message, details}}'
+        rfc9457: false
+      rate_limits:
+        exceeded_status: 429
+        exceeded_type: rate_limit_exceeded
+        retry_field: retry_after_seconds
+        discovery_operation: getMe
+- target: $.paths['/api/external/v2/health'].get
+  description: >-
+    Mark the liveness endpoint as explicitly unauthenticated, overriding the
+    default security applied above.
+  update:
+    security: []
+    x-apievangelist-note: Public liveness endpoint, no authentication required,
+      fixed at 100 requests per minute per caller.

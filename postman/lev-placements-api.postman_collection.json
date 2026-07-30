@@ -1,0 +1,2993 @@
+{
+  "info": {
+    "_postman_id": "4187ba08-6624-4b41-aae1-e0072080132d",
+    "name": "Lev Account & Team Placements API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:36.000Z",
+    "updatedAt": "2026-07-28T02:05:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4187ba08-6624-4b41-aae1-e0072080132d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "placements",
+                  "item": [
+                    {
+                      "name": "{placement_id}",
+                      "item": [
+                        {
+                          "name": "notes",
+                          "item": [
+                            {
+                              "name": "{note_id}",
+                              "item": [
+                                {
+                                  "name": "Edit a placement note",
+                                  "id": "525c74c7-d524-4c89-b055-b716bd4e4083",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes",
+                                        ":note_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "4905d9d8-f1b0-4ec2-875a-85059cb1daff",
+                                          "key": "placement_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The placement ID"
+                                        },
+                                        {
+                                          "id": "8967c6f1-385a-48b7-9f9f-61fe447a6b87",
+                                          "key": "note_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The note ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Edit a placement note\n\nDocs page: https://www.lev.com/docs/build/placements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b1ffcb1a-d8b1-4216-b770-4c180b660dcd",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"text\": \"<string>\",\n    \"created_by\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-b1ffcb1a-d8b1-4216-b770-4c180b660dcd"
+                                    },
+                                    {
+                                      "id": "fb2c8c30-a500-4d4d-8b57-af70a4aa661f",
+                                      "name": "text cannot be empty",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-fb2c8c30-a500-4d4d-8b57-af70a4aa661f"
+                                    },
+                                    {
+                                      "id": "6a46d6a0-c271-43fe-91b2-8d9031b60bc9",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-6a46d6a0-c271-43fe-91b2-8d9031b60bc9"
+                                    },
+                                    {
+                                      "id": "ff9e46d5-8fec-4431-9a80-e60cb332c3b7",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-ff9e46d5-8fec-4431-9a80-e60cb332c3b7"
+                                    },
+                                    {
+                                      "id": "d380c812-0d62-4e2d-983c-1551da3c5a33",
+                                      "name": "Placement or note not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-d380c812-0d62-4e2d-983c-1551da3c5a33"
+                                    },
+                                    {
+                                      "id": "85db417e-2f6d-4b8c-9446-0c6b6d2fe316",
+                                      "name": "text must not be blank",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-85db417e-2f6d-4b8c-9446-0c6b6d2fe316"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-525c74c7-d524-4c89-b055-b716bd4e4083"
+                                },
+                                {
+                                  "name": "Permanently delete a placement note",
+                                  "id": "2ff1bd5b-1fef-4665-a31a-4722e3872f87",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes",
+                                        ":note_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "1d6d364b-6d47-47e0-b906-3bcdccb79d86",
+                                          "key": "placement_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The placement ID"
+                                        },
+                                        {
+                                          "id": "6a894533-13a3-43c1-b197-2c138b5d2b2f",
+                                          "key": "note_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The note ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Permanently delete a placement note\n\nDocs page: https://www.lev.com/docs/build/placements"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "5069698b-7cba-4f16-a120-dd6b5c40fcb1",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"deleted\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-5069698b-7cba-4f16-a120-dd6b5c40fcb1"
+                                    },
+                                    {
+                                      "id": "fa42a187-7349-4148-9b21-6d609e704eab",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-fa42a187-7349-4148-9b21-6d609e704eab"
+                                    },
+                                    {
+                                      "id": "b0e48639-5e96-415e-afad-6ec16da3c2a6",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-b0e48639-5e96-415e-afad-6ec16da3c2a6"
+                                    },
+                                    {
+                                      "id": "1e83917a-6892-4728-a116-7f0e5b20320b",
+                                      "name": "Placement or note not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "placements",
+                                            ":placement_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "placement_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:37.000Z",
+                                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                                      "uid": "35240-1e83917a-6892-4728-a116-7f0e5b20320b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-2ff1bd5b-1fef-4665-a31a-4722e3872f87"
+                                }
+                              ],
+                              "id": "2316b0e3-c77c-4bc1-9718-40e9fb2cc589",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-2316b0e3-c77c-4bc1-9718-40e9fb2cc589"
+                            },
+                            {
+                              "name": "List notes logged on a placement",
+                              "id": "22449340-39eb-4871-9c6b-b5d3d649df66",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes?limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id",
+                                    "notes"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "5007c26f-5ac4-42ee-a243-4fa80354adad",
+                                      "key": "placement_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The placement ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List notes logged on a placement\n\nDocs page: https://www.lev.com/docs/build/placements"
+                              },
+                              "response": [
+                                {
+                                  "id": "f9cae64a-b662-4275-9321-0ce22ed29ff6",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"text\": \"<string>\",\n      \"created_by\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"text\": \"<string>\",\n      \"created_by\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-f9cae64a-b662-4275-9321-0ce22ed29ff6"
+                                },
+                                {
+                                  "id": "f0c312cd-dcc1-49b4-be30-7f2fcd7af0e8",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-f0c312cd-dcc1-49b4-be30-7f2fcd7af0e8"
+                                },
+                                {
+                                  "id": "aa7daafc-972d-4366-94f1-557687a2fad6",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-aa7daafc-972d-4366-94f1-557687a2fad6"
+                                },
+                                {
+                                  "id": "58bbcbc6-b660-453c-8c9c-c210cd95e2be",
+                                  "name": "Placement not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-58bbcbc6-b660-453c-8c9c-c210cd95e2be"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-22449340-39eb-4871-9c6b-b5d3d649df66"
+                            },
+                            {
+                              "name": "Add a note to a placement",
+                              "id": "1fce738f-4fb0-44eb-b877-35ab07c638f6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"text\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id",
+                                    "notes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0dc8726a-11ef-4c16-b3f8-e53e596024ad",
+                                      "key": "placement_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The placement ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Add a note to a placement\n\nDocs page: https://www.lev.com/docs/build/placements"
+                              },
+                              "response": [
+                                {
+                                  "id": "25890dae-93b3-49de-9aff-e39dd15dc7f2",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"text\": \"<string>\",\n    \"created_by\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-25890dae-93b3-49de-9aff-e39dd15dc7f2"
+                                },
+                                {
+                                  "id": "9057dd7d-26e0-4549-8267-90b688ed4efa",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-9057dd7d-26e0-4549-8267-90b688ed4efa"
+                                },
+                                {
+                                  "id": "68de4e76-6f0b-41fd-8c84-26d7f0047a11",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-68de4e76-6f0b-41fd-8c84-26d7f0047a11"
+                                },
+                                {
+                                  "id": "1581f686-b1f1-491d-8004-7a9b35a12991",
+                                  "name": "Placement not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-1581f686-b1f1-491d-8004-7a9b35a12991"
+                                },
+                                {
+                                  "id": "2f547ca1-d65f-4aea-b877-4384a0feeb38",
+                                  "name": "text must not be blank",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "placements",
+                                        ":placement_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "placement_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:37.000Z",
+                                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                                  "uid": "35240-2f547ca1-d65f-4aea-b877-4384a0feeb38"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-1fce738f-4fb0-44eb-b877-35ab07c638f6"
+                            }
+                          ],
+                          "id": "4e3f0840-dd58-465c-9c99-10a21d0ee3ca",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-4e3f0840-dd58-465c-9c99-10a21d0ee3ca"
+                        },
+                        {
+                          "name": "Get a single placement by ID",
+                          "id": "d85b1aa1-3f86-4dfb-9bb0-8dfb3e36a473",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements",
+                                ":placement_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "20d52809-3ae8-49b1-882f-6cc937c14f49",
+                                  "key": "placement_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The placement ID"
+                                }
+                              ]
+                            },
+                            "description": "Get a single placement by ID\n\nDocs page: https://www.lev.com/docs/build/placements"
+                          },
+                          "response": [
+                            {
+                              "id": "e7cb2a6d-7daf-4e56-af9d-481d472bc988",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"private_company_id\": \"<integer>\",\n    \"lender_name\": \"<string>\",\n    \"contact_id\": \"<integer>\",\n    \"contact_name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"lender_status\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lev_score\": \"<number>\",\n    \"score\": \"<number>\",\n    \"outreach_date\": \"<string>\",\n    \"outreach_source\": \"<string>\",\n    \"last_communication_date\": \"<string>\",\n    \"lender_first_response_date\": \"<string>\",\n    \"visibility\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-e7cb2a6d-7daf-4e56-af9d-481d472bc988"
+                            },
+                            {
+                              "id": "1439d5aa-9bd4-4252-bf85-ed54b303b766",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-1439d5aa-9bd4-4252-bf85-ed54b303b766"
+                            },
+                            {
+                              "id": "2219d378-612d-4396-8481-600ec65b72d4",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-2219d378-612d-4396-8481-600ec65b72d4"
+                            },
+                            {
+                              "id": "71909cbf-026c-4ff7-bd37-af18e46c2113",
+                              "name": "Placement not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-71909cbf-026c-4ff7-bd37-af18e46c2113"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-d85b1aa1-3f86-4dfb-9bb0-8dfb3e36a473"
+                        },
+                        {
+                          "name": "Update a placement (partial update)",
+                          "id": "042dff06-804c-438f-ad32-14b24a5995b7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements",
+                                ":placement_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cb78c752-837f-45b1-9693-09459535e2fc",
+                                  "key": "placement_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The placement ID"
+                                }
+                              ]
+                            },
+                            "description": "Update a placement (partial update)\n\nDocs page: https://www.lev.com/docs/build/placements"
+                          },
+                          "response": [
+                            {
+                              "id": "c1c761f9-9db8-49f0-9020-9f7a1b230e3f",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"private_company_id\": \"<integer>\",\n    \"lender_name\": \"<string>\",\n    \"contact_id\": \"<integer>\",\n    \"contact_name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"lender_status\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lev_score\": \"<number>\",\n    \"score\": \"<number>\",\n    \"outreach_date\": \"<string>\",\n    \"outreach_source\": \"<string>\",\n    \"last_communication_date\": \"<string>\",\n    \"lender_first_response_date\": \"<string>\",\n    \"visibility\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-c1c761f9-9db8-49f0-9020-9f7a1b230e3f"
+                            },
+                            {
+                              "id": "08126812-5fd9-4e42-b431-d601395f9124",
+                              "name": "Request body must contain at least one field to update",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-08126812-5fd9-4e42-b431-d601395f9124"
+                            },
+                            {
+                              "id": "2b5d9b42-eb75-4a70-8714-32997aebb6d4",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-2b5d9b42-eb75-4a70-8714-32997aebb6d4"
+                            },
+                            {
+                              "id": "9c0db4f6-ceed-4f65-92b1-87a6c9219b72",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-9c0db4f6-ceed-4f65-92b1-87a6c9219b72"
+                            },
+                            {
+                              "id": "7032a9d2-4244-4f8c-9b15-2f5990968432",
+                              "name": "Placement not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-7032a9d2-4244-4f8c-9b15-2f5990968432"
+                            },
+                            {
+                              "id": "8dba47e7-eb1e-481f-aeba-a8f1cffe9d72",
+                              "name": "status: input is not a valid enum member",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/placements/:placement_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "placements",
+                                    ":placement_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "placement_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:37.000Z",
+                              "updatedAt": "2026-07-28T02:05:37.000Z",
+                              "uid": "35240-8dba47e7-eb1e-481f-aeba-a8f1cffe9d72"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-042dff06-804c-438f-ad32-14b24a5995b7"
+                        }
+                      ],
+                      "id": "71cf38ff-b13a-4904-bf19-75d4da61ec39",
+                      "createdAt": "2026-07-28T02:05:37.000Z",
+                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                      "uid": "35240-71cf38ff-b13a-4904-bf19-75d4da61ec39"
+                    },
+                    {
+                      "name": "List placements with pagination",
+                      "id": "7b42d66a-734a-4958-9e40-3b9789829f41",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/placements?limit=<integer>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "placements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results per page (1\u2013200, default 50)",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Cursor for next page",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "List placements with pagination\n\nDocs page: https://www.lev.com/docs/build/placements"
+                      },
+                      "response": [
+                        {
+                          "id": "1967b04e-df79-438d-83a7-64fed0fc4da7",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements?limit=<integer>&cursor=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"deal_id\": \"<integer>\",\n      \"private_company_id\": \"<integer>\",\n      \"lender_name\": \"<string>\",\n      \"contact_id\": \"<integer>\",\n      \"contact_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"lender_status\": \"<string>\",\n      \"description\": \"<string>\",\n      \"lev_score\": \"<number>\",\n      \"score\": \"<number>\",\n      \"outreach_date\": \"<string>\",\n      \"outreach_source\": \"<string>\",\n      \"last_communication_date\": \"<string>\",\n      \"lender_first_response_date\": \"<string>\",\n      \"visibility\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"deal_id\": \"<integer>\",\n      \"private_company_id\": \"<integer>\",\n      \"lender_name\": \"<string>\",\n      \"contact_id\": \"<integer>\",\n      \"contact_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"lender_status\": \"<string>\",\n      \"description\": \"<string>\",\n      \"lev_score\": \"<number>\",\n      \"score\": \"<number>\",\n      \"outreach_date\": \"<string>\",\n      \"outreach_source\": \"<string>\",\n      \"last_communication_date\": \"<string>\",\n      \"lender_first_response_date\": \"<string>\",\n      \"visibility\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-1967b04e-df79-438d-83a7-64fed0fc4da7"
+                        },
+                        {
+                          "id": "8edc3479-72d8-4006-ae1f-ad7f0c2afbe5",
+                          "name": "cursor and sort cannot be combined; use offset pagination when sorting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements?limit=<integer>&cursor=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-8edc3479-72d8-4006-ae1f-ad7f0c2afbe5"
+                        },
+                        {
+                          "id": "a9cccf46-6ff6-49d1-b093-420de67aec02",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements?limit=<integer>&cursor=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-a9cccf46-6ff6-49d1-b093-420de67aec02"
+                        },
+                        {
+                          "id": "af1b2d07-842f-43b8-a532-a8c497927e5f",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements?limit=<integer>&cursor=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-af1b2d07-842f-43b8-a532-a8c497927e5f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:37.000Z",
+                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                      "uid": "35240-7b42d66a-734a-4958-9e40-3b9789829f41"
+                    },
+                    {
+                      "name": "Create a placement against a deal",
+                      "id": "a312e7aa-2dbc-4db7-b15d-e66550aca483",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/placements",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "placements"
+                          ]
+                        },
+                        "description": "Create a placement against a deal\n\nDocs page: https://www.lev.com/docs/build/placements"
+                      },
+                      "response": [
+                        {
+                          "id": "697c32d3-3592-4a6f-923e-14de3ababd5b",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"private_company_id\": \"<integer>\",\n    \"lender_name\": \"<string>\",\n    \"contact_id\": \"<integer>\",\n    \"contact_name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"lender_status\": \"<string>\",\n    \"description\": \"<string>\",\n    \"lev_score\": \"<number>\",\n    \"score\": \"<number>\",\n    \"outreach_date\": \"<string>\",\n    \"outreach_source\": \"<string>\",\n    \"last_communication_date\": \"<string>\",\n    \"lender_first_response_date\": \"<string>\",\n    \"visibility\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-697c32d3-3592-4a6f-923e-14de3ababd5b"
+                        },
+                        {
+                          "id": "38200999-5e06-4c54-b631-a336ab5c603e",
+                          "name": "Cannot create a placement with status='archived'; create an active placement and PATCH to archive; A placement already exists for this deal, contact, and lender; use PATCH to update it",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-38200999-5e06-4c54-b631-a336ab5c603e"
+                        },
+                        {
+                          "id": "efbc116d-00cb-4e29-9a95-44d653ff479d",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-efbc116d-00cb-4e29-9a95-44d653ff479d"
+                        },
+                        {
+                          "id": "6148784a-7da8-40bb-83b7-9c48b48f9720",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-6148784a-7da8-40bb-83b7-9c48b48f9720"
+                        },
+                        {
+                          "id": "0d6d238d-e35b-4a86-8317-bdd9125476d6",
+                          "name": "Deal not found; Private company not found; Contact not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-0d6d238d-e35b-4a86-8317-bdd9125476d6"
+                        },
+                        {
+                          "id": "dd56f5c3-4aeb-4e7f-9130-da7fb7015b29",
+                          "name": "status: input is not a valid enum member",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deal_id\": \"<integer>\",\n  \"private_company_id\": \"<integer>\",\n  \"contact_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\",\n  \"score\": \"<number>\",\n  \"outreach_date\": \"<string>\",\n  \"lender_status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/placements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "placements"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:37.000Z",
+                          "updatedAt": "2026-07-28T02:05:37.000Z",
+                          "uid": "35240-dd56f5c3-4aeb-4e7f-9130-da7fb7015b29"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:37.000Z",
+                      "updatedAt": "2026-07-28T02:05:37.000Z",
+                      "uid": "35240-a312e7aa-2dbc-4db7-b15d-e66550aca483"
+                    }
+                  ],
+                  "id": "3e2ad444-cee3-43d8-a6af-c426914462da",
+                  "createdAt": "2026-07-28T02:05:37.000Z",
+                  "updatedAt": "2026-07-28T02:05:37.000Z",
+                  "uid": "35240-3e2ad444-cee3-43d8-a6af-c426914462da"
+                }
+              ],
+              "id": "c9a3141b-a207-48cb-a4d3-47715e03de5a",
+              "createdAt": "2026-07-28T02:05:37.000Z",
+              "updatedAt": "2026-07-28T02:05:37.000Z",
+              "uid": "35240-c9a3141b-a207-48cb-a4d3-47715e03de5a"
+            }
+          ],
+          "id": "ffc24884-3e5a-4fdf-9d52-3bae232cb1ea",
+          "createdAt": "2026-07-28T02:05:37.000Z",
+          "updatedAt": "2026-07-28T02:05:37.000Z",
+          "uid": "35240-ffc24884-3e5a-4fdf-9d52-3bae232cb1ea"
+        }
+      ],
+      "id": "483becac-4222-41a4-abd2-7c9a0182bf2f",
+      "createdAt": "2026-07-28T02:05:37.000Z",
+      "updatedAt": "2026-07-28T02:05:37.000Z",
+      "uid": "35240-483becac-4222-41a4-abd2-7c9a0182bf2f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

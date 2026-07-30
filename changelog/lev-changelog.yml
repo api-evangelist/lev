@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/changelog
+url: https://www.lev.com/docs/changelog
+scheme: dated entries (no semantic version numbers)
+scope: whole Lev product — apps, agents, and platform — not API-only
+current_api_version: '2026-03'
+current_api_path_version: v2
+window: recent entries captured 2026-07-19; the live changelog is the source of truth
+entries:
+- date: '2026-07-06'
+  title: Send Deals to Different Contact Types
+  breaking: false
+  additions: true
+  highlights:
+  - Deals can be sent to equity contacts, investment-sales buyers, and other
+    recipient types beyond lenders.
+  - Type-specific placement tables added.
+  api_surface_touched:
+  - placements
+  - contacts
+- date: '2026-07-02'
+  title: Manual Index Entry
+  breaking: false
+  additions: true
+  highlights:
+  - Values can be entered directly into Index without uploading a document, for
+    manual data entry and Lev Agent assistance.
+  api_surface_touched:
+  - deal index facts
+- date: '2026-07-02'
+  title: Smart Templates in Memo
+  breaking: false
+  additions: true
+  highlights:
+  - Existing Memos can be saved as reusable Smart Templates, preserving structure
+    and styling for team standardization.
+  api_surface_touched:
+  - memos
+- date: '2026-06-11'
+  title: Sales Comps in Lev Agent
+  breaking: false
+  additions: true
+  highlights:
+  - AI-powered comparable-sales analysis extracts property profiles from deal files
+    and ranks comps by similarity tier.
+- date: '2026-06-10'
+  title: Payouts and Invoice Generator
+  breaking: false
+  additions: true
+  highlights:
+  - Commission tracking for borrower and lender payments with team and referral
+    split management.
+  - Invoice generation.
+breaking_changes_in_window: false
+related:
+  lifecycle: lifecycle/lev-lifecycle.yml

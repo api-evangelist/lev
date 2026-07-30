@@ -1,0 +1,1868 @@
+{
+  "info": {
+    "_postman_id": "7188e442-b61c-4e8a-95d0-117aab768354",
+    "name": "Lev Account & Team Term Sheets API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:42.000Z",
+    "updatedAt": "2026-07-28T02:05:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7188e442-b61c-4e8a-95d0-117aab768354"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "deals",
+                  "item": [
+                    {
+                      "name": "{deal_id}",
+                      "item": [
+                        {
+                          "name": "term-sheets",
+                          "item": [
+                            {
+                              "name": "{term_sheet_id}",
+                              "item": [
+                                {
+                                  "name": "Get a single term sheet",
+                                  "id": "b9cbd9eb-760a-4e1c-be8b-fd34e4ca8ea5",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets",
+                                        ":term_sheet_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "01283aeb-bcc8-45ec-9018-9b2596ff0c68",
+                                          "key": "deal_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The deal ID"
+                                        },
+                                        {
+                                          "id": "957fcebb-155a-48ea-8d07-bc7c00ee8083",
+                                          "key": "term_sheet_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The term sheet ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get a single term sheet\n\nDocs page: https://www.lev.com/docs/build/term-sheets"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "97c7e34f-f04e-45d2-8717-298e05f0c790",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"lender_name\": \"<string>\",\n    \"quote_type\": \"<string>\",\n    \"initial_funding\": \"<integer>\",\n    \"total_rate\": \"<number>\",\n    \"base_rate\": \"<string>\",\n    \"base_rate_value\": \"<number>\",\n    \"effective_spread\": \"<number>\",\n    \"rate_type\": \"<string>\",\n    \"term\": \"<integer>\",\n    \"io_period\": \"<integer>\",\n    \"recourse\": \"<string>\",\n    \"max_ltv\": \"<number>\",\n    \"max_ltc\": \"<number>\",\n    \"origination_fee\": \"<number>\",\n    \"exit_fee\": \"<number>\",\n    \"org_id\": \"<integer>\",\n    \"placement_id\": \"<integer>\",\n    \"winning\": \"<boolean>\",\n    \"is_visible_to_borrower\": \"<boolean>\",\n    \"notes\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"capital_source_type\": \"<string>\",\n    \"recourse_type\": \"<string>\",\n    \"payment_method\": \"<string>\",\n    \"prepayment_penalty\": \"<string>\",\n    \"prepayment_penalty_details\": \"<string>\",\n    \"amortization\": \"<integer>\",\n    \"extension_one\": \"<integer>\",\n    \"extension_two\": \"<integer>\",\n    \"extension_three\": \"<integer>\",\n    \"floor\": \"<number>\",\n    \"floor_type\": \"<string>\",\n    \"good_faith_deposit\": \"<number>\",\n    \"min_dscr\": \"<number>\",\n    \"min_debt_yield\": \"<number>\",\n    \"ir_details\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-97c7e34f-f04e-45d2-8717-298e05f0c790"
+                                    },
+                                    {
+                                      "id": "fc17245b-ba0a-4a68-b2e6-84c72721bb87",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-fc17245b-ba0a-4a68-b2e6-84c72721bb87"
+                                    },
+                                    {
+                                      "id": "f9cda4ce-5b44-4c41-9322-0caf5e735f64",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-f9cda4ce-5b44-4c41-9322-0caf5e735f64"
+                                    },
+                                    {
+                                      "id": "cb016b25-12e1-42ab-9fab-e769e4895662",
+                                      "name": "Term sheet not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-cb016b25-12e1-42ab-9fab-e769e4895662"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-b9cbd9eb-760a-4e1c-be8b-fd34e4ca8ea5"
+                                },
+                                {
+                                  "name": "Update a term sheet (partial update)",
+                                  "id": "7879e790-b4f2-43e5-9985-847b6fc074e2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets",
+                                        ":term_sheet_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "f9a195e0-99a1-4589-9670-f7cbd0e8f08f",
+                                          "key": "deal_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The deal ID"
+                                        },
+                                        {
+                                          "id": "02fde571-f727-46e4-a807-be02c2eb0b2f",
+                                          "key": "term_sheet_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The term sheet ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Update a term sheet (partial update)\n\nDocs page: https://www.lev.com/docs/build/term-sheets\n\nDocumented response: returns the updated term-sheet detail object."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "3e5af005-8d2c-4653-9e8e-d82c0baec58d",
+                                      "name": "returns the updated term-sheet detail object.",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"lender_name\": \"<string>\",\n    \"quote_type\": \"<string>\",\n    \"initial_funding\": \"<integer>\",\n    \"total_rate\": \"<number>\",\n    \"base_rate\": \"<string>\",\n    \"base_rate_value\": \"<number>\",\n    \"effective_spread\": \"<number>\",\n    \"rate_type\": \"<string>\",\n    \"term\": \"<integer>\",\n    \"io_period\": \"<integer>\",\n    \"recourse\": \"<string>\",\n    \"max_ltv\": \"<number>\",\n    \"max_ltc\": \"<number>\",\n    \"origination_fee\": \"<number>\",\n    \"exit_fee\": \"<number>\",\n    \"org_id\": \"<integer>\",\n    \"placement_id\": \"<integer>\",\n    \"winning\": \"<boolean>\",\n    \"is_visible_to_borrower\": \"<boolean>\",\n    \"notes\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"capital_source_type\": \"<string>\",\n    \"recourse_type\": \"<string>\",\n    \"payment_method\": \"<string>\",\n    \"prepayment_penalty\": \"<string>\",\n    \"prepayment_penalty_details\": \"<string>\",\n    \"amortization\": \"<integer>\",\n    \"extension_one\": \"<integer>\",\n    \"extension_two\": \"<integer>\",\n    \"extension_three\": \"<integer>\",\n    \"floor\": \"<number>\",\n    \"floor_type\": \"<string>\",\n    \"good_faith_deposit\": \"<number>\",\n    \"min_dscr\": \"<number>\",\n    \"min_debt_yield\": \"<number>\",\n    \"ir_details\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-3e5af005-8d2c-4653-9e8e-d82c0baec58d"
+                                    },
+                                    {
+                                      "id": "20450f9d-e5dc-4355-acef-79245388bc9e",
+                                      "name": "Request body must contain at least one field to update",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-20450f9d-e5dc-4355-acef-79245388bc9e"
+                                    },
+                                    {
+                                      "id": "04982a2d-3204-411b-9449-c1ffdfc88f32",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-04982a2d-3204-411b-9449-c1ffdfc88f32"
+                                    },
+                                    {
+                                      "id": "8fb2f3d4-0f88-4631-99b6-f7732b6ff5c9",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-8fb2f3d4-0f88-4631-99b6-f7732b6ff5c9"
+                                    },
+                                    {
+                                      "id": "fbe7bbbe-816a-486d-9d23-561698ea7c4a",
+                                      "name": "Term sheet not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-fbe7bbbe-816a-486d-9d23-561698ea7c4a"
+                                    },
+                                    {
+                                      "id": "78ba5504-6c88-4d30-b9d5-e2e214eb9450",
+                                      "name": "winning cannot be null. Send true or false to update it, or omit the field to leave it unchanged.; base_rate: not a valid BaseRateNames member",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-78ba5504-6c88-4d30-b9d5-e2e214eb9450"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-7879e790-b4f2-43e5-9985-847b6fc074e2"
+                                },
+                                {
+                                  "name": "Soft-delete a term sheet",
+                                  "id": "0493fa1f-aa6b-4031-abde-86b0169281fe",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets",
+                                        ":term_sheet_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "afa58c7d-7bc7-4f5c-bc1b-488573bfd9f1",
+                                          "key": "deal_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The deal ID"
+                                        },
+                                        {
+                                          "id": "20f51896-8777-4051-9342-c9f86101ba71",
+                                          "key": "term_sheet_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The term sheet ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Soft-delete a term sheet\n\nDocs page: https://www.lev.com/docs/build/term-sheets"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8c70383f-f8b4-4caa-a444-1667c847438a",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"deleted\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-8c70383f-f8b4-4caa-a444-1667c847438a"
+                                    },
+                                    {
+                                      "id": "349605d7-f806-4fe3-bcd3-db0ddb415b41",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-349605d7-f806-4fe3-bcd3-db0ddb415b41"
+                                    },
+                                    {
+                                      "id": "b9c04dc2-9763-48a4-b921-25853428b5c6",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-b9c04dc2-9763-48a4-b921-25853428b5c6"
+                                    },
+                                    {
+                                      "id": "da1f5dde-3357-4d09-88e9-5e511d540c1b",
+                                      "name": "Term sheet not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "deals",
+                                            ":deal_id",
+                                            "term-sheets",
+                                            ":term_sheet_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "deal_id"
+                                            },
+                                            {
+                                              "key": "term_sheet_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:43.000Z",
+                                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                                      "uid": "35240-da1f5dde-3357-4d09-88e9-5e511d540c1b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-0493fa1f-aa6b-4031-abde-86b0169281fe"
+                                }
+                              ],
+                              "id": "c42fe83f-4b6a-4272-a783-380e018f4886",
+                              "createdAt": "2026-07-28T02:05:43.000Z",
+                              "updatedAt": "2026-07-28T02:05:43.000Z",
+                              "uid": "35240-c42fe83f-4b6a-4272-a783-380e018f4886"
+                            },
+                            {
+                              "name": "List term sheets for a deal",
+                              "id": "daf1b82d-21c6-4852-a9fc-f06e2321d081",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets?limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "deals",
+                                    ":deal_id",
+                                    "term-sheets"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e372c20f-3674-4062-8ad9-3cf154a44963",
+                                      "key": "deal_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The deal ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List term sheets for a deal\n\nDocs page: https://www.lev.com/docs/build/term-sheets"
+                              },
+                              "response": [
+                                {
+                                  "id": "6319b725-afcd-4320-a471-cd2ef13eb296",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"deal_id\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"lender_name\": \"<string>\",\n      \"quote_type\": \"<string>\",\n      \"initial_funding\": \"<integer>\",\n      \"total_rate\": \"<number>\",\n      \"base_rate\": \"<string>\",\n      \"base_rate_value\": \"<number>\",\n      \"effective_spread\": \"<number>\",\n      \"rate_type\": \"<string>\",\n      \"term\": \"<integer>\",\n      \"io_period\": \"<integer>\",\n      \"recourse\": \"<string>\",\n      \"max_ltv\": \"<number>\",\n      \"max_ltc\": \"<number>\",\n      \"origination_fee\": \"<number>\",\n      \"exit_fee\": \"<number>\",\n      \"org_id\": \"<integer>\",\n      \"placement_id\": \"<integer>\",\n      \"winning\": \"<boolean>\",\n      \"is_visible_to_borrower\": \"<boolean>\",\n      \"notes\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"capital_source_type\": \"<string>\",\n      \"recourse_type\": \"<string>\",\n      \"payment_method\": \"<string>\",\n      \"prepayment_penalty\": \"<string>\",\n      \"prepayment_penalty_details\": \"<string>\",\n      \"amortization\": \"<integer>\",\n      \"extension_one\": \"<integer>\",\n      \"extension_two\": \"<integer>\",\n      \"extension_three\": \"<integer>\",\n      \"floor\": \"<number>\",\n      \"floor_type\": \"<string>\",\n      \"good_faith_deposit\": \"<number>\",\n      \"min_dscr\": \"<number>\",\n      \"min_debt_yield\": \"<number>\",\n      \"ir_details\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"deal_id\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"lender_name\": \"<string>\",\n      \"quote_type\": \"<string>\",\n      \"initial_funding\": \"<integer>\",\n      \"total_rate\": \"<number>\",\n      \"base_rate\": \"<string>\",\n      \"base_rate_value\": \"<number>\",\n      \"effective_spread\": \"<number>\",\n      \"rate_type\": \"<string>\",\n      \"term\": \"<integer>\",\n      \"io_period\": \"<integer>\",\n      \"recourse\": \"<string>\",\n      \"max_ltv\": \"<number>\",\n      \"max_ltc\": \"<number>\",\n      \"origination_fee\": \"<number>\",\n      \"exit_fee\": \"<number>\",\n      \"org_id\": \"<integer>\",\n      \"placement_id\": \"<integer>\",\n      \"winning\": \"<boolean>\",\n      \"is_visible_to_borrower\": \"<boolean>\",\n      \"notes\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"capital_source_type\": \"<string>\",\n      \"recourse_type\": \"<string>\",\n      \"payment_method\": \"<string>\",\n      \"prepayment_penalty\": \"<string>\",\n      \"prepayment_penalty_details\": \"<string>\",\n      \"amortization\": \"<integer>\",\n      \"extension_one\": \"<integer>\",\n      \"extension_two\": \"<integer>\",\n      \"extension_three\": \"<integer>\",\n      \"floor\": \"<number>\",\n      \"floor_type\": \"<string>\",\n      \"good_faith_deposit\": \"<number>\",\n      \"min_dscr\": \"<number>\",\n      \"min_debt_yield\": \"<number>\",\n      \"ir_details\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-6319b725-afcd-4320-a471-cd2ef13eb296"
+                                },
+                                {
+                                  "id": "3c0b62a6-e52f-4067-a5e9-6083efa4cd76",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-3c0b62a6-e52f-4067-a5e9-6083efa4cd76"
+                                },
+                                {
+                                  "id": "6434a435-e1f3-4b60-8274-a0580050f6d0",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-6434a435-e1f3-4b60-8274-a0580050f6d0"
+                                },
+                                {
+                                  "id": "8f68e133-928f-412a-b81d-7a231830c2ff",
+                                  "name": "Deal not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-8f68e133-928f-412a-b81d-7a231830c2ff"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:43.000Z",
+                              "updatedAt": "2026-07-28T02:05:43.000Z",
+                              "uid": "35240-daf1b82d-21c6-4852-a9fc-f06e2321d081"
+                            },
+                            {
+                              "name": "Create a new term sheet against a placement",
+                              "id": "ebff9571-c893-4398-ab1c-7c96be6c5cf8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"placement_id\": \"<integer>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "deals",
+                                    ":deal_id",
+                                    "term-sheets"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9074daa5-1b58-430c-b771-0a386150ac46",
+                                      "key": "deal_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The deal ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new term sheet against a placement\n\nDocs page: https://www.lev.com/docs/build/term-sheets\n\nDocumented response: returns the full term-sheet detail object (see [Term Sheet Object](#term-sheet-object))."
+                              },
+                              "response": [
+                                {
+                                  "id": "e49f8544-7ed1-4ea6-94ea-e47e14f488c8",
+                                  "name": "returns the full term-sheet detail object (see [Term Sheet Object](#term-sheet-object)).",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"placement_id\": \"<integer>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"deal_id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"lender_name\": \"<string>\",\n    \"quote_type\": \"<string>\",\n    \"initial_funding\": \"<integer>\",\n    \"total_rate\": \"<number>\",\n    \"base_rate\": \"<string>\",\n    \"base_rate_value\": \"<number>\",\n    \"effective_spread\": \"<number>\",\n    \"rate_type\": \"<string>\",\n    \"term\": \"<integer>\",\n    \"io_period\": \"<integer>\",\n    \"recourse\": \"<string>\",\n    \"max_ltv\": \"<number>\",\n    \"max_ltc\": \"<number>\",\n    \"origination_fee\": \"<number>\",\n    \"exit_fee\": \"<number>\",\n    \"org_id\": \"<integer>\",\n    \"placement_id\": \"<integer>\",\n    \"winning\": \"<boolean>\",\n    \"is_visible_to_borrower\": \"<boolean>\",\n    \"notes\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"capital_source_type\": \"<string>\",\n    \"recourse_type\": \"<string>\",\n    \"payment_method\": \"<string>\",\n    \"prepayment_penalty\": \"<string>\",\n    \"prepayment_penalty_details\": \"<string>\",\n    \"amortization\": \"<integer>\",\n    \"extension_one\": \"<integer>\",\n    \"extension_two\": \"<integer>\",\n    \"extension_three\": \"<integer>\",\n    \"floor\": \"<number>\",\n    \"floor_type\": \"<string>\",\n    \"good_faith_deposit\": \"<number>\",\n    \"min_dscr\": \"<number>\",\n    \"min_debt_yield\": \"<number>\",\n    \"ir_details\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-e49f8544-7ed1-4ea6-94ea-e47e14f488c8"
+                                },
+                                {
+                                  "id": "ea146b69-c67e-4dd7-b01d-44fc75ad7779",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"placement_id\": \"<integer>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-ea146b69-c67e-4dd7-b01d-44fc75ad7779"
+                                },
+                                {
+                                  "id": "96db03db-27e5-4c4f-ab53-e5a2ec2861f1",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"placement_id\": \"<integer>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-96db03db-27e5-4c4f-ab53-e5a2ec2861f1"
+                                },
+                                {
+                                  "id": "83a152c2-3bbb-4bbf-a566-717873b0fe1b",
+                                  "name": "Placement not found; Deal not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"placement_id\": \"<integer>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-83a152c2-3bbb-4bbf-a566-717873b0fe1b"
+                                },
+                                {
+                                  "id": "412feeb1-8e29-4acb-959e-790d546d4f09",
+                                  "name": "quote_type: input is not a valid enum member; base_rate: not a valid BaseRateNames member",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"placement_id\": \"<integer>\",\n  \"total_rate\": \"<number>\",\n  \"initial_funding\": \"<integer>\",\n  \"quote_type\": \"<string>\",\n  \"rate_type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"winning\": \"<boolean>\",\n  \"is_visible_to_borrower\": \"<boolean>\",\n  \"base_rate\": \"<string>\",\n  \"max_ltv\": \"<number>\",\n  \"max_ltc\": \"<number>\",\n  \"additional_funding\": \"<integer>\",\n  \"floor\": \"<number>\",\n  \"floor_type\": \"<string>\",\n  \"term\": \"<integer>\",\n  \"amortization\": \"<integer>\",\n  \"io_period\": \"<integer>\",\n  \"extension_one\": \"<integer>\",\n  \"extension_two\": \"<integer>\",\n  \"extension_three\": \"<integer>\",\n  \"recourse\": \"<string>\",\n  \"recourse_type\": \"<string>\",\n  \"prepayment_penalty\": \"<string>\",\n  \"prepayment_penalty_details\": \"<string>\",\n  \"min_dscr\": \"<number>\",\n  \"min_debt_yield\": \"<number>\",\n  \"origination_fee\": \"<number>\",\n  \"extension_fee\": \"<number>\",\n  \"exit_fee\": \"<number>\",\n  \"good_faith_deposit\": \"<number>\",\n  \"notes\": \"<string>\",\n  \"ir_details\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"capital_source_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/term-sheets",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "term-sheets"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:43.000Z",
+                                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                                  "uid": "35240-412feeb1-8e29-4acb-959e-790d546d4f09"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:43.000Z",
+                              "updatedAt": "2026-07-28T02:05:43.000Z",
+                              "uid": "35240-ebff9571-c893-4398-ab1c-7c96be6c5cf8"
+                            }
+                          ],
+                          "id": "026ce61d-5f10-4ef5-9b63-527ce9e0ebe6",
+                          "createdAt": "2026-07-28T02:05:43.000Z",
+                          "updatedAt": "2026-07-28T02:05:43.000Z",
+                          "uid": "35240-026ce61d-5f10-4ef5-9b63-527ce9e0ebe6"
+                        }
+                      ],
+                      "id": "b33486d8-ab69-4fe1-99ca-94b09ea3cbb5",
+                      "createdAt": "2026-07-28T02:05:43.000Z",
+                      "updatedAt": "2026-07-28T02:05:43.000Z",
+                      "uid": "35240-b33486d8-ab69-4fe1-99ca-94b09ea3cbb5"
+                    }
+                  ],
+                  "id": "f8416089-3715-479b-9103-c03de5aecef6",
+                  "createdAt": "2026-07-28T02:05:43.000Z",
+                  "updatedAt": "2026-07-28T02:05:43.000Z",
+                  "uid": "35240-f8416089-3715-479b-9103-c03de5aecef6"
+                }
+              ],
+              "id": "b1a763e3-e114-43a5-9ec2-6519806a9a4f",
+              "createdAt": "2026-07-28T02:05:43.000Z",
+              "updatedAt": "2026-07-28T02:05:43.000Z",
+              "uid": "35240-b1a763e3-e114-43a5-9ec2-6519806a9a4f"
+            }
+          ],
+          "id": "19675d7c-d6b8-4f76-8161-04d26ffa2f7b",
+          "createdAt": "2026-07-28T02:05:43.000Z",
+          "updatedAt": "2026-07-28T02:05:43.000Z",
+          "uid": "35240-19675d7c-d6b8-4f76-8161-04d26ffa2f7b"
+        }
+      ],
+      "id": "892cd89c-cfe5-4093-8004-43f59a7a81b8",
+      "createdAt": "2026-07-28T02:05:43.000Z",
+      "updatedAt": "2026-07-28T02:05:43.000Z",
+      "uid": "35240-892cd89c-cfe5-4093-8004-43f59a7a81b8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

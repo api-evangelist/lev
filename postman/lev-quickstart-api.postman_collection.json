@@ -1,0 +1,223 @@
+{
+  "info": {
+    "_postman_id": "e61cbf9c-252a-4646-885b-14a4c41cde81",
+    "name": "Lev Account & Team Quickstart API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:41.000Z",
+    "updatedAt": "2026-07-28T02:05:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e61cbf9c-252a-4646-885b-14a4c41cde81"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "auth",
+                  "item": [
+                    {
+                      "name": "validate-api-key",
+                      "item": [
+                        {
+                          "name": "Validate an API key and receive authentication details",
+                          "id": "ffb4f474-faa0-45fc-95f0-f13047c04ef2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/auth/validate-api-key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "auth",
+                                "validate-api-key"
+                              ]
+                            },
+                            "description": "Validate an API key and receive authentication details\n\nDocs page: https://www.lev.com/docs/build/getting-started"
+                          },
+                          "response": [
+                            {
+                              "id": "c21669ec-368a-49d2-970c-529b0b73763f",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/auth/validate-api-key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "auth",
+                                    "validate-api-key"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:41.000Z",
+                              "updatedAt": "2026-07-28T02:05:41.000Z",
+                              "uid": "35240-c21669ec-368a-49d2-970c-529b0b73763f"
+                            },
+                            {
+                              "id": "fa7cb03c-508d-4a1d-8d56-d5a7396123e6",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/auth/validate-api-key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "auth",
+                                    "validate-api-key"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:41.000Z",
+                              "updatedAt": "2026-07-28T02:05:41.000Z",
+                              "uid": "35240-fa7cb03c-508d-4a1d-8d56-d5a7396123e6"
+                            },
+                            {
+                              "id": "bcfd6246-2b98-4240-a457-03a1982c7eb9",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/auth/validate-api-key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "auth",
+                                    "validate-api-key"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:41.000Z",
+                              "updatedAt": "2026-07-28T02:05:41.000Z",
+                              "uid": "35240-bcfd6246-2b98-4240-a457-03a1982c7eb9"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:41.000Z",
+                          "updatedAt": "2026-07-28T02:05:41.000Z",
+                          "uid": "35240-ffb4f474-faa0-45fc-95f0-f13047c04ef2"
+                        }
+                      ],
+                      "id": "10273ae2-6b04-46a9-9a31-57bcedab1dc4",
+                      "createdAt": "2026-07-28T02:05:41.000Z",
+                      "updatedAt": "2026-07-28T02:05:41.000Z",
+                      "uid": "35240-10273ae2-6b04-46a9-9a31-57bcedab1dc4"
+                    }
+                  ],
+                  "id": "e0a1d159-7db6-4287-9354-0473aaa20b55",
+                  "createdAt": "2026-07-28T02:05:41.000Z",
+                  "updatedAt": "2026-07-28T02:05:41.000Z",
+                  "uid": "35240-e0a1d159-7db6-4287-9354-0473aaa20b55"
+                }
+              ],
+              "id": "d43744a4-8c25-4f11-ad65-c3e4ffe779e7",
+              "createdAt": "2026-07-28T02:05:41.000Z",
+              "updatedAt": "2026-07-28T02:05:41.000Z",
+              "uid": "35240-d43744a4-8c25-4f11-ad65-c3e4ffe779e7"
+            }
+          ],
+          "id": "3d4abcca-e0d8-468a-be29-01af49a25fa1",
+          "createdAt": "2026-07-28T02:05:41.000Z",
+          "updatedAt": "2026-07-28T02:05:41.000Z",
+          "uid": "35240-3d4abcca-e0d8-468a-be29-01af49a25fa1"
+        }
+      ],
+      "id": "4e517964-a497-4d66-8559-f32fc399df4f",
+      "createdAt": "2026-07-28T02:05:41.000Z",
+      "updatedAt": "2026-07-28T02:05:41.000Z",
+      "uid": "35240-4e517964-a497-4d66-8559-f32fc399df4f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

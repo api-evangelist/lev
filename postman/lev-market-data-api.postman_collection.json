@@ -1,0 +1,440 @@
+{
+  "info": {
+    "_postman_id": "1c0d9e75-b97e-43a3-abe9-74f948091a58",
+    "name": "Lev Account & Team Market Data API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:33.000Z",
+    "updatedAt": "2026-07-28T02:05:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c0d9e75-b97e-43a3-abe9-74f948091a58"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "market",
+                  "item": [
+                    {
+                      "name": "base-rates",
+                      "item": [
+                        {
+                          "name": "Get current base rates (SOFR, CMT, Prime, etc.)",
+                          "id": "ebe7d938-d8aa-485b-92e8-709cf38275cc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/market/base-rates",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "market",
+                                "base-rates"
+                              ]
+                            },
+                            "description": "Get current base rates (SOFR, CMT, Prime, etc.)\n\nDocs page: https://www.lev.com/docs/build/market-data"
+                          },
+                          "response": [
+                            {
+                              "id": "14714c69-02f1-4096-8a1d-ef902efd177b",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/market/base-rates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "market",
+                                    "base-rates"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:33.000Z",
+                              "updatedAt": "2026-07-28T02:05:33.000Z",
+                              "uid": "35240-14714c69-02f1-4096-8a1d-ef902efd177b"
+                            },
+                            {
+                              "id": "39d9d100-b479-4685-b5e3-3cc005f853fd",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/market/base-rates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "market",
+                                    "base-rates"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:33.000Z",
+                              "updatedAt": "2026-07-28T02:05:33.000Z",
+                              "uid": "35240-39d9d100-b479-4685-b5e3-3cc005f853fd"
+                            },
+                            {
+                              "id": "19f30d69-a122-410f-b6b7-5162dbcd168c",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/market/base-rates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "market",
+                                    "base-rates"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:33.000Z",
+                              "updatedAt": "2026-07-28T02:05:33.000Z",
+                              "uid": "35240-19f30d69-a122-410f-b6b7-5162dbcd168c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:33.000Z",
+                          "updatedAt": "2026-07-28T02:05:33.000Z",
+                          "uid": "35240-ebe7d938-d8aa-485b-92e8-709cf38275cc"
+                        }
+                      ],
+                      "id": "2d2029d6-1681-4000-be83-7ed5eeb2b49f",
+                      "createdAt": "2026-07-28T02:05:33.000Z",
+                      "updatedAt": "2026-07-28T02:05:33.000Z",
+                      "uid": "35240-2d2029d6-1681-4000-be83-7ed5eeb2b49f"
+                    },
+                    {
+                      "name": "asset-types",
+                      "item": [
+                        {
+                          "name": "Get available asset type definitions",
+                          "id": "c519691f-f490-466f-b6b3-6f12f13d16ba",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/market/asset-types",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "market",
+                                "asset-types"
+                              ]
+                            },
+                            "description": "Get available asset type definitions\n\nDocs page: https://www.lev.com/docs/build/market-data"
+                          },
+                          "response": [
+                            {
+                              "id": "7381d31b-a53a-46be-aad4-35fc9f858bd3",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/market/asset-types",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "market",
+                                    "asset-types"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:33.000Z",
+                              "updatedAt": "2026-07-28T02:05:33.000Z",
+                              "uid": "35240-7381d31b-a53a-46be-aad4-35fc9f858bd3"
+                            },
+                            {
+                              "id": "fe0ea06a-c851-4a1c-b42d-4b007ccfe5f9",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/market/asset-types",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "market",
+                                    "asset-types"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:33.000Z",
+                              "updatedAt": "2026-07-28T02:05:33.000Z",
+                              "uid": "35240-fe0ea06a-c851-4a1c-b42d-4b007ccfe5f9"
+                            },
+                            {
+                              "id": "ce0e6c42-6f6f-40f9-b6cb-3d70754105dc",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/market/asset-types",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "market",
+                                    "asset-types"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:33.000Z",
+                              "updatedAt": "2026-07-28T02:05:33.000Z",
+                              "uid": "35240-ce0e6c42-6f6f-40f9-b6cb-3d70754105dc"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:33.000Z",
+                          "updatedAt": "2026-07-28T02:05:33.000Z",
+                          "uid": "35240-c519691f-f490-466f-b6b3-6f12f13d16ba"
+                        }
+                      ],
+                      "id": "0016fa29-ad1d-4e4f-bca5-2d2096abec8f",
+                      "createdAt": "2026-07-28T02:05:33.000Z",
+                      "updatedAt": "2026-07-28T02:05:33.000Z",
+                      "uid": "35240-0016fa29-ad1d-4e4f-bca5-2d2096abec8f"
+                    }
+                  ],
+                  "id": "2cbfe6c5-27e3-42cc-987b-1f29cdd87019",
+                  "createdAt": "2026-07-28T02:05:33.000Z",
+                  "updatedAt": "2026-07-28T02:05:33.000Z",
+                  "uid": "35240-2cbfe6c5-27e3-42cc-987b-1f29cdd87019"
+                }
+              ],
+              "id": "06d6eb25-fd92-4dfe-87d7-ae0c0a986c70",
+              "createdAt": "2026-07-28T02:05:33.000Z",
+              "updatedAt": "2026-07-28T02:05:33.000Z",
+              "uid": "35240-06d6eb25-fd92-4dfe-87d7-ae0c0a986c70"
+            }
+          ],
+          "id": "4c635f4d-f067-4003-acc7-4c8dd6203969",
+          "createdAt": "2026-07-28T02:05:33.000Z",
+          "updatedAt": "2026-07-28T02:05:33.000Z",
+          "uid": "35240-4c635f4d-f067-4003-acc7-4c8dd6203969"
+        }
+      ],
+      "id": "7da83d5c-0a04-4dfe-978d-1d5ed9419012",
+      "createdAt": "2026-07-28T02:05:33.000Z",
+      "updatedAt": "2026-07-28T02:05:33.000Z",
+      "uid": "35240-7da83d5c-0a04-4dfe-978d-1d5ed9419012"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

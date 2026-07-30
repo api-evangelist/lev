@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "84f65eda-387a-4161-8b82-51a93c46ced2",
+    "name": "Lev Account & Team Deal Properties API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:24.000Z",
+    "updatedAt": "2026-07-28T02:05:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-84f65eda-387a-4161-8b82-51a93c46ced2"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "deals",
+                  "item": [
+                    {
+                      "name": "{deal_id}",
+                      "item": [
+                        {
+                          "name": "properties",
+                          "item": [
+                            {
+                              "name": "List properties associated with a deal",
+                              "id": "f126e458-25fa-43fc-9ba2-46387510eab9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/properties",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "deals",
+                                    ":deal_id",
+                                    "properties"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fd7948f1-af13-42e7-a43f-ede3190edfdb",
+                                      "key": "deal_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The deal ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List properties associated with a deal\n\nDocs page: https://www.lev.com/docs/build/deal-properties"
+                              },
+                              "response": [
+                                {
+                                  "id": "946cc8ea-ac74-4b50-ab85-c60b7e48a6e1",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"asset_type_id\": \"<integer>\",\n      \"units\": \"<integer>\",\n      \"square_footage\": \"<number>\",\n      \"year_built\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"asset_type_id\": \"<integer>\",\n      \"units\": \"<integer>\",\n      \"square_footage\": \"<number>\",\n      \"year_built\": \"<integer>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:25.000Z",
+                                  "updatedAt": "2026-07-28T02:05:25.000Z",
+                                  "uid": "35240-946cc8ea-ac74-4b50-ab85-c60b7e48a6e1"
+                                },
+                                {
+                                  "id": "5e6fe2ab-1cdf-4309-8981-c7daf369a15c",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:25.000Z",
+                                  "updatedAt": "2026-07-28T02:05:25.000Z",
+                                  "uid": "35240-5e6fe2ab-1cdf-4309-8981-c7daf369a15c"
+                                },
+                                {
+                                  "id": "f6bd092e-c721-4c1d-8363-0801f271a335",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:25.000Z",
+                                  "updatedAt": "2026-07-28T02:05:25.000Z",
+                                  "uid": "35240-f6bd092e-c721-4c1d-8363-0801f271a335"
+                                },
+                                {
+                                  "id": "b83399f0-6cd2-41e6-ad2b-bbc87b1bfbe9",
+                                  "name": "Deal not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:25.000Z",
+                                  "updatedAt": "2026-07-28T02:05:25.000Z",
+                                  "uid": "35240-b83399f0-6cd2-41e6-ad2b-bbc87b1bfbe9"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:25.000Z",
+                              "updatedAt": "2026-07-28T02:05:25.000Z",
+                              "uid": "35240-f126e458-25fa-43fc-9ba2-46387510eab9"
+                            }
+                          ],
+                          "id": "476ea5c3-e70d-43cf-8007-0a96fc2a5ac7",
+                          "createdAt": "2026-07-28T02:05:25.000Z",
+                          "updatedAt": "2026-07-28T02:05:25.000Z",
+                          "uid": "35240-476ea5c3-e70d-43cf-8007-0a96fc2a5ac7"
+                        }
+                      ],
+                      "id": "2c1b944d-48ee-4243-8a02-31b47a44324e",
+                      "createdAt": "2026-07-28T02:05:25.000Z",
+                      "updatedAt": "2026-07-28T02:05:25.000Z",
+                      "uid": "35240-2c1b944d-48ee-4243-8a02-31b47a44324e"
+                    }
+                  ],
+                  "id": "b2c84fcc-b424-4be1-b006-c208f50809e9",
+                  "createdAt": "2026-07-28T02:05:25.000Z",
+                  "updatedAt": "2026-07-28T02:05:25.000Z",
+                  "uid": "35240-b2c84fcc-b424-4be1-b006-c208f50809e9"
+                }
+              ],
+              "id": "3d26926a-86e5-4cba-bc1b-457b49bb4aa4",
+              "createdAt": "2026-07-28T02:05:25.000Z",
+              "updatedAt": "2026-07-28T02:05:25.000Z",
+              "uid": "35240-3d26926a-86e5-4cba-bc1b-457b49bb4aa4"
+            }
+          ],
+          "id": "9452ed94-126d-4513-b792-f4b90cc8684b",
+          "createdAt": "2026-07-28T02:05:25.000Z",
+          "updatedAt": "2026-07-28T02:05:25.000Z",
+          "uid": "35240-9452ed94-126d-4513-b792-f4b90cc8684b"
+        }
+      ],
+      "id": "78ef633b-8589-427d-9b34-4e728be09bdd",
+      "createdAt": "2026-07-28T02:05:25.000Z",
+      "updatedAt": "2026-07-28T02:05:25.000Z",
+      "uid": "35240-78ef633b-8589-427d-9b34-4e728be09bdd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

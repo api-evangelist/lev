@@ -1,0 +1,3173 @@
+{
+  "info": {
+    "_postman_id": "1a2f5bdf-4cbd-4465-bd58-3b5fc8bc368e",
+    "name": "Lev Account & Team Contacts API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:22.000Z",
+    "updatedAt": "2026-07-28T02:05:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a2f5bdf-4cbd-4465-bd58-3b5fc8bc368e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "contacts",
+                  "item": [
+                    {
+                      "name": "{contact_id}",
+                      "item": [
+                        {
+                          "name": "actions",
+                          "item": [
+                            {
+                              "name": "unlock",
+                              "item": [
+                                {
+                                  "name": "Reveal an AI-recommended lender contact \u2014 charges credits; requires the ai:actions scope",
+                                  "id": "7333d720-93a0-4ef7-9ec9-707e19e58058",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/actions/unlock",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "actions",
+                                        "unlock"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "15e3b68c-ad39-4a81-a172-e04142084b7d",
+                                          "key": "contact_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The contact to reveal \u2014 the `contact_id` returned on the placement"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Reveal an AI-recommended lender contact \u2014 charges credits; requires the ai:actions scope\n\nDocs page: https://www.lev.com/docs/build/contacts\n\nDocumented response: the revealed [Contact Object](#contact-object), now carrying the contact's name and other identity fields."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4ef67ce2-a5f6-4ba7-bcf2-61dfffadcff4",
+                                      "name": "the revealed [Contact Object](#contact-object), now carrying the contact's name and other identity fields.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/actions/unlock",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "actions",
+                                            "unlock"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"contact_type\": \"<string>\",\n    \"contact_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"title\": \"<string>\",\n    \"department\": \"<string>\",\n    \"address\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"linkedin_url\": \"<string>\",\n    \"photo_url\": \"<string>\",\n    \"phones\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    ],\n    \"is_primary\": \"<boolean>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-4ef67ce2-a5f6-4ba7-bcf2-61dfffadcff4"
+                                    },
+                                    {
+                                      "id": "108c4a22-4fb4-4e8e-ad4b-4eae59c1feb1",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/actions/unlock",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "actions",
+                                            "unlock"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-108c4a22-4fb4-4e8e-ad4b-4eae59c1feb1"
+                                    },
+                                    {
+                                      "id": "f4b1988b-0037-488d-95dc-9a54355a71da",
+                                      "name": "Insufficient credits to unlock this contact",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/actions/unlock",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "actions",
+                                            "unlock"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Payment Required",
+                                      "code": 402,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-f4b1988b-0037-488d-95dc-9a54355a71da"
+                                    },
+                                    {
+                                      "id": "9efc31cd-ded2-4757-b2db-a6d05e40ba62",
+                                      "name": "Missing required scope: ai:actions",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/actions/unlock",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "actions",
+                                            "unlock"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-9efc31cd-ded2-4757-b2db-a6d05e40ba62"
+                                    },
+                                    {
+                                      "id": "a2e22bf0-8330-4abc-be2c-76abb158520f",
+                                      "name": "Contact not found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/actions/unlock",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "actions",
+                                            "unlock"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-a2e22bf0-8330-4abc-be2c-76abb158520f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-7333d720-93a0-4ef7-9ec9-707e19e58058"
+                                }
+                              ],
+                              "id": "6a6b7116-7c15-40eb-a243-72a0bbeb36f7",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-6a6b7116-7c15-40eb-a243-72a0bbeb36f7"
+                            }
+                          ],
+                          "id": "113fa876-a23a-4cfe-98d5-d1de2f2ad293",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-113fa876-a23a-4cfe-98d5-d1de2f2ad293"
+                        },
+                        {
+                          "name": "notes",
+                          "item": [
+                            {
+                              "name": "{note_id}",
+                              "item": [
+                                {
+                                  "name": "Edit a contact note",
+                                  "id": "f913f3fa-fcc2-457a-8421-f3c77f315764",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes",
+                                        ":note_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "94266ce5-7684-4131-9915-1e1c66b7fac6",
+                                          "key": "contact_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The contact ID"
+                                        },
+                                        {
+                                          "id": "ee1dbb62-488a-4f13-a519-5c8cdfeec83b",
+                                          "key": "note_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The note ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Edit a contact note\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9233c3ec-2bf6-47c2-b370-01d13bce0c14",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"text\": \"<string>\",\n    \"created_by\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-9233c3ec-2bf6-47c2-b370-01d13bce0c14"
+                                    },
+                                    {
+                                      "id": "e42dc310-d74c-4abd-ba55-f853bd30a87d",
+                                      "name": "text cannot be empty",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-e42dc310-d74c-4abd-ba55-f853bd30a87d"
+                                    },
+                                    {
+                                      "id": "8e7a5598-8af4-4267-8464-7a5d019422dc",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-8e7a5598-8af4-4267-8464-7a5d019422dc"
+                                    },
+                                    {
+                                      "id": "3047bb03-ed6c-49f4-8975-0fd0549dd111",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-3047bb03-ed6c-49f4-8975-0fd0549dd111"
+                                    },
+                                    {
+                                      "id": "1e7e264b-8957-46f8-9c2d-157ecb1d1bec",
+                                      "name": "Contact or note not found",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-1e7e264b-8957-46f8-9c2d-157ecb1d1bec"
+                                    },
+                                    {
+                                      "id": "22a0f997-ed0b-43f3-b2f6-5048913e7919",
+                                      "name": "text must not be blank",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"text\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-22a0f997-ed0b-43f3-b2f6-5048913e7919"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-f913f3fa-fcc2-457a-8421-f3c77f315764"
+                                },
+                                {
+                                  "name": "Permanently delete a contact note",
+                                  "id": "26441e4e-52cb-4cd9-b930-25a242b62ae2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes",
+                                        ":note_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "26d1fd5d-a59a-4c85-b7b6-f5f0e81ac512",
+                                          "key": "contact_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The contact ID"
+                                        },
+                                        {
+                                          "id": "a2834fdb-6805-4852-9ef0-a4a322f0734e",
+                                          "key": "note_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) The note ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Permanently delete a contact note\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "40c60462-ed0f-4624-b68d-bc5e124be143",
+                                      "name": "Success",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"deleted\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-40c60462-ed0f-4624-b68d-bc5e124be143"
+                                    },
+                                    {
+                                      "id": "9ac96be5-1c49-44c4-b77e-18dd237c7dd5",
+                                      "name": "Authentication required",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-9ac96be5-1c49-44c4-b77e-18dd237c7dd5"
+                                    },
+                                    {
+                                      "id": "0e3e6641-71bf-4b77-919c-c9e1f3664897",
+                                      "name": "Forbidden",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-0e3e6641-71bf-4b77-919c-c9e1f3664897"
+                                    },
+                                    {
+                                      "id": "c3ce7d4b-5aef-4d38-a5d3-8427961b8592",
+                                      "name": "Contact or note not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes/:note_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "external",
+                                            "v2",
+                                            "contacts",
+                                            ":contact_id",
+                                            "notes",
+                                            ":note_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "contact_id"
+                                            },
+                                            {
+                                              "key": "note_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:05:22.000Z",
+                                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                                      "uid": "35240-c3ce7d4b-5aef-4d38-a5d3-8427961b8592"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-26441e4e-52cb-4cd9-b930-25a242b62ae2"
+                                }
+                              ],
+                              "id": "bf34612f-df35-4355-9f76-9d9dcca2a7ae",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-bf34612f-df35-4355-9f76-9d9dcca2a7ae"
+                            },
+                            {
+                              "name": "List notes logged on a contact",
+                              "id": "46edd401-005e-430a-a135-2b6a02f196c8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes?limit=<integer>&cursor=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id",
+                                    "notes"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results per page (1\u2013200, default 50)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for next page",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "aa78d93a-abb9-4e11-acc3-7d5d52e201e0",
+                                      "key": "contact_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The contact ID"
+                                    }
+                                  ]
+                                },
+                                "description": "List notes logged on a contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                              },
+                              "response": [
+                                {
+                                  "id": "c7a28862-423b-4ca0-928d-b987b629876a",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"text\": \"<string>\",\n      \"created_by\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"text\": \"<string>\",\n      \"created_by\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-c7a28862-423b-4ca0-928d-b987b629876a"
+                                },
+                                {
+                                  "id": "744df751-c962-4a01-afae-6cf59e552bb7",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-744df751-c962-4a01-afae-6cf59e552bb7"
+                                },
+                                {
+                                  "id": "e995f9d4-e94a-45b9-97ea-e96bf85eab39",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-e995f9d4-e94a-45b9-97ea-e96bf85eab39"
+                                },
+                                {
+                                  "id": "27068819-1a3a-4f45-8566-25506edb65a8",
+                                  "name": "Contact not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes?limit=<integer>&cursor=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Results per page (1\u2013200, default 50)",
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Cursor for next page",
+                                          "key": "cursor",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-27068819-1a3a-4f45-8566-25506edb65a8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-46edd401-005e-430a-a135-2b6a02f196c8"
+                            },
+                            {
+                              "name": "Add a note to a contact",
+                              "id": "a2d714f0-b0cc-4c54-b182-9c40848855a5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"text\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id",
+                                    "notes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8d8f2968-04a6-4553-948e-5ab2c1ca6f17",
+                                      "key": "contact_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The contact ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Add a note to a contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                              },
+                              "response": [
+                                {
+                                  "id": "1a3f7990-965f-4bce-bdd5-d1c400443519",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"text\": \"<string>\",\n    \"created_by\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-1a3f7990-965f-4bce-bdd5-d1c400443519"
+                                },
+                                {
+                                  "id": "0c5b4b9f-d169-4c74-9f56-780219e52cbf",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-0c5b4b9f-d169-4c74-9f56-780219e52cbf"
+                                },
+                                {
+                                  "id": "2856f86f-8151-43e3-85c0-d9961f81030e",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-2856f86f-8151-43e3-85c0-d9961f81030e"
+                                },
+                                {
+                                  "id": "a2835275-b5a2-4c7c-892a-cb7d51b8ea99",
+                                  "name": "Contact not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-a2835275-b5a2-4c7c-892a-cb7d51b8ea99"
+                                },
+                                {
+                                  "id": "196b80fb-3e22-47e3-adb6-a8a30ca3806f",
+                                  "name": "text must not be blank",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"text\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id/notes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "contacts",
+                                        ":contact_id",
+                                        "notes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "contact_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:22.000Z",
+                                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                                  "uid": "35240-196b80fb-3e22-47e3-adb6-a8a30ca3806f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-a2d714f0-b0cc-4c54-b182-9c40848855a5"
+                            }
+                          ],
+                          "id": "6446ba19-4683-4587-8afc-c5a56223fb30",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-6446ba19-4683-4587-8afc-c5a56223fb30"
+                        },
+                        {
+                          "name": "Get a single contact by ID",
+                          "id": "9ef6430a-9058-4ebd-81ca-f9e04ddee781",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts",
+                                ":contact_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6bf9c482-311a-4523-8eb7-180c27c93b8f",
+                                  "key": "contact_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The contact ID"
+                                }
+                              ]
+                            },
+                            "description": "Get a single contact by ID\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                          },
+                          "response": [
+                            {
+                              "id": "078b5076-6bd3-442e-be75-7bb3d78aa33b",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"contact_type\": \"<string>\",\n    \"contact_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"title\": \"<string>\",\n    \"department\": \"<string>\",\n    \"address\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"linkedin_url\": \"<string>\",\n    \"photo_url\": \"<string>\",\n    \"phones\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    ],\n    \"is_primary\": \"<boolean>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-078b5076-6bd3-442e-be75-7bb3d78aa33b"
+                            },
+                            {
+                              "id": "55b6a6e7-9290-4f0d-9b3f-c3f24c9710b4",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-55b6a6e7-9290-4f0d-9b3f-c3f24c9710b4"
+                            },
+                            {
+                              "id": "c2d9abb9-d76d-47a0-9188-1a772a343335",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-c2d9abb9-d76d-47a0-9188-1a772a343335"
+                            },
+                            {
+                              "id": "1f7f1f10-87d9-4330-af2a-e6d10f3626c2",
+                              "name": "Contact not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-1f7f1f10-87d9-4330-af2a-e6d10f3626c2"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-9ef6430a-9058-4ebd-81ca-f9e04ddee781"
+                        },
+                        {
+                          "name": "Update a contact",
+                          "id": "4868e224-40d8-4681-ba90-47d0c21beae2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts",
+                                ":contact_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "985f78c6-09b4-4c12-8cf1-5f688e16cee6",
+                                  "key": "contact_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The contact ID"
+                                }
+                              ]
+                            },
+                            "description": "Update a contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                          },
+                          "response": [
+                            {
+                              "id": "446ce257-ec0b-4b3b-afea-c2b0b1296a50",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"contact_type\": \"<string>\",\n    \"contact_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"title\": \"<string>\",\n    \"department\": \"<string>\",\n    \"address\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"linkedin_url\": \"<string>\",\n    \"photo_url\": \"<string>\",\n    \"phones\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    ],\n    \"is_primary\": \"<boolean>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-446ce257-ec0b-4b3b-afea-c2b0b1296a50"
+                            },
+                            {
+                              "id": "6e7df548-d523-49d0-8442-44389f9df619",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-6e7df548-d523-49d0-8442-44389f9df619"
+                            },
+                            {
+                              "id": "9e5cb6fd-6bbc-4d9b-bcb8-f95a0a98bebf",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-9e5cb6fd-6bbc-4d9b-bcb8-f95a0a98bebf"
+                            },
+                            {
+                              "id": "d6e8f48f-c244-4b80-8cb1-5633e7f906b0",
+                              "name": "Contact not found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-d6e8f48f-c244-4b80-8cb1-5633e7f906b0"
+                            },
+                            {
+                              "id": "b69170a5-7306-4a89-821a-57c70749ecd2",
+                              "name": "Changing a contact's email is not supported yet",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/contacts/:contact_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "contacts",
+                                    ":contact_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "contact_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Conflict",
+                              "code": 409,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:22.000Z",
+                              "updatedAt": "2026-07-28T02:05:22.000Z",
+                              "uid": "35240-b69170a5-7306-4a89-821a-57c70749ecd2"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-4868e224-40d8-4681-ba90-47d0c21beae2"
+                        }
+                      ],
+                      "id": "5755f688-75bf-4a81-8b4b-e71ae78a2afa",
+                      "createdAt": "2026-07-28T02:05:22.000Z",
+                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                      "uid": "35240-5755f688-75bf-4a81-8b4b-e71ae78a2afa"
+                    },
+                    {
+                      "name": "List contacts with pagination",
+                      "id": "38b25ffa-e918-4655-abaa-64bae79cb18f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/contacts?limit=<integer>&cursor=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "contacts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results per page (1\u2013200, default 50)",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Cursor for next page",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated fields to include",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "List contacts with pagination\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                      },
+                      "response": [
+                        {
+                          "id": "66493be0-6410-4e8a-b8de-161bb29761d5",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"contact_type\": \"<string>\",\n      \"contact_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"title\": \"<string>\",\n      \"department\": \"<string>\",\n      \"address\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"photo_url\": \"<string>\",\n      \"phones\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"country\": \"<string>\",\n          \"e164\": \"<string>\",\n          \"extension\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"country\": \"<string>\",\n          \"e164\": \"<string>\",\n          \"extension\": \"<string>\"\n        }\n      ],\n      \"is_primary\": \"<boolean>\",\n      \"owner_account_id\": \"<integer>\",\n      \"is_connected\": \"<boolean>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"contact_type\": \"<string>\",\n      \"contact_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"title\": \"<string>\",\n      \"department\": \"<string>\",\n      \"address\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"photo_url\": \"<string>\",\n      \"phones\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"country\": \"<string>\",\n          \"e164\": \"<string>\",\n          \"extension\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"country\": \"<string>\",\n          \"e164\": \"<string>\",\n          \"extension\": \"<string>\"\n        }\n      ],\n      \"is_primary\": \"<boolean>\",\n      \"owner_account_id\": \"<integer>\",\n      \"is_connected\": \"<boolean>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"pagination\": {}\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-66493be0-6410-4e8a-b8de-161bb29761d5"
+                        },
+                        {
+                          "id": "7a19b66d-7b12-47e8-b0ac-191cc5b56798",
+                          "name": "cursor and sort cannot be combined; use offset pagination when sorting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-7a19b66d-7b12-47e8-b0ac-191cc5b56798"
+                        },
+                        {
+                          "id": "d6e48782-27f5-4fe5-9f22-ae76e2bfde41",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-d6e48782-27f5-4fe5-9f22-ae76e2bfde41"
+                        },
+                        {
+                          "id": "810085d8-b5b3-4938-a38c-1f70b4a2a3ca",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts?limit=<integer>&cursor=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results per page (1\u2013200, default 50)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for next page",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated fields to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-810085d8-b5b3-4938-a38c-1f70b4a2a3ca"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:22.000Z",
+                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                      "uid": "35240-38b25ffa-e918-4655-abaa-64bae79cb18f"
+                    },
+                    {
+                      "name": "Create a new contact",
+                      "id": "5c21ba61-9d72-4ca6-bb0e-bb3db49ba49e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contact_type\": \"<string>\",\n  \"company_id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "contacts"
+                          ]
+                        },
+                        "description": "Create a new contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+                      },
+                      "response": [
+                        {
+                          "id": "e051372c-6306-4ba6-8e4b-baa68a5b2187",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"contact_type\": \"<string>\",\n  \"company_id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"contact_type\": \"<string>\",\n    \"contact_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"title\": \"<string>\",\n    \"department\": \"<string>\",\n    \"address\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"linkedin_url\": \"<string>\",\n    \"photo_url\": \"<string>\",\n    \"phones\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"raw\": \"<string>\",\n        \"country\": \"<string>\",\n        \"e164\": \"<string>\",\n        \"extension\": \"<string>\"\n      }\n    ],\n    \"is_primary\": \"<boolean>\",\n    \"owner_account_id\": \"<integer>\",\n    \"is_connected\": \"<boolean>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-e051372c-6306-4ba6-8e4b-baa68a5b2187"
+                        },
+                        {
+                          "id": "830535d2-838f-4a86-8d2b-404ac9aea7e2",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"contact_type\": \"<string>\",\n  \"company_id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-830535d2-838f-4a86-8d2b-404ac9aea7e2"
+                        },
+                        {
+                          "id": "577f4a6e-11ef-46c4-8c16-4e0b514750b9",
+                          "name": "User not authorized to create contact",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"contact_type\": \"<string>\",\n  \"company_id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-577f4a6e-11ef-46c4-8c16-4e0b514750b9"
+                        },
+                        {
+                          "id": "f7a5dc71-ea03-4ae1-9db4-0a376ec5f747",
+                          "name": "contact_type is required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"contact_type\": \"<string>\",\n  \"company_id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"title\": \"<string>\",\n  \"department\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"photo_url\": \"<string>\",\n  \"phones\": [\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    },\n    {\n      \"raw\": \"<string>\",\n      \"type\": \"mobile\",\n      \"country\": \"US\",\n      \"extension\": \"<string>\"\n    }\n  ],\n  \"is_primary\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/contacts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "contacts"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:22.000Z",
+                          "updatedAt": "2026-07-28T02:05:22.000Z",
+                          "uid": "35240-f7a5dc71-ea03-4ae1-9db4-0a376ec5f747"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:22.000Z",
+                      "updatedAt": "2026-07-28T02:05:22.000Z",
+                      "uid": "35240-5c21ba61-9d72-4ca6-bb0e-bb3db49ba49e"
+                    }
+                  ],
+                  "id": "c8140937-592e-41cf-9ca5-65f06bd348ba",
+                  "createdAt": "2026-07-28T02:05:22.000Z",
+                  "updatedAt": "2026-07-28T02:05:22.000Z",
+                  "uid": "35240-c8140937-592e-41cf-9ca5-65f06bd348ba"
+                }
+              ],
+              "id": "d37dd07b-1e9f-47ee-90f0-5db53cf6fbb7",
+              "createdAt": "2026-07-28T02:05:22.000Z",
+              "updatedAt": "2026-07-28T02:05:22.000Z",
+              "uid": "35240-d37dd07b-1e9f-47ee-90f0-5db53cf6fbb7"
+            }
+          ],
+          "id": "cc6920f9-3eb6-41cb-abff-9bfe9fb3b06c",
+          "createdAt": "2026-07-28T02:05:22.000Z",
+          "updatedAt": "2026-07-28T02:05:22.000Z",
+          "uid": "35240-cc6920f9-3eb6-41cb-abff-9bfe9fb3b06c"
+        }
+      ],
+      "id": "493db034-bd27-4a0c-82d4-214bb84ef942",
+      "createdAt": "2026-07-28T02:05:22.000Z",
+      "updatedAt": "2026-07-28T02:05:22.000Z",
+      "uid": "35240-493db034-bd27-4a0c-82d4-214bb84ef942"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

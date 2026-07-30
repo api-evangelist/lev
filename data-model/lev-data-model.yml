@@ -1,0 +1,387 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/lev-openapi-original.json
+docs: https://www.lev.com/docs/build/deals
+summary: Entity-relationship graph derived from the 58 component schemas in the Lev
+  OpenAPI 3.1 document — schema $ref links plus id-reference fields on each object.
+  The Deal is the hub of the model; nearly every other entity either belongs to a
+  deal or is referenced from one. Identifiers are integers on the core CRM entities
+  and UUIDs on Index facts and memos.
+id_conventions:
+  core_entities: integer ids (deal, contact, company, placement, term sheet,
+    pipeline, note, vault, document)
+  memos: uuid (memo_uuid path parameter)
+  index_facts: uuid-style sot_id / observation_id / metric_id
+  tenancy_field: owner_account_id appears on Deal, Contact, Company, and Pipeline,
+    scoping every record to an account
+entities:
+- name: Deal
+  schema: Deal
+  description: The core CRE financing or investment-sales transaction. Hub of the
+    model.
+  operations:
+    list: getDeals
+    get: getDealsDealId
+    create: postDeals
+    update: patchDealsDealId
+    archive: deleteDealsDealId
+  fields_of_note:
+  - id
+  - owner_account_id
+  - loan_type
+  - transaction_type
+  - business_plan
+  enums:
+  - LoanType
+  - TransactionType
+  - BusinessPlanType
+- name: DealFinancials
+  schema: DealFinancials
+  operations: {get: getDealsDealIdFinancials}
+- name: DealProperty
+  schema: DealProperty
+  operations: {list: getDealsDealIdProperties}
+- name: DealTeamMember
+  schema: DealTeamMember
+  operations: {list: getDealsDealIdTeam}
+- name: Vault
+  schema: Vault
+  description: A deal's private Resources area or a shared Deal Room.
+  operations: {list: getDealsDealIdVaults}
+- name: DealDocument
+  schema: DealDocument
+  operations:
+    list: getDealsDealIdDocuments
+    get: getDealsDealIdDocumentsDocumentId
+    download: getDealsDealIdDocumentsDocumentIdDownload
+- name: DealChecklist
+  schema: DealChecklist
+  description: One checklist per shared Deal Room, composed of sections and tasks.
+  operations: {list: getDealsDealIdChecklists}
+- name: ChecklistSection
+  schema: ChecklistSection
+- name: ChecklistTask
+  schema: ChecklistTask
+  description: Self-referencing — tasks can nest subtasks.
+  operations:
+    create: postChecklistTasks
+    update: patchChecklistTasksTaskId
+    complete: postChecklistTasksTaskIdComplete
+- name: DealIndexFact
+  schema: DealIndexFact
+  description: A canonical, source-backed metric value recorded on a deal.
+  operations:
+    search: postDealsDealIdIndexSearch
+    record: postDealsDealIdIndexFacts
+    update: patchDealsDealIdIndexFacts
+- name: DealIndexObservation
+  schema: DealIndexObservation
+  description: A per-document candidate value extracted behind a canonical fact —
+    the provenance layer.
+  operations: {list: postDealsDealIdIndexObservations}
+- name: DealIndexMetricDefinition
+  schema: DealIndexMetricDefinition
+  operations: {list: getDealsDealIdIndexMetricDefinitions}
+- name: DealIndexEntity
+  schema: DealIndexEntity
+  description: The entity a recorded fact can be attached to.
+  operations: {list: getDealsDealIdIndexEntities}
+- name: DealMemo
+  schema: DealMemo
+  description: An AI-generated deal book, published or draft, with signed PDF links.
+  operations:
+    list: getDealsDealIdMemos
+    get: getDealsDealIdMemosMemoUuid
+- name: Placement
+  schema: Placement
+  description: The placement of a deal with a capital source.
+  operations:
+    list: getPlacements
+    get: getPlacementsPlacementId
+    create: postPlacements
+    update: patchPlacementsPlacementId
+- name: TermSheet
+  schema: TermSheet
+  operations:
+    list: getDealsDealIdTermSheets
+    get: getDealsDealIdTermSheetsTermSheetId
+    create: postDealsDealIdTermSheets
+    update: patchDealsDealIdTermSheetsTermSheetId
+    delete: deleteDealsDealIdTermSheetsTermSheetId
+- name: Contact
+  schema: Contact
+  operations:
+    list: getContacts
+    get: getContactsContactId
+    create: postContacts
+    update: patchContactsContactId
+    unlock: postContactsContactIdActionsUnlock
+- name: Company
+  schema: Company
+  operations:
+    list: getCompanies
+    get: getCompaniesCompanyId
+    create: postCompanies
+    update: patchCompaniesCompanyId
+- name: Note
+  schema: Note
+  description: Polymorphic — the same Note schema is attached to deals, contacts,
+    companies, placements, and checklist tasks through parent-scoped routes rather
+    than a parent-type field.
+- name: Pipeline
+  schema: Pipeline
+  operations:
+    list: getPipelines
+    get: getPipelinesPipelineId
+- name: PipelineStatus
+  schema: PipelineStatus
+- name: LenderDirectoryLender
+  schema: LenderDirectoryLender
+  description: A lender organization in the directory, addressed by org_id.
+  operations:
+    list: getLendersDirectory
+    get: getLendersOrgId
+- name: LenderProgram
+  schema: LenderProgram
+  operations: {list: getLendersOrgIdPrograms}
+- name: CurrentUser
+  schema: CurrentUser
+  operations: {get: getMe}
+- name: AccountTeamMember
+  schema: AccountTeamMember
+  operations: {list: getAccountTeam}
+- name: ApiKey
+  schema: ApiKey
+  operations:
+    list: getApiKeys
+    create: postApiKeys
+    revoke: deleteApiKeysKeyId
+    validate: postAuthValidateApiKey
+- name: BillingSummary
+  schema: BillingSummary
+  operations: {get: getBillingSummary}
+- name: Credits
+  schema: Credits
+  operations: {get: getBillingCreditsBalance}
+relationships:
+- from: Deal
+  to: DealFinancials
+  kind: has_one
+  via: deal_id
+  evidence: DealFinancials.deal_id
+- from: Deal
+  to: DealProperty
+  kind: has_many
+  via: path scope /deals/{deal_id}/properties
+- from: Deal
+  to: DealTeamMember
+  kind: has_many
+  via: path scope /deals/{deal_id}/team
+- from: Deal
+  to: Vault
+  kind: has_many
+  via: path scope /deals/{deal_id}/vaults
+- from: Deal
+  to: DealDocument
+  kind: has_many
+  via: path scope /deals/{deal_id}/documents
+- from: DealDocument
+  to: Vault
+  kind: belongs_to
+  via: DocumentVaultRef
+  evidence: DealDocument $ref DocumentVaultRef
+- from: Deal
+  to: DealChecklist
+  kind: has_many
+  via: path scope /deals/{deal_id}/checklists
+- from: DealChecklist
+  to: Vault
+  kind: belongs_to
+  via: ChecklistVaultRef
+  evidence: DealChecklist $ref ChecklistVaultRef
+- from: DealChecklist
+  to: ChecklistSection
+  kind: has_many
+  evidence: DealChecklist $ref ChecklistSection
+- from: ChecklistSection
+  to: ChecklistTask
+  kind: has_many
+  evidence: ChecklistSection $ref ChecklistTask
+- from: ChecklistTask
+  to: ChecklistTask
+  kind: has_many
+  via: self-reference (subtasks)
+  evidence: ChecklistTask $ref ChecklistTask
+- from: ChecklistTask
+  to: ChecklistTaskFile
+  kind: has_many
+  evidence: ChecklistTask $ref ChecklistTaskFile
+- from: ChecklistTaskFile
+  to: DealDocument
+  kind: belongs_to
+  via: document_id
+- from: ChecklistTask
+  to: ChecklistAssignee
+  kind: has_one
+  evidence: ChecklistTask $ref ChecklistAssignee
+- from: ChecklistTask
+  to: ChecklistAssignedTeam
+  kind: has_one
+  evidence: ChecklistTask $ref ChecklistAssignedTeam
+- from: ChecklistTask
+  to: ChecklistCollaborator
+  kind: has_many
+  evidence: ChecklistTask $ref ChecklistCollaborator
+- from: ChecklistTask
+  to: ChecklistDocumentType
+  kind: has_one
+  evidence: ChecklistTask $ref ChecklistDocumentType
+- from: Deal
+  to: DealIndexFact
+  kind: has_many
+  via: path scope /deals/{deal_id}/index/facts
+- from: DealIndexFact
+  to: DealIndexMetricDefinition
+  kind: belongs_to
+  via: metric_id
+- from: DealIndexFact
+  to: DealIndexEntity
+  kind: belongs_to
+  via: entity_id
+- from: DealIndexFact
+  to: DealIndexObservation
+  kind: has_many
+  via: observation_id
+  note: A canonical fact is backed by many per-document observations; promoting one
+    observation sets the canonical value.
+- from: DealIndexObservation
+  to: DealIndexSearchSource
+  kind: has_one
+  evidence: DealIndexObservation $ref DealIndexSearchSource
+- from: DealIndexSearchSource
+  to: DealDocument
+  kind: belongs_to
+  via: document_id
+  note: This is the provenance edge — every indexed fact traces back to a source
+    document.
+- from: DealIndexMetricDefinition
+  to: category
+  kind: belongs_to
+  via: category_id
+- from: Deal
+  to: DealMemo
+  kind: has_many
+  via: path scope /deals/{deal_id}/memos
+- from: DealMemo
+  to: VaultTag
+  kind: has_many
+  evidence: DealMemo $ref VaultTag
+  note: A memo can live in more than one vault.
+- from: Deal
+  to: Placement
+  kind: has_many
+  via: deal_id
+  evidence: Placement.deal_id
+- from: Placement
+  to: Company
+  kind: belongs_to
+  via: private_company_id
+- from: Placement
+  to: Contact
+  kind: belongs_to
+  via: contact_id
+- from: Deal
+  to: TermSheet
+  kind: has_many
+  via: deal_id
+  evidence: TermSheet.deal_id
+- from: TermSheet
+  to: Placement
+  kind: belongs_to
+  via: placement_id
+  note: Term sheets are created against a placement, addressed under the deal.
+- from: TermSheet
+  to: LenderDirectoryLender
+  kind: belongs_to
+  via: org_id
+- from: Contact
+  to: Phone
+  kind: has_many
+  evidence: Contact $ref Phone
+- from: Contact
+  to: Company
+  kind: belongs_to
+  via: org_id
+  note: Company.org_id links a CRM company to a directory organization.
+- from: Company
+  to: LenderDirectoryLender
+  kind: belongs_to
+  via: org_id
+- from: LenderDirectoryLender
+  to: LenderProgram
+  kind: has_many
+  via: path scope /lenders/{org_id}/programs
+- from: Deal
+  to: Note
+  kind: has_many
+  via: path scope /deals/{deal_id}/notes
+- from: Contact
+  to: Note
+  kind: has_many
+  via: path scope /contacts/{contact_id}/notes
+- from: Company
+  to: Note
+  kind: has_many
+  via: path scope /companies/{company_id}/notes
+- from: Placement
+  to: Note
+  kind: has_many
+  via: path scope /placements/{placement_id}/notes
+- from: ChecklistTask
+  to: Note
+  kind: has_many
+  via: path scope /checklist-tasks/{task_id}/notes
+- from: Deal
+  to: Pipeline
+  kind: belongs_to
+  via: postDealsDealIdPipeline
+  note: A deal is moved to a pipeline stage rather than carrying a stored
+    pipeline_id in the Deal schema.
+- from: Pipeline
+  to: PipelineStatus
+  kind: has_many
+- from: DealProperty
+  to: AssetTypes
+  kind: belongs_to
+  via: asset_type_id
+- from: Account
+  to: Deal
+  kind: has_many
+  via: owner_account_id
+- from: Account
+  to: Contact
+  kind: has_many
+  via: owner_account_id
+- from: Account
+  to: Company
+  kind: has_many
+  via: owner_account_id
+- from: Account
+  to: Pipeline
+  kind: has_many
+  via: owner_account_id
+- from: Account
+  to: BillingSummary
+  kind: has_one
+- from: BillingSummary
+  to: Credits
+  kind: has_one
+  evidence: BillingSummary $ref Credits
+- from: BillingSummary
+  to: Subscription
+  kind: has_one
+  evidence: BillingSummary $ref Subscription
+render: null
+related:
+  openapi: openapi/lev-openapi-original.json
+  conventions: conventions/lev-conventions.yml

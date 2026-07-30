@@ -1,0 +1,210 @@
+{
+  "info": {
+    "_postman_id": "6ddf540c-8802-4f66-8b7d-af115ff636b7",
+    "name": "Lev Account & Team Lev API Documentation API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:32.000Z",
+    "updatedAt": "2026-07-28T02:05:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6ddf540c-8802-4f66-8b7d-af115ff636b7"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "health",
+                  "item": [
+                    {
+                      "name": "Public liveness endpoint \u2014 no authentication required",
+                      "id": "5d942def-4592-41bf-b65e-e75766d78928",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/health",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "health"
+                          ]
+                        },
+                        "description": "Public liveness endpoint \u2014 no authentication required\n\nDocs page: https://www.lev.com/docs/build/api-overview"
+                      },
+                      "response": [
+                        {
+                          "id": "6ce1728e-8985-4184-9311-744964cfb016",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/health",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "health"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:05:32.000Z",
+                          "updatedAt": "2026-07-28T02:05:32.000Z",
+                          "uid": "35240-6ce1728e-8985-4184-9311-744964cfb016"
+                        },
+                        {
+                          "id": "231a805b-10de-4a4f-a34c-cfea202b7749",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/health",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "health"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:32.000Z",
+                          "updatedAt": "2026-07-28T02:05:32.000Z",
+                          "uid": "35240-231a805b-10de-4a4f-a34c-cfea202b7749"
+                        },
+                        {
+                          "id": "70c6e6b7-6c77-422e-bbde-e83993bfe646",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/health",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "health"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:32.000Z",
+                          "updatedAt": "2026-07-28T02:05:32.000Z",
+                          "uid": "35240-70c6e6b7-6c77-422e-bbde-e83993bfe646"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:32.000Z",
+                      "updatedAt": "2026-07-28T02:05:32.000Z",
+                      "uid": "35240-5d942def-4592-41bf-b65e-e75766d78928"
+                    }
+                  ],
+                  "id": "f16463da-1bb8-435c-8e04-0822a00ee63d",
+                  "createdAt": "2026-07-28T02:05:32.000Z",
+                  "updatedAt": "2026-07-28T02:05:32.000Z",
+                  "uid": "35240-f16463da-1bb8-435c-8e04-0822a00ee63d"
+                }
+              ],
+              "id": "5ad7a63d-9882-488b-ad61-7e39688a026a",
+              "createdAt": "2026-07-28T02:05:32.000Z",
+              "updatedAt": "2026-07-28T02:05:32.000Z",
+              "uid": "35240-5ad7a63d-9882-488b-ad61-7e39688a026a"
+            }
+          ],
+          "id": "891fecc0-5b67-430d-b9ed-305de5a47d7f",
+          "createdAt": "2026-07-28T02:05:32.000Z",
+          "updatedAt": "2026-07-28T02:05:32.000Z",
+          "uid": "35240-891fecc0-5b67-430d-b9ed-305de5a47d7f"
+        }
+      ],
+      "id": "63e69a9d-b40e-4294-9b34-ce13b97504ce",
+      "createdAt": "2026-07-28T02:05:32.000Z",
+      "updatedAt": "2026-07-28T02:05:32.000Z",
+      "uid": "35240-63e69a9d-b40e-4294-9b34-ce13b97504ce"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

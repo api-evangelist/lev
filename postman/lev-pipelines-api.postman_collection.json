@@ -1,0 +1,971 @@
+{
+  "info": {
+    "_postman_id": "0b8e0440-2152-427d-a616-723281df2965",
+    "name": "Lev Account & Team Pipelines API",
+    "description": "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:05:34.000Z",
+    "updatedAt": "2026-07-28T02:05:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0b8e0440-2152-427d-a616-723281df2965"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "external",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "pipelines",
+                  "item": [
+                    {
+                      "name": "{pipeline_id}",
+                      "item": [
+                        {
+                          "name": "Get a single pipeline with its statuses",
+                          "id": "683d070d-1b11-471e-97a4-499680f57d13",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/pipelines/:pipeline_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "pipelines",
+                                ":pipeline_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8b3c92ee-50f2-48f9-abd9-126130a97b9c",
+                                  "key": "pipeline_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The pipeline ID"
+                                }
+                              ]
+                            },
+                            "description": "Get a single pipeline with its statuses\n\nDocs page: https://www.lev.com/docs/build/pipelines"
+                          },
+                          "response": [
+                            {
+                              "id": "f0018971-9d66-42d9-a96c-5ac974c75f52",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/pipelines/:pipeline_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "pipelines",
+                                    ":pipeline_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                              "createdAt": "2026-07-28T02:05:34.000Z",
+                              "updatedAt": "2026-07-28T02:05:34.000Z",
+                              "uid": "35240-f0018971-9d66-42d9-a96c-5ac974c75f52"
+                            },
+                            {
+                              "id": "a4326c73-f708-411d-a50d-39065dac8751",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/pipelines/:pipeline_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "pipelines",
+                                    ":pipeline_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:34.000Z",
+                              "updatedAt": "2026-07-28T02:05:34.000Z",
+                              "uid": "35240-a4326c73-f708-411d-a50d-39065dac8751"
+                            },
+                            {
+                              "id": "d29af7cd-9efa-412f-8b29-d87743e80a47",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/pipelines/:pipeline_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "pipelines",
+                                    ":pipeline_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:34.000Z",
+                              "updatedAt": "2026-07-28T02:05:34.000Z",
+                              "uid": "35240-d29af7cd-9efa-412f-8b29-d87743e80a47"
+                            },
+                            {
+                              "id": "d0fdf75e-203a-478c-a77f-8a9deed5a2ed",
+                              "name": "Pipeline not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/pipelines/:pipeline_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "pipelines",
+                                    ":pipeline_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:05:34.000Z",
+                              "updatedAt": "2026-07-28T02:05:34.000Z",
+                              "uid": "35240-d0fdf75e-203a-478c-a77f-8a9deed5a2ed"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:05:34.000Z",
+                          "updatedAt": "2026-07-28T02:05:34.000Z",
+                          "uid": "35240-683d070d-1b11-471e-97a4-499680f57d13"
+                        }
+                      ],
+                      "id": "b50cdb4a-b2d7-4b53-9837-cecbc74de7b5",
+                      "createdAt": "2026-07-28T02:05:34.000Z",
+                      "updatedAt": "2026-07-28T02:05:34.000Z",
+                      "uid": "35240-b50cdb4a-b2d7-4b53-9837-cecbc74de7b5"
+                    },
+                    {
+                      "name": "List all pipelines available to your account",
+                      "id": "6b0968b6-59ed-4a96-b07f-86673d8a7250",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/external/v2/pipelines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "external",
+                            "v2",
+                            "pipelines"
+                          ]
+                        },
+                        "description": "List all pipelines available to your account\n\nDocs page: https://www.lev.com/docs/build/pipelines"
+                      },
+                      "response": [
+                        {
+                          "id": "1b302244-7a07-4349-94b7-6c4ef7e3c6b0",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/pipelines",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "pipelines"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                          "createdAt": "2026-07-28T02:05:34.000Z",
+                          "updatedAt": "2026-07-28T02:05:34.000Z",
+                          "uid": "35240-1b302244-7a07-4349-94b7-6c4ef7e3c6b0"
+                        },
+                        {
+                          "id": "b766e429-7579-429b-89d3-495bf97f9970",
+                          "name": "cursor and sort cannot be combined; use offset pagination when sorting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/pipelines",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "pipelines"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:34.000Z",
+                          "updatedAt": "2026-07-28T02:05:34.000Z",
+                          "uid": "35240-b766e429-7579-429b-89d3-495bf97f9970"
+                        },
+                        {
+                          "id": "298b6860-4e61-4f13-8038-d92fcc1c6bbe",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/pipelines",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "pipelines"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:34.000Z",
+                          "updatedAt": "2026-07-28T02:05:34.000Z",
+                          "uid": "35240-298b6860-4e61-4f13-8038-d92fcc1c6bbe"
+                        },
+                        {
+                          "id": "5f9f4dfe-009a-4247-b9cc-b4ab7ee2ef53",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/external/v2/pipelines",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "external",
+                                "v2",
+                                "pipelines"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:05:34.000Z",
+                          "updatedAt": "2026-07-28T02:05:34.000Z",
+                          "uid": "35240-5f9f4dfe-009a-4247-b9cc-b4ab7ee2ef53"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:05:34.000Z",
+                      "updatedAt": "2026-07-28T02:05:34.000Z",
+                      "uid": "35240-6b0968b6-59ed-4a96-b07f-86673d8a7250"
+                    }
+                  ],
+                  "id": "d32d0d88-38af-44cf-97af-edcaf746e251",
+                  "createdAt": "2026-07-28T02:05:34.000Z",
+                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                  "uid": "35240-d32d0d88-38af-44cf-97af-edcaf746e251"
+                },
+                {
+                  "name": "deals",
+                  "item": [
+                    {
+                      "name": "{deal_id}",
+                      "item": [
+                        {
+                          "name": "pipeline",
+                          "item": [
+                            {
+                              "name": "Move a deal to a pipeline stage",
+                              "id": "14704621-c76b-4d86-a5bd-a38e95a3ce73",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pipeline_id\": \"<integer>\",\n  \"pipeline_status_id\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/pipeline",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "external",
+                                    "v2",
+                                    "deals",
+                                    ":deal_id",
+                                    "pipeline"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "dc0875ed-224b-433d-a410-3190d0e12cb3",
+                                      "key": "deal_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The deal ID"
+                                    }
+                                  ]
+                                },
+                                "description": "Move a deal to a pipeline stage\n\nDocs page: https://www.lev.com/docs/build/pipelines"
+                              },
+                              "response": [
+                                {
+                                  "id": "c44e4062-16d7-4561-9d2b-873d9f9933c0",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"pipeline_id\": \"<integer>\",\n  \"pipeline_status_id\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/pipeline",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "pipeline"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"data\": {}\n}",
+                                  "createdAt": "2026-07-28T02:05:34.000Z",
+                                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                                  "uid": "35240-c44e4062-16d7-4561-9d2b-873d9f9933c0"
+                                },
+                                {
+                                  "id": "414f65f5-3180-4f04-9422-2dcc26861437",
+                                  "name": "Pipeline not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"pipeline_id\": \"<integer>\",\n  \"pipeline_status_id\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/pipeline",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "pipeline"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:34.000Z",
+                                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                                  "uid": "35240-414f65f5-3180-4f04-9422-2dcc26861437"
+                                },
+                                {
+                                  "id": "55f2458d-7d92-45fc-ac4f-4fb49ea5a1ed",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"pipeline_id\": \"<integer>\",\n  \"pipeline_status_id\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/pipeline",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "pipeline"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:34.000Z",
+                                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                                  "uid": "35240-55f2458d-7d92-45fc-ac4f-4fb49ea5a1ed"
+                                },
+                                {
+                                  "id": "9daa1144-9cc8-469f-af64-5b7383736d81",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"pipeline_id\": \"<integer>\",\n  \"pipeline_status_id\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/pipeline",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "pipeline"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:34.000Z",
+                                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                                  "uid": "35240-9daa1144-9cc8-469f-af64-5b7383736d81"
+                                },
+                                {
+                                  "id": "a6d4a288-555b-4a3a-8788-f54ec54a5806",
+                                  "name": "Deal not found",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"pipeline_id\": \"<integer>\",\n  \"pipeline_status_id\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/external/v2/deals/:deal_id/pipeline",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "external",
+                                        "v2",
+                                        "deals",
+                                        ":deal_id",
+                                        "pipeline"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "deal_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"request_id\": \"<string>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:05:34.000Z",
+                                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                                  "uid": "35240-a6d4a288-555b-4a3a-8788-f54ec54a5806"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:05:34.000Z",
+                              "updatedAt": "2026-07-28T02:05:34.000Z",
+                              "uid": "35240-14704621-c76b-4d86-a5bd-a38e95a3ce73"
+                            }
+                          ],
+                          "id": "b088399e-593e-480f-bab3-9f57bc6d1f0b",
+                          "createdAt": "2026-07-28T02:05:34.000Z",
+                          "updatedAt": "2026-07-28T02:05:34.000Z",
+                          "uid": "35240-b088399e-593e-480f-bab3-9f57bc6d1f0b"
+                        }
+                      ],
+                      "id": "efb18689-3810-4dd6-ad2a-faa70ebc8313",
+                      "createdAt": "2026-07-28T02:05:34.000Z",
+                      "updatedAt": "2026-07-28T02:05:34.000Z",
+                      "uid": "35240-efb18689-3810-4dd6-ad2a-faa70ebc8313"
+                    }
+                  ],
+                  "id": "3b848f61-93b2-4f64-9a25-946ea66f8c6e",
+                  "createdAt": "2026-07-28T02:05:34.000Z",
+                  "updatedAt": "2026-07-28T02:05:34.000Z",
+                  "uid": "35240-3b848f61-93b2-4f64-9a25-946ea66f8c6e"
+                }
+              ],
+              "id": "fff3449c-c27a-416a-b14b-cdcc6c85da0f",
+              "createdAt": "2026-07-28T02:05:34.000Z",
+              "updatedAt": "2026-07-28T02:05:34.000Z",
+              "uid": "35240-fff3449c-c27a-416a-b14b-cdcc6c85da0f"
+            }
+          ],
+          "id": "72257d30-e032-458b-b2e0-dd17c663f3ec",
+          "createdAt": "2026-07-28T02:05:34.000Z",
+          "updatedAt": "2026-07-28T02:05:34.000Z",
+          "uid": "35240-72257d30-e032-458b-b2e0-dd17c663f3ec"
+        }
+      ],
+      "id": "cf17883b-3bdf-4bf7-b537-2359d3769df2",
+      "createdAt": "2026-07-28T02:05:34.000Z",
+      "updatedAt": "2026-07-28T02:05:34.000Z",
+      "uid": "35240-cf17883b-3bdf-4bf7-b537-2359d3769df2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.lev.com"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.lev.com/docs/build/cli-setup
+docs:
+  setup: https://www.lev.com/docs/build/cli-setup
+  commands: https://www.lev.com/docs/build/cli-commands
+  workflows: https://www.lev.com/docs/build/cli-workflows
+  reference: https://www.lev.com/docs/build/cli-reference
+name: Lev CLI
+binary: lev
+package: lev-cli
+language: python
+requires: Python 3.13+
+availability: early-access
+availability_note: The documentation states the Lev CLI is not yet published to
+  PyPI; early access requires contacting a Lev representative. Command surface and
+  install instructions are fully published. Verified 2026-07-19 — https://pypi.org/pypi/lev-cli/json
+  returns 404.
+install:
+- method: pipx
+  command: pipx install lev-cli
+  recommended: true
+  note: Installs into an isolated environment.
+- method: pip
+  command: pip install lev-cli
+  recommended: false
+  note: Fallback when pipx is unavailable.
+authentication:
+- method: interactive
+  command: lev auth login
+  storage: OS keychain (macOS Keychain, Linux Secret Service) — never written to a
+    config file
+- method: environment
+  variable: LEV_API_KEY
+  example: LEV_API_KEY=lev_sk_your_key_here
+  use: CI/CD pipelines
+- method: file
+  flag: --api-key @/path/to/key.txt
+configuration:
+  path: ~/.config/lev/config.toml
+  resolution_order: flags > env vars > project config > user config > defaults
+output:
+  behavior: tables for terminals, JSON for pipes
+  note: Auto-detects a pipe so LLM agents and scripts receive structured data
+    without extra flags.
+safety:
+  confirmation: Create, update, and delete commands prompt for confirmation in
+    interactive terminals.
+  flags:
+  - flag: --yes
+    description: Skip confirmation prompts in scripts.
+  - flag: --dry-run
+    description: Preview without executing.
+command_groups:
+- group: auth
+  commands:
+  - lev auth login
+  - lev auth login --profile <name>
+  - lev auth status
+  - lev auth logout
+  - lev auth switch <profile>
+- group: config
+  commands:
+  - lev config init
+  - lev config show
+  - lev config set <key> <value>
+- group: deals
+  commands:
+  - lev deals list
+  - lev deals get <id>
+  - lev deals create
+  - lev deals update <id>
+  - lev deals delete <id>
+  - lev deals move <id> --pipeline <id> --status <id>
+  - lev deals financials <id>
+  - lev deals properties <id>
+  - lev deals team <id>
+  flags:
+  - --loan-type
+  - --business-plan
+  - --filter FIELD=VALUE
+  - --sort FIELD
+  - --include RESOURCES
+  - --fields FIELDS
+  - --limit N
+  - --all
+- group: contacts
+  commands:
+  - lev contacts list
+- group: companies
+- group: placements
+- group: pipelines
+  commands:
+  - lev pipelines list
+  - lev pipelines get <id>
+- group: lenders
+- group: term-sheets
+- group: market
+- group: api-keys
+global_flags:
+- --version
+- --help
+- --api-key
+- --profile
+- --yes
+- --dry-run
+related:
+  packages: packages/lev-packages.yml
+  authentication: authentication/lev-authentication.yml
+  conventions: conventions/lev-conventions.yml
