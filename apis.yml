@@ -1,22 +1,426 @@
 aid: lev
 name: Lev
-description: Lev is a company surfaced as a portfolio company of canaan-partners and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'Lev is an AI platform and product system for commercial real estate (CRE)
+  teams, used by sponsors, financing brokers, investment-sales brokers, lenders, capital-markets
+  teams, and enterprise operators. The platform is organized in four layers: CRE apps
+  (CRM, pipeline, vault/data rooms, checklists, memos, commissions), source-backed AI
+  agents (Lev Agent, Lev Memo, Lender Search, Lev Match, Lev Index), CRE data (lender,
+  market, contact, property, and recent-terms data), and a developer platform. That
+  platform layer is the API Evangelist interest: a versioned REST API at api.lev.com
+  covering deals, documents and vaults, checklists, contacts, companies, the lender
+  directory, term sheets, placements, pipelines, market data, account, and billing;
+  a hosted remote MCP server at mcp.lev.com with roughly 60 tools and OAuth 2.1 discovery;
+  and a first-party Python CLI. The API publishes an OpenAPI 3.1 description, scoped
+  API keys, cursor pagination, Idempotency-Key support on writes, request-id correlation,
+  and a documented error-type and rate-limit contract.'
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.lev.com/api/og?title=Lev&eyebrow=LEV&accent=commercial+real+estate.
 url: https://raw.githubusercontent.com/api-evangelist/lev/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - canaan-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Commercial Real Estate
+- Real Estate
+- Proptech
+- CRE Financing
+- Lending
+- CRM
+- Artificial Intelligence
+- AI Agents
+- Deal Management
+- Market Data
+- Documents
+apis:
+- aid: lev:lev-account-team-api
+  name: Lev Account & Team API
+  description: The Account & Team API from Lev — 4 operation(s) for account & team.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Account & Team
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-account-team-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-api-keys-api
+  name: Lev API Keys API
+  description: The API Keys API from Lev — 2 operation(s) for api keys.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-billing-api
+  name: Lev Billing API
+  description: The Billing API from Lev — 2 operation(s) for billing.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-billing-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-companies-api
+  name: Lev Companies API
+  description: The Companies API from Lev — 4 operation(s) for companies.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-companies-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-contacts-api
+  name: Lev Contacts API
+  description: The Contacts API from Lev — 5 operation(s) for contacts.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-deal-financials-api
+  name: Lev Deal Financials API
+  description: The Deal Financials API from Lev — 1 operation(s) for deal financials.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Deal Financials
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-deal-financials-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-deal-properties-api
+  name: Lev Deal Properties API
+  description: The Deal Properties API from Lev — 1 operation(s) for deal properties.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Deal Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-deal-properties-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-deal-team-api
+  name: Lev Deal Team API
+  description: The Deal Team API from Lev — 1 operation(s) for deal team.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Deal Team
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-deal-team-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-deals-api
+  name: Lev Deals API
+  description: The Deals API from Lev — 21 operation(s) for deals.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Deals
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-deals-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-lender-directory-api
+  name: Lev Lender Directory API
+  description: The Lender Directory API from Lev — 3 operation(s) for lender directory.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Lender Directory
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-lender-directory-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-lev-api-documentation-api
+  name: Lev Lev API Documentation API
+  description: The Lev API Documentation API from Lev — 1 operation(s) for lev api documentation.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Lev API Documentation
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-lev-api-documentation-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-market-data-api
+  name: Lev Market Data API
+  description: The Market Data API from Lev — 2 operation(s) for market data.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Market Data
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-market-data-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-pipelines-api
+  name: Lev Pipelines API
+  description: The Pipelines API from Lev — 3 operation(s) for pipelines.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-placements-api
+  name: Lev Placements API
+  description: The Placements API from Lev — 4 operation(s) for placements.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Placements
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-placements-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-quickstart-api
+  name: Lev Quickstart API
+  description: The Quickstart API from Lev — 1 operation(s) for quickstart.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Quickstart
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-quickstart-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+- aid: lev:lev-term-sheets-api
+  name: Lev Term Sheets API
+  description: The Term Sheets API from Lev — 2 operation(s) for term sheets.
+  humanURL: https://www.lev.com/docs/build/api-overview
+  baseURL: https://api.lev.com/api/external/v2
+  tags:
+  - Term Sheets
+  properties:
+  - type: OpenAPI
+    url: openapi/lev-term-sheets-api-openapi.yml
+  - type: Documentation
+    url: https://www.lev.com/docs/build/api-overview
+  - type: APIReference
+    url: https://www.lev.com/docs/build/deals
+  - type: GettingStarted
+    url: https://www.lev.com/docs/build/getting-started
+  - type: Authentication
+    url: https://www.lev.com/docs/build/authentication
+common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/lev/overview
+- type: TrustCenter
+  url: security/lev-trust-center.yml
+- type: Website
+  url: https://www.lev.com/
+- type: DeveloperPortal
+  url: https://www.lev.com/docs/build/build-on-lev
+- type: Documentation
+  url: https://www.lev.com/docs
+- type: APIReference
+  url: https://www.lev.com/docs/build/api-overview
+- type: GettingStarted
+  url: https://www.lev.com/docs/build/getting-started
+- type: Support
+  url: https://www.lev.com/docs/learn
+- type: Blog
+  url: https://www.lev.com/blog
+- type: Pricing
+  url: https://www.lev.com/pricing
+- type: SignUp
+  url: https://www.lev.com/auth/login?screen_hint=signup
+- type: TermsOfService
+  url: https://www.lev.com/docs/learn/terms
+- type: PrivacyPolicy
+  url: https://www.lev.com/docs/learn/privacy-policy
+- type: Security
+  url: https://www.lev.com/docs/learn/security
+- type: Compliance
+  url: https://www.lev.com/docs/learn/trust
+- type: StatusPage
+  url: https://lev.statuspage.io/
+- type: ChangeLog
+  url: https://www.lev.com/docs/changelog
+- type: OpenAPI
+  url: openapi/lev-openapi-original.json
+- type: LLMsTxt
+  url: llms/lev-llms.txt
+- type: MCPServer
+  url: mcp/lev-mcp.yml
+- type: WellKnown
+  url: well-known/lev-well-known.yml
+- type: Authentication
+  url: authentication/lev-authentication.yml
+- type: OAuthScopes
+  url: scopes/lev-scopes.yml
+- type: Conventions
+  url: conventions/lev-conventions.yml
+- type: Idempotency
+  url: conventions/lev-conventions.yml
+- type: ErrorCatalog
+  url: errors/lev-problem-types.yml
+- type: RateLimits
+  url: rate-limits/lev-rate-limits.yml
+- type: Plans
+  url: plans/lev-plans.yml
+- type: Lifecycle
+  url: lifecycle/lev-lifecycle.yml
+- type: ChangeLog
+  url: changelog/lev-changelog.yml
+- type: CLI
+  url: cli/lev-cli.yml
+- type: Packages
+  url: packages/lev-packages.yml
+- type: Conformance
+  url: conformance/lev-conformance.yml
+- type: DataModel
+  url: data-model/lev-data-model.yml
+- type: DomainSecurity
+  url: security/lev-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/lev-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
