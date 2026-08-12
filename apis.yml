@@ -340,6 +340,8 @@ apis:
   - type: Authentication
     url: https://www.lev.com/docs/build/authentication
 common:
+- type: Overlay
+  url: overlays/lev-api-overlay.yaml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/lev/overview
 - type: TrustCenter
@@ -375,7 +377,7 @@ common:
 - type: ChangeLog
   url: https://www.lev.com/docs/changelog
 - type: OpenAPI
-  url: openapi/lev-openapi-original.json
+  url: openapi/_original/lev-openapi-original.json
 - type: LLMsTxt
   url: llms/lev-llms.txt
 - type: MCPServer
