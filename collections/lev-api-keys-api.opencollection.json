@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team API Keys API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all API keys for the authenticated user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/api-keys",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip (default 0)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all API keys for the authenticated user\n\nDocs page: https://www.lev.com/docs/build/api-keys"
+        },
+        {
+          "info": {
+            "name": "Create a new API key for the authenticated user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/api-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new API key for the authenticated user\n\nDocs page: https://www.lev.com/docs/build/api-keys"
+        },
+        {
+          "info": {
+            "name": "Permanently revoke an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/api-keys/:key_id",
+            "params": [
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the API key to revoke"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently revoke an API key\n\nDocs page: https://www.lev.com/docs/build/api-keys"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

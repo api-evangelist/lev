@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Deal Team API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deal Team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all team members assigned to a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/team",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all team members assigned to a deal\n\nDocs page: https://www.lev.com/docs/build/deal-team"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

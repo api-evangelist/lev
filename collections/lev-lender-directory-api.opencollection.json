@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Lender Directory API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lender Directory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Browse the lender directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/lenders/directory",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Search by lender name (case-insensitive)"
+              },
+              {
+                "name": "filter[state]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by: name"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Browse the lender directory\n\nDocs page: https://www.lev.com/docs/build/lender-directory"
+        },
+        {
+          "info": {
+            "name": "Get detailed lender information including programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/lenders/:org_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get detailed lender information including programs\n\nDocs page: https://www.lev.com/docs/build/lender-directory"
+        },
+        {
+          "info": {
+            "name": "List lending programs for a lender",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/lenders/:org_id/programs",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List lending programs for a lender\n\nDocs page: https://www.lev.com/docs/build/lender-directory"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

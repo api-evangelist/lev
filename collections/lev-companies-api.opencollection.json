@@ -1,0 +1,242 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Companies API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List companies in your account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/companies",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List companies in your account\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "Create a new company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new company\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "Get a single company by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/companies/:company_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "The company ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a single company by ID\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "Update a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/companies/:company_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "The company ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a company\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "List notes logged on a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/companies/:company_id/notes",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "The company ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List notes logged on a company\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "Add a note to a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/companies/:company_id/notes",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "The company ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a note to a company\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "Edit a company note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/companies/:company_id/notes/:note_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "The company ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Edit a company note\n\nDocs page: https://www.lev.com/docs/build/companies"
+        },
+        {
+          "info": {
+            "name": "Permanently delete a company note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/companies/:company_id/notes/:note_id",
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "path",
+                "description": "The company ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently delete a company note\n\nDocs page: https://www.lev.com/docs/build/companies"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

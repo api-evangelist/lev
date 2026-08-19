@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Quickstart API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quickstart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate an API key and receive authentication details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/auth/validate-api-key"
+          },
+          "docs": "Validate an API key and receive authentication details\n\nDocs page: https://www.lev.com/docs/build/getting-started"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

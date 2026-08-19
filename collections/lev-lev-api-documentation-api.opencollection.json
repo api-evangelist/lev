@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Lev API Documentation API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lev API Documentation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Public liveness endpoint — no authentication required",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/health"
+          },
+          "docs": "Public liveness endpoint — no authentication required\n\nDocs page: https://www.lev.com/docs/build/api-overview"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

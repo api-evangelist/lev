@@ -18,9 +18,8 @@ server:
   subtype: streamable-http
   url: https://mcp.lev.com/mcp
   hosted: true
-  note: Streamable HTTP with a persistent connection model — no stdio and no SSE.
-    Clients POST to /mcp to invoke tools. Implemented in Python on FastMCP behind
-    gunicorn + uvicorn.
+  note: Streamable HTTP with a persistent connection model — no stdio and no SSE. Clients POST to /mcp
+    to invoke tools. Implemented in Python on FastMCP behind gunicorn + uvicorn.
 authentication:
   model: oauth2
   provider: Auth0
@@ -36,14 +35,12 @@ authentication:
   discovery:
     authorization_server: https://mcp.lev.com/.well-known/oauth-authorization-server
     protected_resource: https://mcp.lev.com/.well-known/oauth-protected-resource
-  session_model: Per-user, not per-service. Each session sees only the data the
-    signed-in Lev account permits. The docs state MCP is designed for live
-    interactive sessions, not headless automation — use the REST API with a
-    lev_sk_ API key for server-to-server work.
+  session_model: Per-user, not per-service. Each session sees only the data the signed-in Lev account
+    permits. The docs state MCP is designed for live interactive sessions, not headless automation — use
+    the REST API with a lev_sk_ API key for server-to-server work.
 resilience:
   circuit_breaker: trips after 5 consecutive 5xx responses, 30-second cooldown
-  request_id_forwarding: request IDs are forwarded to the Lev backend for
-    observability and support correlation
+  request_id_forwarding: request IDs are forwarded to the Lev backend for observability and support correlation
 tool_count: 60
 tool_groups:
 - Deals
@@ -60,73 +57,198 @@ tool_groups:
 - Billing
 - MCP Apps Helpers
 tools:
-- {name: list_deals, access: read, group: Deals}
-- {name: get_deal, access: read, group: Deals}
-- {name: show_deal, access: read, group: Deals}
-- {name: summarize_deal, access: read, group: Deals}
-- {name: search_deal_index, access: read, group: Deals}
-- {name: list_deal_index_observations, access: read, group: Deals}
-- {name: update_deal_index_fact, access: write, group: Deals}
-- {name: list_deal_index_metric_definitions, access: read, group: Deals}
-- {name: record_deal_facts, access: write, group: Deals}
-- {name: list_deal_memos, access: read, group: Deals}
-- {name: get_deal_memo, access: read, group: Deals}
-- {name: create_deal, access: write, group: Deals}
-- {name: update_deal, access: write, group: Deals}
-- {name: delete_deal, access: write, group: Deals}
-- {name: move_deal_to_pipeline_status, access: write, group: Deals}
-- {name: list_deal_vaults, access: read, group: Documents and Vaults}
-- {name: list_deal_documents, access: read, group: Documents and Vaults}
-- {name: get_deal_document, access: read, group: Documents and Vaults}
-- {name: browse_deal_vaults, access: read, group: Documents and Vaults}
-- {name: get_deal_checklist, access: read, group: Documents and Vaults}
-- {name: create_checklist_task, access: write, group: Documents and Vaults}
-- {name: update_checklist_task, access: write, group: Documents and Vaults}
-- {name: complete_checklist_task, access: write, group: Documents and Vaults}
-- {name: list_contacts, access: read, group: Contacts}
-- {name: get_contact, access: read, group: Contacts}
-- {name: create_contact, access: write, group: Contacts}
-- {name: update_contact, access: write, group: Contacts}
-- {name: unlock_contact, access: write, group: Contacts}
-- {name: list_companies, access: read, group: Companies}
-- {name: get_company, access: read, group: Companies}
-- {name: create_company, access: write, group: Companies}
-- {name: update_company, access: write, group: Companies}
-- {name: list_notes, access: read, group: Notes}
-- {name: create_note, access: write, group: Notes}
-- {name: update_note, access: write, group: Notes}
-- {name: delete_note, access: write, group: Notes}
-- {name: get_lender, access: read, group: Lenders}
-- {name: recommend_lenders_for_deal, access: write, group: Lenders}
-- {name: get_lender_recommendations, access: read, group: Lenders}
-- {name: list_placements, access: read, group: Placements}
-- {name: get_placement, access: read, group: Placements}
-- {name: create_placement, access: write, group: Placements}
-- {name: update_placement, access: write, group: Placements}
-- {name: list_pipelines, access: read, group: Pipelines}
-- {name: summarize_pipeline, access: read, group: Pipelines}
-- {name: list_term_sheets, access: read, group: Term Sheets}
-- {name: get_term_sheet, access: read, group: Term Sheets}
-- {name: summarize_term_sheets, access: read, group: Term Sheets}
-- {name: create_term_sheet, access: write, group: Term Sheets}
-- {name: update_term_sheet, access: write, group: Term Sheets}
-- {name: delete_term_sheet, access: write, group: Term Sheets}
-- {name: get_base_rates, access: read, group: Market Data}
-- {name: get_asset_types, access: read, group: Market Data}
-- {name: get_my_profile, access: read, group: Account}
-- {name: list_team_members, access: read, group: Account}
-- {name: list_available_accounts, access: read, group: Account}
-- {name: switch_account, access: write, group: Account}
-- {name: get_my_billing_summary, access: read, group: Billing}
-- {name: read_memo_pdf_bytes, access: read, group: MCP Apps Helpers}
-- {name: read_deal_document_bytes, access: read, group: MCP Apps Helpers}
+- name: list_deals
+  access: read
+  group: Deals
+- name: get_deal
+  access: read
+  group: Deals
+- name: show_deal
+  access: read
+  group: Deals
+- name: summarize_deal
+  access: read
+  group: Deals
+- name: search_deal_index
+  access: read
+  group: Deals
+- name: list_deal_index_observations
+  access: read
+  group: Deals
+- name: update_deal_index_fact
+  access: write
+  group: Deals
+- name: list_deal_index_metric_definitions
+  access: read
+  group: Deals
+- name: record_deal_facts
+  access: write
+  group: Deals
+- name: list_deal_memos
+  access: read
+  group: Deals
+- name: get_deal_memo
+  access: read
+  group: Deals
+- name: create_deal
+  access: write
+  group: Deals
+- name: update_deal
+  access: write
+  group: Deals
+- name: delete_deal
+  access: write
+  group: Deals
+- name: move_deal_to_pipeline_status
+  access: write
+  group: Deals
+- name: list_deal_vaults
+  access: read
+  group: Documents and Vaults
+- name: list_deal_documents
+  access: read
+  group: Documents and Vaults
+- name: get_deal_document
+  access: read
+  group: Documents and Vaults
+- name: browse_deal_vaults
+  access: read
+  group: Documents and Vaults
+- name: get_deal_checklist
+  access: read
+  group: Documents and Vaults
+- name: create_checklist_task
+  access: write
+  group: Documents and Vaults
+- name: update_checklist_task
+  access: write
+  group: Documents and Vaults
+- name: complete_checklist_task
+  access: write
+  group: Documents and Vaults
+- name: list_contacts
+  access: read
+  group: Contacts
+- name: get_contact
+  access: read
+  group: Contacts
+- name: create_contact
+  access: write
+  group: Contacts
+- name: update_contact
+  access: write
+  group: Contacts
+- name: unlock_contact
+  access: write
+  group: Contacts
+- name: list_companies
+  access: read
+  group: Companies
+- name: get_company
+  access: read
+  group: Companies
+- name: create_company
+  access: write
+  group: Companies
+- name: update_company
+  access: write
+  group: Companies
+- name: list_notes
+  access: read
+  group: Notes
+- name: create_note
+  access: write
+  group: Notes
+- name: update_note
+  access: write
+  group: Notes
+- name: delete_note
+  access: write
+  group: Notes
+- name: get_lender
+  access: read
+  group: Lenders
+- name: recommend_lenders_for_deal
+  access: write
+  group: Lenders
+- name: get_lender_recommendations
+  access: read
+  group: Lenders
+- name: list_placements
+  access: read
+  group: Placements
+- name: get_placement
+  access: read
+  group: Placements
+- name: create_placement
+  access: write
+  group: Placements
+- name: update_placement
+  access: write
+  group: Placements
+- name: list_pipelines
+  access: read
+  group: Pipelines
+- name: summarize_pipeline
+  access: read
+  group: Pipelines
+- name: list_term_sheets
+  access: read
+  group: Term Sheets
+- name: get_term_sheet
+  access: read
+  group: Term Sheets
+- name: summarize_term_sheets
+  access: read
+  group: Term Sheets
+- name: create_term_sheet
+  access: write
+  group: Term Sheets
+- name: update_term_sheet
+  access: write
+  group: Term Sheets
+- name: delete_term_sheet
+  access: write
+  group: Term Sheets
+- name: get_base_rates
+  access: read
+  group: Market Data
+- name: get_asset_types
+  access: read
+  group: Market Data
+- name: get_my_profile
+  access: read
+  group: Account
+- name: list_team_members
+  access: read
+  group: Account
+- name: list_available_accounts
+  access: read
+  group: Account
+- name: switch_account
+  access: write
+  group: Account
+- name: get_my_billing_summary
+  access: read
+  group: Billing
+- name: read_memo_pdf_bytes
+  access: read
+  group: MCP Apps Helpers
+- name: read_deal_document_bytes
+  access: read
+  group: MCP Apps Helpers
 notes:
-- Write tools mutate state; the Lev docs recommend gating them behind human
-  confirmation in agent workflows.
+- Write tools mutate state; the Lev docs recommend gating them behind human confirmation in agent workflows.
 - All enum values are lowercase on the wire; the server lowercases user input.
-- MCP Apps helper tools are registered for inline widgets and should not be called
-  directly by models.
+- MCP Apps helper tools are registered for inline widgets and should not be called directly by models.
 related:
   authentication: authentication/lev-authentication.yml
   openapi: openapi/lev-openapi-original.json
   well_known: well-known/lev-well-known.yml
+deployment:
+  mode: remote
+  endpoint: https://mcp.lev.com/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

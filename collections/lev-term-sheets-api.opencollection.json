@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Term Sheets API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Term Sheets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List term sheets for a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/term-sheets",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List term sheets for a deal\n\nDocs page: https://www.lev.com/docs/build/term-sheets"
+        },
+        {
+          "info": {
+            "name": "Create a new term sheet against a placement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/term-sheets",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new term sheet against a placement\n\nDocs page: https://www.lev.com/docs/build/term-sheets\n\nDocumented response: returns the full term-sheet detail object (see [Term Sheet Object](#term-sheet-object))."
+        },
+        {
+          "info": {
+            "name": "Get a single term sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "term_sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The term sheet ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a single term sheet\n\nDocs page: https://www.lev.com/docs/build/term-sheets"
+        },
+        {
+          "info": {
+            "name": "Update a term sheet (partial update)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "term_sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The term sheet ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a term sheet (partial update)\n\nDocs page: https://www.lev.com/docs/build/term-sheets\n\nDocumented response: returns the updated term-sheet detail object."
+        },
+        {
+          "info": {
+            "name": "Soft-delete a term sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/term-sheets/:term_sheet_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "term_sheet_id",
+                "value": "",
+                "type": "path",
+                "description": "The term sheet ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Soft-delete a term sheet\n\nDocs page: https://www.lev.com/docs/build/term-sheets"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

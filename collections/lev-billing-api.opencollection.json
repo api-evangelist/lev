@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Billing API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get subscription metadata and credit balance for the active account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/billing/summary",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get subscription metadata and credit balance for the active account\n\nDocs page: https://www.lev.com/docs/build/billing"
+        },
+        {
+          "info": {
+            "name": "Get the credit balance for the active account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/billing/credits/balance",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the credit balance for the active account\n\nDocs page: https://www.lev.com/docs/build/billing"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

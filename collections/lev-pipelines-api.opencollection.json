@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Pipelines API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all pipelines available to your account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/pipelines",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all pipelines available to your account\n\nDocs page: https://www.lev.com/docs/build/pipelines"
+        },
+        {
+          "info": {
+            "name": "Get a single pipeline with its statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/pipelines/:pipeline_id",
+            "params": [
+              {
+                "name": "pipeline_id",
+                "value": "",
+                "type": "path",
+                "description": "The pipeline ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a single pipeline with its statuses\n\nDocs page: https://www.lev.com/docs/build/pipelines"
+        },
+        {
+          "info": {
+            "name": "Move a deal to a pipeline stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/pipeline",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Move a deal to a pipeline stage\n\nDocs page: https://www.lev.com/docs/build/pipelines"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

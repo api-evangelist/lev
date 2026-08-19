@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Contacts API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List contacts with pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/contacts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List contacts with pagination\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Create a new contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Get a single contact by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a single contact by ID\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Update a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Reveal an AI-recommended lender contact — charges credits; requires the ai:actions scope",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id/actions/unlock",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact to reveal — the `contact_id` returned on the placement"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reveal an AI-recommended lender contact — charges credits; requires the ai:actions scope\n\nDocs page: https://www.lev.com/docs/build/contacts\n\nDocumented response: the revealed [Contact Object](#contact-object), now carrying the contact's name and other identity fields."
+        },
+        {
+          "info": {
+            "name": "List notes logged on a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id/notes",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List notes logged on a contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Add a note to a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id/notes",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a note to a contact\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Edit a contact note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id/notes/:note_id",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Edit a contact note\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        },
+        {
+          "info": {
+            "name": "Permanently delete a contact note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/contacts/:contact_id/notes/:note_id",
+            "params": [
+              {
+                "name": "contact_id",
+                "value": "",
+                "type": "path",
+                "description": "The contact ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently delete a contact note\n\nDocs page: https://www.lev.com/docs/build/contacts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

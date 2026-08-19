@@ -1,0 +1,1005 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Deals API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List deals with pagination, filtering, and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page (mutually exclusive with sort)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (requires sort)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields: title, loan_amount, created_at, updated_at. Prefix with - for descending"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include (id always included)"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Sub-resources to embed: financials, properties, team, pipelines"
+              },
+              {
+                "name": "filter[loan_type]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by loan type enum name, such as heavy_bridge or permanent"
+              },
+              {
+                "name": "filter[transaction_type]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction type enum name, such as acquisition or refinance"
+              },
+              {
+                "name": "filter[business_plan]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by business plan enum name"
+              },
+              {
+                "name": "filter[archived]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by archived state. Omit to return both active and archived deals; pass true for only archived, false for only active"
+              },
+              {
+                "name": "filter[loan_amount][gte]",
+                "value": "",
+                "type": "query",
+                "description": "Minimum loan amount"
+              },
+              {
+                "name": "filter[loan_amount][lte]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum loan amount"
+              },
+              {
+                "name": "filter[created_at][gte]",
+                "value": "",
+                "type": "query",
+                "description": "Created after (ISO 8601)"
+              },
+              {
+                "name": "filter[created_at][lte]",
+                "value": "",
+                "type": "query",
+                "description": "Created before (ISO 8601)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List deals with pagination, filtering, and sorting\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Create a new deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new deal\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Get a single deal by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Sub-resources to embed: financials, properties, team, pipelines"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a single deal by ID\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Update a deal (partial update)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a deal (partial update)\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Archive (soft-delete) a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Archive (soft-delete) a deal\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Search canonical indexed deal facts by natural-language context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/index/search",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search canonical indexed deal facts by natural-language context\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List per-document candidate values behind a deal fact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/index/observations",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List per-document candidate values behind a deal fact\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Record one or more user-supplied metric values on a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/index/facts",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Record one or more user-supplied metric values on a deal\n\nDocs page: https://www.lev.com/docs/build/deals\n\nDocumented response: `results` reports the outcome of each submitted value in request order; `metric_sot_values` aggregates the SOTs that were written. Each `results[].sot` has the same shape as a `metric_sot_values` entry."
+        },
+        {
+          "info": {
+            "name": "Update a single canonical deal fact value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/index/facts",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a single canonical deal fact value\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List the metric definitions that can be recorded on a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/index/metric-definitions",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "metric_label",
+                "value": "",
+                "type": "query",
+                "description": "Case-insensitive search term to filter by metric label (for example, noi)."
+              },
+              {
+                "name": "category_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a single metric category id (greater than 0)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number. Defaults to 1."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Metric definitions per page. Defaults to 100 and is clamped to 1-200."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the metric definitions that can be recorded on a deal\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List the entities you can attach recorded facts to",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/index/entities",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List the entities you can attach recorded facts to\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List a deal's vaults — its private Resources area and any shared Deal Rooms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/vaults",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a deal's vaults — its private Resources area and any shared Deal Rooms\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List a deal's uploaded documents across all of its vaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/documents",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Documents per page. Defaults to 50 and is clamped to 1-200."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for the next page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Case-insensitive substring match on the document file name."
+              },
+              {
+                "name": "extension",
+                "value": "",
+                "type": "query",
+                "description": "Filter to one file extension, e.g. `pdf` or `xlsx`. Omit the leading dot."
+              },
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "query",
+                "description": "Only documents directly inside this folder. Omit to span the whole vault."
+              },
+              {
+                "name": "vault_id",
+                "value": "",
+                "type": "query",
+                "description": "Only documents in this vault (a Deal Room or Resources). Get ids from [List Vaults](#list-vaults). Omit to span every vault on the deal."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include. `id` and `vault` are always included."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a deal's uploaded documents across all of its vaults\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Fetch metadata for one uploaded document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/documents/:document_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The document ID from the list endpoint"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include. `id` is always included."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch metadata for one uploaded document\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Fetch a short-lived signed download link for one uploaded document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/documents/:document_id/download",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The document ID from the list endpoint"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch a short-lived signed download link for one uploaded document\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List a deal's checklists — one per shared Deal Room, with sections, tasks, document types, and task-linked files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/checklists",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "vault_id",
+                "value": "",
+                "type": "query",
+                "description": "Only return the checklist for one shared Deal Room. Omit to return every Deal Room checklist on the deal."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a deal's checklists — one per shared Deal Room, with sections, tasks, document types, and task-linked files\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List a deal's generated memos (deal books)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/memos",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Memos per page. Defaults to 50 and is clamped to 1-200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first memo to return. Defaults to 0."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Case-insensitive substring match on the memo title."
+              },
+              {
+                "name": "filter[title]",
+                "value": "",
+                "type": "query",
+                "description": "Exact match on the full memo title. Use search for a substring match instead."
+              },
+              {
+                "name": "filter[status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by publish state: draft or published."
+              },
+              {
+                "name": "filter[memo_type]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by memo type: debt_financing_om, credit_memo, investment_sales, debt_brokerage, equity_raise, broker_opinion_of_value, investment_committee, invoice, or other."
+              },
+              {
+                "name": "filter[pdf_ready]",
+                "value": "",
+                "type": "query",
+                "description": "Filter to memos whose downloadable PDF has rendered (true) or not yet (false)."
+              },
+              {
+                "name": "vault_id",
+                "value": "",
+                "type": "query",
+                "description": "Only memos in this vault (a Deal Room or Resources). Get ids from [List Vaults](#list-vaults). Omit to span every vault on the deal."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List a deal's generated memos (deal books)\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Fetch one memo with signed PDF download links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/memos/:memo_uuid",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "memo_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The memo's UUID, from the `uuid` field on a List Memos row."
+              },
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query",
+                "description": "Which rendered variant `pdf_url` points at: `original` (default), `high`, `medium`, or `low`. An unknown value returns 400."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch one memo with signed PDF download links\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List notes logged on a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/notes",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List notes logged on a deal\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Add a note to a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/notes",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a note to a deal\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Edit a deal note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/notes/:note_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Edit a deal note\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Permanently delete a deal note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/deals/:deal_id/notes/:note_id",
+            "params": [
+              {
+                "name": "deal_id",
+                "value": "",
+                "type": "path",
+                "description": "The deal ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently delete a deal note\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "List comments on a checklist task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks/:task_id/notes",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The checklist task ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page (1–200, default 50)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List comments on a checklist task\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Add a comment to a checklist task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks/:task_id/notes",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The checklist task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a comment to a checklist task\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Edit a checklist task comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks/:task_id/notes/:note_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The checklist task ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Edit a checklist task comment\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Permanently delete a checklist task comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks/:task_id/notes/:note_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The checklist task ID"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "The note ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently delete a checklist task comment\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Add a task to a deal's checklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a task to a deal's checklist\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Change a checklist task's fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks/:task_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The checklist task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Change a checklist task's fields\n\nDocs page: https://www.lev.com/docs/build/deals"
+        },
+        {
+          "info": {
+            "name": "Mark a checklist task complete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lev.com/api/external/v2/checklist-tasks/:task_id/complete",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The checklist task ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Mark a checklist task complete\n\nDocs page: https://www.lev.com/docs/build/deals"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lev Account & Team Market Data API",
+    "version": "2026-03"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current base rates (SOFR, CMT, Prime, etc.)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/market/base-rates",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get current base rates (SOFR, CMT, Prime, etc.)\n\nDocs page: https://www.lev.com/docs/build/market-data"
+        },
+        {
+          "info": {
+            "name": "Get available asset type definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lev.com/api/external/v2/market/asset-types",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get available asset type definitions\n\nDocs page: https://www.lev.com/docs/build/market-data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
