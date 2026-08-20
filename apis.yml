@@ -40,6 +40,19 @@ modified: '2026-07-19'
 tags:
 - Company
 - Commercial Real Estate
+- Real-Estate
+- PropTech
+- CRE Financing
+- Lending
+- CRM
+- Artificial Intelligence
+- AI Agents
+- Deal Management
+- Market Data
+- Documents
+tags_raw:
+- Company
+- Commercial Real Estate
 - Real Estate
 - Proptech
 - CRE Financing
@@ -75,6 +88,8 @@ apis:
   humanURL: https://www.lev.com/docs/build/api-overview
   baseURL: https://api.lev.com/api/external/v2
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
