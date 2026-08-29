@@ -367,6 +367,9 @@ apis:
   - type: Authentication
     url: https://www.lev.com/docs/build/authentication
 common:
+- type: CapabilityMap
+  url: capabilities/lev-capability-edges.yml
+  name: Lev Business Capability Map
 - type: Overlay
   url: overlays/lev-api-overlay.yaml
 - type: PostmanWorkspace

@@ -1,0 +1,36 @@
+slug: lev
+provider: Lev
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: API Keys
+  spec_file: lev-api-keys-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: '"Create a new API key for the authenticated user", "List all API keys", "Permanently revoke
+    an API key"; "Build on Lev with AI-friendly API docs, agent guides, and production integration recipes"'
+  reason: Issuance, listing and revocation of API keys for developers building on the platform is developer
+    credential management within the public API programme, not a real-estate capability.
+- tag: Lender Directory
+  spec_file: lev-lender-directory-api-openapi.yml
+  capability_id: BC-4980.10
+  capability_id_l1: BC-4980
+  capability_name: Real Estate Debt Origination
+  confidence: 0.7
+  evidence: '"Browse the lender directory", "List lending programs for a lender"; schemas LenderProgram,
+    LenderDirectoryLender'
+  reason: A searchable directory of lenders and their lending programs exists to match a financing requirement
+    to a capital source — the sourcing side of real estate debt origination. No other candidate covers
+    lender/loan-program reference data for CRE financing.
