@@ -13,6 +13,18 @@ description: 'Lev is an AI platform and product system for commercial real estat
   and a first-party Python CLI. The API publishes an OpenAPI 3.1 description, scoped
   API keys, cursor pagination, Idempotency-Key support on writes, request-id correlation,
   and a documented error-type and rate-limit contract.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
