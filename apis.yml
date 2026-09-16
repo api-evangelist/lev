@@ -1,18 +1,16 @@
 aid: lev
 name: Lev
-description: 'Lev is an AI platform and product system for commercial real estate (CRE)
-  teams, used by sponsors, financing brokers, investment-sales brokers, lenders, capital-markets
-  teams, and enterprise operators. The platform is organized in four layers: CRE apps
-  (CRM, pipeline, vault/data rooms, checklists, memos, commissions), source-backed AI
-  agents (Lev Agent, Lev Memo, Lender Search, Lev Match, Lev Index), CRE data (lender,
-  market, contact, property, and recent-terms data), and a developer platform. That
-  platform layer is the API Evangelist interest: a versioned REST API at api.lev.com
-  covering deals, documents and vaults, checklists, contacts, companies, the lender
-  directory, term sheets, placements, pipelines, market data, account, and billing;
-  a hosted remote MCP server at mcp.lev.com with roughly 60 tools and OAuth 2.1 discovery;
-  and a first-party Python CLI. The API publishes an OpenAPI 3.1 description, scoped
-  API keys, cursor pagination, Idempotency-Key support on writes, request-id correlation,
-  and a documented error-type and rate-limit contract.'
+description: 'Lev is an AI platform and product system for commercial real estate (CRE) teams, used by
+  sponsors, financing brokers, investment-sales brokers, lenders, capital-markets teams, and enterprise
+  operators. The platform is organized in four layers: CRE apps (CRM, pipeline, vault/data rooms, checklists,
+  memos, commissions), source-backed AI agents (Lev Agent, Lev Memo, Lender Search, Lev Match, Lev Index),
+  CRE data (lender, market, contact, property, and recent-terms data), and a developer platform. That
+  platform layer is the API Evangelist interest: a versioned REST API at api.lev.com covering deals, documents
+  and vaults, checklists, contacts, companies, the lender directory, term sheets, placements, pipelines,
+  market data, account, and billing; a hosted remote MCP server at mcp.lev.com with roughly 60 tools and
+  OAuth 2.1 discovery; and a first-party Python CLI. The API publishes an OpenAPI 3.1 description, scoped
+  API keys, cursor pagination, Idempotency-Key support on writes, request-id correlation, and a documented
+  error-type and rate-limit contract.'
 deliveryModel:
   model: saas
   open_source: false
@@ -48,7 +46,7 @@ x-tier: profiled
 x-tier-reason: enrichment-pipeline
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-09-16'
 tags:
 - Company
 - Commercial Real Estate
@@ -259,7 +257,7 @@ apis:
   - type: Authentication
     url: https://www.lev.com/docs/build/authentication
 - aid: lev:lev-lev-api-documentation-api
-  name: Lev Lev API Documentation API
+  name: Lev API Documentation API
   description: The Lev API Documentation API from Lev — 1 operation(s) for lev api documentation.
   humanURL: https://www.lev.com/docs/build/api-overview
   baseURL: https://api.lev.com/api/external/v2
