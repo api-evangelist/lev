@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team Lender Directory API
+  title: Lev Lender Directory API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:
@@ -261,6 +261,20 @@ components:
           type: string
           nullable: true
           description: Program status
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     LenderDirectoryLender:
       type: object
       properties:
@@ -341,20 +355,6 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

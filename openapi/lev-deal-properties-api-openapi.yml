@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team Deal Properties API
+  title: Lev Deal Properties API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:
@@ -71,6 +71,20 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     DealProperty:
       type: object
       properties:
@@ -113,20 +127,6 @@ components:
           type: integer
           nullable: true
           description: Year the property was built
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

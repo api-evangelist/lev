@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team Billing API
+  title: Lev Billing API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:
@@ -114,6 +114,27 @@ components:
         end_date:
           type: string
           nullable: true
+    BillingSummary:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+        credits:
+          $ref: '#/components/schemas/Credits'
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     Credits:
       type: object
       properties:
@@ -123,27 +144,6 @@ components:
           type: integer
           nullable: true
         unit:
-          type: string
-    BillingSummary:
-      type: object
-      properties:
-        subscription:
-          $ref: '#/components/schemas/Subscription'
-        credits:
-          $ref: '#/components/schemas/Credits'
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
           type: string
   securitySchemes:
     bearerAuth:

@@ -1,11 +1,10 @@
-generated: '2026-07-19'
+generated: '2026-09-19'
 method: searched
 source: live probes of the Lev web, API, and MCP hosts
-summary: Lev publishes no /.well-known/ surface on its marketing/docs host (www.lev.com)
-  or on the REST API host (api.lev.com). It does publish a complete OAuth 2.1 discovery
-  pair on the hosted MCP host (mcp.lev.com) — RFC 8414 authorization-server metadata
-  and RFC 9728 protected-resource metadata — which is what lets MCP clients discover
-  the Auth0 authorization server and run the browser sign-in flow.
+summary: Lev publishes no /.well-known/ surface on its marketing/docs host (www.lev.com) or on the REST
+  API host (api.lev.com). It does publish a complete OAuth 2.1 discovery pair on the hosted MCP host (mcp.lev.com)
+  — RFC 8414 authorization-server metadata and RFC 9728 protected-resource metadata — which is what lets
+  MCP clients discover the Auth0 authorization server and run the browser sign-in flow.
 hosts:
 - host: https://mcp.lev.com
   role: hosted MCP server
@@ -54,7 +53,27 @@ hosts:
     status: 404
   - path: /llms.txt
     status: 404
+- host: https://auth.lev.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: lev-auth-oauth-authorization-server.json
+    bytes: 2480
+  path_echo_control: passed
 gaps:
 - No RFC 9116 security.txt on any host.
-- No /.well-known/api-catalog (RFC 9727) on the API host, despite a published OpenAPI
-  at https://www.lev.com/docs/openapi.json that it could point to.
+- No /.well-known/api-catalog (RFC 9727) on the API host, despite a published OpenAPI at https://www.lev.com/docs/openapi.json
+  that it could point to.
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://auth.lev.com
+    path: /.well-known/oauth-authorization-server
+    file: lev-auth-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'

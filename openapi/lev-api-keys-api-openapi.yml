@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team API Keys API
+  title: Lev API Keys API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:
@@ -178,11 +178,13 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
-    BooleanDeleteResult:
+    ApiError:
       type: object
       properties:
-        deleted:
-          type: boolean
+        code:
+          type: string
+        message:
+          type: string
     ApiKey:
       type: object
       properties:
@@ -202,13 +204,6 @@ components:
           type: string
           format: date-time
           nullable: true
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     ApiErrorEnvelope:
       type: object
       properties:
@@ -216,6 +211,11 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ApiError'
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

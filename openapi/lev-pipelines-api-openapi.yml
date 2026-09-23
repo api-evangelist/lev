@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team Pipelines API
+  title: Lev Pipelines API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:

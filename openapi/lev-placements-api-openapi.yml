@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team Placements API
+  title: Lev Placements API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:
@@ -653,20 +653,6 @@ components:
       properties:
         deleted:
           type: boolean
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Placement:
       type: object
       properties:
@@ -740,6 +726,20 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

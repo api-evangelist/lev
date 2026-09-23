@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Lev Account & Team API
   version: 2026-03
@@ -216,6 +216,13 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     AccountTeamMember:
       type: object
       properties:
@@ -245,13 +252,6 @@ components:
           type: object
         platform:
           type: object
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     ApiErrorEnvelope:
       type: object
       properties:

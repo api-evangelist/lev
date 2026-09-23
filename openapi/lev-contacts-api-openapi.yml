@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lev Account & Team Contacts API
+  title: Lev Contacts API
   version: 2026-03
   description: Build on Lev with AI-friendly API docs, agent guides, and production integration recipes.
 servers:
@@ -363,14 +363,14 @@ paths:
   /api/external/v2/contacts/{contact_id}/actions/unlock:
     post:
       operationId: postContactsContactIdActionsUnlock
-      summary: Reveal an AI-recommended lender contact — charges credits; requires the ai:actions scope
+      summary: Reveal an AI-recommended lender contact — charges credits; requires the…
       description: 'Reveal an AI-recommended lender contact — charges credits; requires the ai:actions scope
 
 
         Docs page: https://www.lev.com/docs/build/contacts
 
 
-        Documented response: the revealed [Contact Object](#contact-object), now carrying the contact''s name and other identity fields.'
+        Documented response: the revealed Contact Object, now carrying the contact''s name and other identity fields.'
       tags:
       - Contacts
       parameters:
@@ -749,13 +749,11 @@ components:
         updated_at:
           type: string
           nullable: true
-    ApiErrorEnvelope:
+    BooleanDeleteResult:
       type: object
       properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
+        deleted:
+          type: boolean
     Phone:
       type: object
       description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
@@ -781,11 +779,13 @@ components:
         extension:
           type: string
           nullable: true
-    BooleanDeleteResult:
+    ApiError:
       type: object
       properties:
-        deleted:
-          type: boolean
+        code:
+          type: string
+        message:
+          type: string
     Contact:
       type: object
       properties:
@@ -872,13 +872,6 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     PhoneIn:
       type: object
       description: Phone number input. e164 is always computed server-side from raw — caller-supplied values are ignored, so normalization cannot be bypassed.
@@ -903,6 +896,13 @@ components:
         extension:
           type: string
           description: Extension digits.
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http
