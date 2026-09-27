@@ -211,6 +211,20 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     LenderProgram:
       type: object
       properties:
@@ -261,20 +275,6 @@ components:
           type: string
           nullable: true
           description: Program status
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     LenderDirectoryLender:
       type: object
       properties:

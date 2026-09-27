@@ -602,18 +602,6 @@ components:
         updated_at:
           type: string
           nullable: true
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     ApiErrorEnvelope:
       type: object
       properties:
@@ -621,6 +609,18 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
     Company:
       type: object
       properties:

@@ -50,7 +50,7 @@ modified: '2026-09-16'
 tags:
 - Company
 - Commercial Real Estate
-- Real-Estate
+- Real Estate
 - PropTech
 - CRE Financing
 - Lending
@@ -73,6 +73,7 @@ tags_raw:
 - Deal Management
 - Market Data
 - Documents
+- Real-Estate
 apis:
 - aid: lev:lev-account-team-api
   name: Lev Account & Team API

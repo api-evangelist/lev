@@ -648,11 +648,25 @@ components:
         updated_at:
           type: string
           nullable: true
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     BooleanDeleteResult:
       type: object
       properties:
         deleted:
           type: boolean
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Placement:
       type: object
       properties:
@@ -726,20 +740,6 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

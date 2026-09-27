@@ -749,36 +749,18 @@ components:
         updated_at:
           type: string
           nullable: true
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     BooleanDeleteResult:
       type: object
       properties:
         deleted:
           type: boolean
-    Phone:
-      type: object
-      description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
-      properties:
-        id:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: true
-          description: mobile, office, or fax.
-        raw:
-          type: string
-          nullable: true
-          description: The number as originally entered.
-        country:
-          type: string
-          nullable: true
-        e164:
-          type: string
-          nullable: true
-          description: Normalized E.164 number.
-        extension:
-          type: string
-          nullable: true
     ApiError:
       type: object
       properties:
@@ -786,6 +768,30 @@ components:
           type: string
         message:
           type: string
+    PhoneIn:
+      type: object
+      description: Phone number input. e164 is always computed server-side from raw — caller-supplied values are ignored, so normalization cannot be bypassed.
+      required:
+      - raw
+      properties:
+        raw:
+          type: string
+          description: Phone number in any common format; normalized to E.164 server-side. Unparseable numbers return 422.
+        type:
+          type: string
+          enum:
+          - mobile
+          - office
+          - fax
+          default: mobile
+          description: Phone type.
+        country:
+          type: string
+          default: US
+          description: 2-letter ISO region used to parse numbers without a + prefix.
+        extension:
+          type: string
+          description: Extension digits.
     Contact:
       type: object
       properties:
@@ -872,37 +878,31 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
-    PhoneIn:
+    Phone:
       type: object
-      description: Phone number input. e164 is always computed server-side from raw — caller-supplied values are ignored, so normalization cannot be bypassed.
-      required:
-      - raw
+      description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
       properties:
-        raw:
+        id:
           type: string
-          description: Phone number in any common format; normalized to E.164 server-side. Unparseable numbers return 422.
+          nullable: true
         type:
           type: string
-          enum:
-          - mobile
-          - office
-          - fax
-          default: mobile
-          description: Phone type.
+          nullable: true
+          description: mobile, office, or fax.
+        raw:
+          type: string
+          nullable: true
+          description: The number as originally entered.
         country:
           type: string
-          default: US
-          description: 2-letter ISO region used to parse numbers without a + prefix.
+          nullable: true
+        e164:
+          type: string
+          nullable: true
+          description: Normalized E.164 number.
         extension:
           type: string
-          description: Extension digits.
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
+          nullable: true
   securitySchemes:
     bearerAuth:
       type: http
