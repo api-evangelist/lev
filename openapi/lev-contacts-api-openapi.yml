@@ -726,41 +726,6 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
-    Note:
-      type: object
-      properties:
-        id:
-          type: integer
-        text:
-          type: string
-          nullable: true
-        created_by:
-          type: object
-          nullable: true
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-              nullable: true
-        created_at:
-          type: string
-          nullable: true
-        updated_at:
-          type: string
-          nullable: true
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
     ApiError:
       type: object
       properties:
@@ -792,6 +757,66 @@ components:
         extension:
           type: string
           description: Extension digits.
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    Phone:
+      type: object
+      description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
+      properties:
+        id:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+          description: mobile, office, or fax.
+        raw:
+          type: string
+          nullable: true
+          description: The number as originally entered.
+        country:
+          type: string
+          nullable: true
+        e164:
+          type: string
+          nullable: true
+          description: Normalized E.164 number.
+        extension:
+          type: string
+          nullable: true
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
     Contact:
       type: object
       properties:
@@ -878,31 +903,6 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
-    Phone:
-      type: object
-      description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
-      properties:
-        id:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: true
-          description: mobile, office, or fax.
-        raw:
-          type: string
-          nullable: true
-          description: The number as originally entered.
-        country:
-          type: string
-          nullable: true
-        e164:
-          type: string
-          nullable: true
-          description: Normalized E.164 number.
-        extension:
-          type: string
-          nullable: true
   securitySchemes:
     bearerAuth:
       type: http

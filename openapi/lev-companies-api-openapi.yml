@@ -579,36 +579,6 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
-    Note:
-      type: object
-      properties:
-        id:
-          type: integer
-        text:
-          type: string
-          nullable: true
-        created_by:
-          type: object
-          nullable: true
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-              nullable: true
-        created_at:
-          type: string
-          nullable: true
-        updated_at:
-          type: string
-          nullable: true
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -616,11 +586,6 @@ components:
           type: string
         message:
           type: string
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
     Company:
       type: object
       properties:
@@ -674,6 +639,41 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

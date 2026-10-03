@@ -78,13 +78,6 @@ components:
           type: string
         message:
           type: string
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     DealTeamMember:
       type: object
       properties:
@@ -122,6 +115,13 @@ components:
           type: string
           nullable: true
           description: Profile photo URL
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

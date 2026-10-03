@@ -625,6 +625,20 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     Note:
       type: object
       properties:
@@ -648,25 +662,11 @@ components:
         updated_at:
           type: string
           nullable: true
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     BooleanDeleteResult:
       type: object
       properties:
         deleted:
           type: boolean
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Placement:
       type: object
       properties:

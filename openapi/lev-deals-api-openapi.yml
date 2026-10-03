@@ -2458,6 +2458,180 @@ paths:
       - 'Idempotency-Key: <uuid>'
 components:
   schemas:
+    ChecklistSection:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique section identifier
+        name:
+          type: string
+          description: Section name
+        position:
+          type: integer
+          description: Display order inside the checklist
+        start_date:
+          type: string
+          nullable: true
+          description: Optional section start date (ISO 8601)
+        end_date:
+          type: string
+          nullable: true
+          description: Optional section end date (ISO 8601)
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTask'
+          description: The section's tasks in display order. See the [Checklist Task Object](#checklist-task-object).
+    ChecklistDocumentType:
+      type: object
+      description: Expected document type for a checklist task.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          nullable: true
+    DealDocument:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique document identifier. Use this value in the document detail and download endpoints.
+        file_name:
+          type: string
+          nullable: true
+          description: Original file name.
+        extension:
+          type: string
+          nullable: true
+          description: File extension without the leading dot.
+        size_bytes:
+          type: integer
+          nullable: true
+          description: File size in bytes. May be null for older records whose size was not stored.
+        folder_path:
+          type: string
+          nullable: true
+          description: Slash-delimited path inside the vault, or null for files at the vault root.
+        uploaded_at:
+          type: string
+          nullable: true
+          description: Upload timestamp (ISO 8601).
+        vault:
+          $ref: '#/components/schemas/DocumentVaultRef'
+          description: The vault this document lives in — the compact `id`, `type`, `title` subset of the [Vault Object](#vault-object) (omits the list-only `is_default` and `document_count`). Always present, even under a sparse `fields` request.
+    DocumentVaultRef:
+      type: object
+      description: The vault a document lives in, embedded on each document. The compact subset of the Vault object — intentionally omits the list-only is_default and document_count fields returned by the enumerate endpoint.
+      properties:
+        id:
+          type: integer
+          description: Vault id. Pass as vault_id on the documents list to drill into this vault.
+        type:
+          type: string
+          description: 'Structural category: resources (the private vault) or shared (a Deal Room).'
+        title:
+          type: string
+          nullable: true
+          description: Human-readable vault name, e.g. Deal Resources or Deal Room.
+    DealFinancialsWrite:
+      type: object
+      minProperties: 1
+      additionalProperties: false
+      description: Writable deal-level financial fields for POST /deals and PATCH /deals/{deal_id}. Send at least one supported field. Omitted fields are unchanged on PATCH; null clears an existing value but cannot create a financials record by itself.
+      properties:
+        purchase_price:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Purchase price.
+        estimated_value:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Estimated value.
+        total_cost:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Total cost.
+        total_cost_basis:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Total cost basis.
+        land_cost:
+          type: number
+          minimum: 0
+          nullable: true
+          description: Land cost.
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    TransactionType:
+      type: string
+      enum:
+      - tbd
+      - acquisition
+      - refinance
+      - new_construction
+      description: Deal transaction_type enum name.
+    DealChecklist:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique checklist identifier
+        vault:
+          $ref: '#/components/schemas/ChecklistVaultRef'
+          description: 'The Deal Room this checklist belongs to: `id`, `type`, and `title`. `type` is always `shared`; checklists do not live on the private Resources vault.'
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistSection'
+          description: Ordered sections, each carrying its own tasks. See the [Checklist Section Object](#checklist-section-object).
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTask'
+          description: Root-level tasks that sit outside any section, in display order. See the [Checklist Task Object](#checklist-task-object).
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ChecklistAssignee:
+      type: object
+      description: The Lev user assigned to a checklist task.
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+    DealDocumentDownload:
+      type: object
+      description: Short-lived signed download link for one uploaded deal document.
+      properties:
+        file_name:
+          type: string
+          nullable: true
+        download_url:
+          type: string
+        expires_in:
+          type: integer
+          description: Signed URL lifetime in seconds.
     DealIndexFact:
       type: object
       properties:
@@ -2518,6 +2692,488 @@ components:
         editable:
           type: boolean
           nullable: true
+    ChecklistAssignedTeam:
+      type: object
+      description: The account, lender, or borrower team assigned to a checklist task.
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum:
+          - account
+          - private_company
+        name:
+          type: string
+          nullable: true
+          description: Human-readable team name. Null when the reference is stale or outside the active account.
+    ChecklistCollaborator:
+      type: object
+      description: A person looped into a checklist task. id is null for external parties without a Lev account.
+      properties:
+        id:
+          type: integer
+          nullable: true
+        email:
+          type: string
+          nullable: true
+    DealMemoDetail:
+      type: object
+      properties:
+        uuid:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        memo_type:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        published_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+              nullable: true
+            name:
+              type: string
+              nullable: true
+        pdf_generation_status:
+          type: string
+          nullable: true
+        pdf_ready:
+          type: boolean
+          nullable: true
+        memo_url:
+          type: string
+          nullable: true
+        vaults:
+          type: array
+          description: The vaults this memo lives in — each a `VaultTag` (`id`, `type`, `title`), the embedded subset of the [Vault Object](#vault-object). Scoped to the vaults the caller can see; empty when the memo is in no vault you can see.
+          items:
+            $ref: '#/components/schemas/VaultTag'
+        pdf_url:
+          type: string
+          nullable: true
+        pdf_versions:
+          type: array
+          items:
+            type: object
+            properties:
+              quality:
+                type: string
+                nullable: true
+              status:
+                type: string
+                nullable: true
+              pdf_url:
+                type: string
+                nullable: true
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    DealIndexObservation:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_id:
+          type: integer
+          nullable: true
+        value_text:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        original_text:
+          type: string
+          nullable: true
+        context:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        period_type:
+          type: string
+          nullable: true
+        period_value:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        entity_ref:
+          type: string
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+        confidence:
+          type: number
+          nullable: true
+        weight:
+          type: integer
+          nullable: true
+        source:
+          $ref: '#/components/schemas/DealIndexSearchSource'
+    DealIndexMetricDefinition:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_label:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+    Vault:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique vault identifier. Pass as `vault_id` on [List Documents](#list-documents) to browse just this vault.
+        type:
+          type: string
+          description: 'Structural category: `resources` (the deal''s single private working vault) or `shared` (a vault the borrower can share with other parties). Present the `title` to users, not this raw value.'
+        title:
+          type: string
+          nullable: true
+          description: Human-readable vault name — `Deal Resources` for the private vault; shared vaults carry names like `Deal Room`, `Closing`, or a per-lender room.
+        is_default:
+          type: boolean
+          description: true` for the deal's primary Deal Room (its default shared vault). Returned by [List Vaults](#list-vaults); omitted from the embedded document `vault` tag.
+        document_count:
+          type: integer
+          description: Number of documents in the vault. Returned by [List Vaults](#list-vaults); omitted from the embedded document `vault` tag.
+    ChecklistTaskFile:
+      type: object
+      description: Uploaded file already linked to a checklist task.
+      properties:
+        vault_resource_id:
+          type: integer
+          description: Vault-resource id for the linked file inside the Deal Room.
+        document_id:
+          type: integer
+          nullable: true
+          description: Deal document id for the linked file.
+        name:
+          type: string
+          nullable: true
+        origin:
+          type: string
+          enum:
+          - auto_match
+          - manually_added
+          description: How the file was linked to the task.
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          nullable: true
+    DealIndexFactInsertResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          nullable: true
+        error:
+          type: string
+          nullable: true
+        metric_sot_values:
+          type: array
+          items:
+            $ref: '#/components/schemas/DealIndexFact'
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+                nullable: true
+              metric_id:
+                type: integer
+                nullable: true
+              success:
+                type: boolean
+                nullable: true
+              sot:
+                allOf:
+                - $ref: '#/components/schemas/DealIndexFact'
+                nullable: true
+              error:
+                type: string
+                nullable: true
+    DealIndexSearchSource:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        document_id:
+          type: integer
+          nullable: true
+        document_type:
+          type: string
+          nullable: true
+        file_name:
+          type: string
+          nullable: true
+        file_extension:
+          type: string
+          nullable: true
+        pages:
+          type: array
+          items:
+            type: integer
+          nullable: true
+        observation_count:
+          type: integer
+          nullable: true
+        signed_url:
+          type: string
+          nullable: true
+        signed_url_error:
+          type: string
+          nullable: true
+    VaultTag:
+      type: object
+      description: A compact reference to one vault — the `id`, `type`, and `title` subset of the full [Vault Object](#vault-object), embedded to tag a memo with a vault it lives in.
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          description: 'Structural category: `resources` (the deal''s private working vault) or `shared` (a Deal Room).'
+        title:
+          type: string
+          nullable: true
+    ChecklistTask:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique task identifier
+        title:
+          type: string
+          description: Task title
+        description:
+          type: string
+          nullable: true
+          description: Task description
+        status:
+          type: string
+          description: 'Review state: `to_do`, `requested`, `reviewing`, `updates_needed`, `approved`, or `cancelled`.'
+        is_completed:
+          type: boolean
+          description: Separate done flag. A task can be approved but not marked complete.
+        position:
+          type: integer
+          description: Display order inside its section or root task list
+        due_date:
+          type: string
+          nullable: true
+          description: Due date (ISO 8601)
+        role:
+          type: string
+          nullable: true
+          description: Role responsible for the task, such as borrower or lender
+        assignee:
+          $ref: '#/components/schemas/ChecklistAssignee'
+          nullable: true
+          description: The Lev user assigned to the task, or null when unassigned.
+        assigned_team:
+          $ref: '#/components/schemas/ChecklistAssignedTeam'
+          nullable: true
+          description: The account, lender, or borrower team assigned to the task. `name` can be null for stale or out-of-scope team references.
+        collaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistCollaborator'
+          description: People looped into the task. Each carries `id` and `email`; `id` is null for external parties without a Lev account.
+        document_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistDocumentType'
+          description: Expected document types for the request, such as Appraisal or Rent roll.
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTaskFile'
+          description: Uploaded files already linked to this task. Each file includes `document_id`, `vault_resource_id`, `name`, and `origin`.
+        subtasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistTask'
+          description: Nested subtasks, one level deep, in the same task shape.
+    DealIndexSearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        sot_id:
+          type: integer
+          nullable: true
+        metric_key:
+          type: string
+          nullable: true
+        metric_id:
+          type: integer
+          nullable: true
+        metric_label:
+          type: string
+          nullable: true
+        value_text:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        context:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        period_type:
+          type: string
+          nullable: true
+        period_value:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        entity_ref:
+          type: string
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        category_id:
+          type: integer
+          nullable: true
+        category_label:
+          type: string
+          nullable: true
+        needs_review:
+          type: boolean
+          nullable: true
+        score:
+          type: number
+          nullable: true
+        source:
+          $ref: '#/components/schemas/DealIndexSearchSource'
+    DealIndexEntity:
+      type: object
+      properties:
+        entity_ref:
+          type: string
+          nullable: true
+        entity_type:
+          type: string
+          nullable: true
+        entity_id:
+          type: integer
+          nullable: true
+        group_ref:
+          type: string
+          nullable: true
+        identifying_metrics:
+          type: array
+          items:
+            type: object
+            properties:
+              metric_key:
+                type: string
+                nullable: true
+              metric_label:
+                type: string
+                nullable: true
+              value_text:
+                type: string
+                nullable: true
+              support_multiple_values:
+                type: boolean
+                nullable: true
+    BusinessPlanType:
+      type: string
+      enum:
+      - stabilized
+      - value_add
+      - construction
+      - land
+      description: Deal business_plan enum name.
+    ChecklistVaultRef:
+      type: object
+      description: The shared Deal Room vault a checklist belongs to.
+      properties:
+        id:
+          type: integer
+          description: Vault id. Pass as vault_id on the checklist endpoint to read one room.
+        type:
+          type: string
+          description: Vault type. Always shared for checklist responses.
+        title:
+          type: string
+          nullable: true
+          description: Human-readable Deal Room name.
     Deal:
       type: object
       properties:
@@ -2591,258 +3247,17 @@ components:
           type: string
           nullable: true
           description: Included when `?include=pipelines`. Up to 10 current pipeline rows per deal, each with `pipeline_id`, `status_name`, `updated_at` (see [Pipelines](/build/pipelines))
-    DealIndexMetricDefinition:
-      type: object
-      properties:
-        id:
-          type: integer
-          nullable: true
-        metric_key:
-          type: string
-          nullable: true
-        metric_label:
-          type: string
-          nullable: true
-        value_type:
-          type: string
-          nullable: true
-        category_id:
-          type: integer
-          nullable: true
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-    ChecklistVaultRef:
-      type: object
-      description: The shared Deal Room vault a checklist belongs to.
-      properties:
-        id:
-          type: integer
-          description: Vault id. Pass as vault_id on the checklist endpoint to read one room.
-        type:
-          type: string
-          description: Vault type. Always shared for checklist responses.
-        title:
-          type: string
-          nullable: true
-          description: Human-readable Deal Room name.
-    ChecklistAssignee:
-      type: object
-      description: The Lev user assigned to a checklist task.
-      properties:
-        id:
-          type: integer
-        first_name:
-          type: string
-          nullable: true
-        last_name:
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
-    TransactionType:
+    LoanType:
       type: string
       enum:
+      - construction
+      - heavy_bridge
+      - light_bridge
+      - permanent
+      - land
+      - predevelopment
       - tbd
-      - acquisition
-      - refinance
-      - new_construction
-      description: Deal transaction_type enum name.
-    DealIndexEntity:
-      type: object
-      properties:
-        entity_ref:
-          type: string
-          nullable: true
-        entity_type:
-          type: string
-          nullable: true
-        entity_id:
-          type: integer
-          nullable: true
-        group_ref:
-          type: string
-          nullable: true
-        identifying_metrics:
-          type: array
-          items:
-            type: object
-            properties:
-              metric_key:
-                type: string
-                nullable: true
-              metric_label:
-                type: string
-                nullable: true
-              value_text:
-                type: string
-                nullable: true
-              support_multiple_values:
-                type: boolean
-                nullable: true
-    Note:
-      type: object
-      properties:
-        id:
-          type: integer
-        text:
-          type: string
-          nullable: true
-        created_by:
-          type: object
-          nullable: true
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-              nullable: true
-        created_at:
-          type: string
-          nullable: true
-        updated_at:
-          type: string
-          nullable: true
-    ChecklistSection:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique section identifier
-        name:
-          type: string
-          description: Section name
-        position:
-          type: integer
-          description: Display order inside the checklist
-        start_date:
-          type: string
-          nullable: true
-          description: Optional section start date (ISO 8601)
-        end_date:
-          type: string
-          nullable: true
-          description: Optional section end date (ISO 8601)
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistTask'
-          description: The section's tasks in display order. See the [Checklist Task Object](#checklist-task-object).
-    ChecklistTaskFile:
-      type: object
-      description: Uploaded file already linked to a checklist task.
-      properties:
-        vault_resource_id:
-          type: integer
-          description: Vault-resource id for the linked file inside the Deal Room.
-        document_id:
-          type: integer
-          nullable: true
-          description: Deal document id for the linked file.
-        name:
-          type: string
-          nullable: true
-        origin:
-          type: string
-          enum:
-          - auto_match
-          - manually_added
-          description: How the file was linked to the task.
-    ChecklistAssignedTeam:
-      type: object
-      description: The account, lender, or borrower team assigned to a checklist task.
-      properties:
-        id:
-          type: integer
-        type:
-          type: string
-          enum:
-          - account
-          - private_company
-        name:
-          type: string
-          nullable: true
-          description: Human-readable team name. Null when the reference is stale or outside the active account.
-    VaultTag:
-      type: object
-      description: A compact reference to one vault — the `id`, `type`, and `title` subset of the full [Vault Object](#vault-object), embedded to tag a memo with a vault it lives in.
-      properties:
-        id:
-          type: integer
-        type:
-          type: string
-          description: 'Structural category: `resources` (the deal''s private working vault) or `shared` (a Deal Room).'
-        title:
-          type: string
-          nullable: true
-    DocumentVaultRef:
-      type: object
-      description: The vault a document lives in, embedded on each document. The compact subset of the Vault object — intentionally omits the list-only is_default and document_count fields returned by the enumerate endpoint.
-      properties:
-        id:
-          type: integer
-          description: Vault id. Pass as vault_id on the documents list to drill into this vault.
-        type:
-          type: string
-          description: 'Structural category: resources (the private vault) or shared (a Deal Room).'
-        title:
-          type: string
-          nullable: true
-          description: Human-readable vault name, e.g. Deal Resources or Deal Room.
-    ChecklistCollaborator:
-      type: object
-      description: A person looped into a checklist task. id is null for external parties without a Lev account.
-      properties:
-        id:
-          type: integer
-          nullable: true
-        email:
-          type: string
-          nullable: true
-    DealIndexFactInsertResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          nullable: true
-        error:
-          type: string
-          nullable: true
-        metric_sot_values:
-          type: array
-          items:
-            $ref: '#/components/schemas/DealIndexFact'
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              index:
-                type: integer
-                nullable: true
-              metric_id:
-                type: integer
-                nullable: true
-              success:
-                type: boolean
-                nullable: true
-              sot:
-                allOf:
-                - $ref: '#/components/schemas/DealIndexFact'
-                nullable: true
-              error:
-                type: string
-                nullable: true
+      description: Deal loan_type enum name.
     DealMemo:
       type: object
       properties:
@@ -2888,421 +3303,6 @@ components:
           description: The vaults this memo lives in — each a `VaultTag` (`id`, `type`, `title`), the embedded subset of the [Vault Object](#vault-object). Scoped to the vaults the caller can see; empty when the memo is in no vault you can see.
           items:
             $ref: '#/components/schemas/VaultTag'
-    DealFinancialsWrite:
-      type: object
-      minProperties: 1
-      additionalProperties: false
-      description: Writable deal-level financial fields for POST /deals and PATCH /deals/{deal_id}. Send at least one supported field. Omitted fields are unchanged on PATCH; null clears an existing value but cannot create a financials record by itself.
-      properties:
-        purchase_price:
-          type: number
-          minimum: 0
-          nullable: true
-          description: Purchase price.
-        estimated_value:
-          type: number
-          minimum: 0
-          nullable: true
-          description: Estimated value.
-        total_cost:
-          type: number
-          minimum: 0
-          nullable: true
-          description: Total cost.
-        total_cost_basis:
-          type: number
-          minimum: 0
-          nullable: true
-          description: Total cost basis.
-        land_cost:
-          type: number
-          minimum: 0
-          nullable: true
-          description: Land cost.
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    DealChecklist:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique checklist identifier
-        vault:
-          $ref: '#/components/schemas/ChecklistVaultRef'
-          description: 'The Deal Room this checklist belongs to: `id`, `type`, and `title`. `type` is always `shared`; checklists do not live on the private Resources vault.'
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistSection'
-          description: Ordered sections, each carrying its own tasks. See the [Checklist Section Object](#checklist-section-object).
-        tasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistTask'
-          description: Root-level tasks that sit outside any section, in display order. See the [Checklist Task Object](#checklist-task-object).
-    Vault:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique vault identifier. Pass as `vault_id` on [List Documents](#list-documents) to browse just this vault.
-        type:
-          type: string
-          description: 'Structural category: `resources` (the deal''s single private working vault) or `shared` (a vault the borrower can share with other parties). Present the `title` to users, not this raw value.'
-        title:
-          type: string
-          nullable: true
-          description: Human-readable vault name — `Deal Resources` for the private vault; shared vaults carry names like `Deal Room`, `Closing`, or a per-lender room.
-        is_default:
-          type: boolean
-          description: true` for the deal's primary Deal Room (its default shared vault). Returned by [List Vaults](#list-vaults); omitted from the embedded document `vault` tag.
-        document_count:
-          type: integer
-          description: Number of documents in the vault. Returned by [List Vaults](#list-vaults); omitted from the embedded document `vault` tag.
-    DealDocumentDownload:
-      type: object
-      description: Short-lived signed download link for one uploaded deal document.
-      properties:
-        file_name:
-          type: string
-          nullable: true
-        download_url:
-          type: string
-        expires_in:
-          type: integer
-          description: Signed URL lifetime in seconds.
-    DealMemoDetail:
-      type: object
-      properties:
-        uuid:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        memo_type:
-          type: string
-          nullable: true
-        status:
-          type: string
-          nullable: true
-        published_at:
-          type: string
-          nullable: true
-        updated_at:
-          type: string
-          nullable: true
-        created_by:
-          type: object
-          nullable: true
-          properties:
-            id:
-              type: integer
-              nullable: true
-            name:
-              type: string
-              nullable: true
-        pdf_generation_status:
-          type: string
-          nullable: true
-        pdf_ready:
-          type: boolean
-          nullable: true
-        memo_url:
-          type: string
-          nullable: true
-        vaults:
-          type: array
-          description: The vaults this memo lives in — each a `VaultTag` (`id`, `type`, `title`), the embedded subset of the [Vault Object](#vault-object). Scoped to the vaults the caller can see; empty when the memo is in no vault you can see.
-          items:
-            $ref: '#/components/schemas/VaultTag'
-        pdf_url:
-          type: string
-          nullable: true
-        pdf_versions:
-          type: array
-          items:
-            type: object
-            properties:
-              quality:
-                type: string
-                nullable: true
-              status:
-                type: string
-                nullable: true
-              pdf_url:
-                type: string
-                nullable: true
-    ChecklistTask:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique task identifier
-        title:
-          type: string
-          description: Task title
-        description:
-          type: string
-          nullable: true
-          description: Task description
-        status:
-          type: string
-          description: 'Review state: `to_do`, `requested`, `reviewing`, `updates_needed`, `approved`, or `cancelled`.'
-        is_completed:
-          type: boolean
-          description: Separate done flag. A task can be approved but not marked complete.
-        position:
-          type: integer
-          description: Display order inside its section or root task list
-        due_date:
-          type: string
-          nullable: true
-          description: Due date (ISO 8601)
-        role:
-          type: string
-          nullable: true
-          description: Role responsible for the task, such as borrower or lender
-        assignee:
-          $ref: '#/components/schemas/ChecklistAssignee'
-          nullable: true
-          description: The Lev user assigned to the task, or null when unassigned.
-        assigned_team:
-          $ref: '#/components/schemas/ChecklistAssignedTeam'
-          nullable: true
-          description: The account, lender, or borrower team assigned to the task. `name` can be null for stale or out-of-scope team references.
-        collaborators:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistCollaborator'
-          description: People looped into the task. Each carries `id` and `email`; `id` is null for external parties without a Lev account.
-        document_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistDocumentType'
-          description: Expected document types for the request, such as Appraisal or Rent roll.
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistTaskFile'
-          description: Uploaded files already linked to this task. Each file includes `document_id`, `vault_resource_id`, `name`, and `origin`.
-        subtasks:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChecklistTask'
-          description: Nested subtasks, one level deep, in the same task shape.
-    BusinessPlanType:
-      type: string
-      enum:
-      - stabilized
-      - value_add
-      - construction
-      - land
-      description: Deal business_plan enum name.
-    LoanType:
-      type: string
-      enum:
-      - construction
-      - heavy_bridge
-      - light_bridge
-      - permanent
-      - land
-      - predevelopment
-      - tbd
-      description: Deal loan_type enum name.
-    DealDocument:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique document identifier. Use this value in the document detail and download endpoints.
-        file_name:
-          type: string
-          nullable: true
-          description: Original file name.
-        extension:
-          type: string
-          nullable: true
-          description: File extension without the leading dot.
-        size_bytes:
-          type: integer
-          nullable: true
-          description: File size in bytes. May be null for older records whose size was not stored.
-        folder_path:
-          type: string
-          nullable: true
-          description: Slash-delimited path inside the vault, or null for files at the vault root.
-        uploaded_at:
-          type: string
-          nullable: true
-          description: Upload timestamp (ISO 8601).
-        vault:
-          $ref: '#/components/schemas/DocumentVaultRef'
-          description: The vault this document lives in — the compact `id`, `type`, `title` subset of the [Vault Object](#vault-object) (omits the list-only `is_default` and `document_count`). Always present, even under a sparse `fields` request.
-    DealIndexObservation:
-      type: object
-      properties:
-        id:
-          type: integer
-          nullable: true
-        metric_key:
-          type: string
-          nullable: true
-        metric_id:
-          type: integer
-          nullable: true
-        value_text:
-          type: string
-          nullable: true
-        value_type:
-          type: string
-          nullable: true
-        original_text:
-          type: string
-          nullable: true
-        context:
-          type: string
-          nullable: true
-        summary:
-          type: string
-          nullable: true
-        period_type:
-          type: string
-          nullable: true
-        period_value:
-          type: string
-          nullable: true
-        entity_type:
-          type: string
-          nullable: true
-        entity_id:
-          type: integer
-          nullable: true
-        entity_ref:
-          type: string
-          nullable: true
-        group_ref:
-          type: string
-          nullable: true
-        category_id:
-          type: integer
-          nullable: true
-        confidence:
-          type: number
-          nullable: true
-        weight:
-          type: integer
-          nullable: true
-        source:
-          $ref: '#/components/schemas/DealIndexSearchSource'
-    ChecklistDocumentType:
-      type: object
-      description: Expected document type for a checklist task.
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          nullable: true
-    DealIndexSearchSource:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        document_id:
-          type: integer
-          nullable: true
-        document_type:
-          type: string
-          nullable: true
-        file_name:
-          type: string
-          nullable: true
-        file_extension:
-          type: string
-          nullable: true
-        pages:
-          type: array
-          items:
-            type: integer
-          nullable: true
-        observation_count:
-          type: integer
-          nullable: true
-        signed_url:
-          type: string
-          nullable: true
-        signed_url_error:
-          type: string
-          nullable: true
-    DealIndexSearchResult:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        sot_id:
-          type: integer
-          nullable: true
-        metric_key:
-          type: string
-          nullable: true
-        metric_id:
-          type: integer
-          nullable: true
-        metric_label:
-          type: string
-          nullable: true
-        value_text:
-          type: string
-          nullable: true
-        value_type:
-          type: string
-          nullable: true
-        context:
-          type: string
-          nullable: true
-        summary:
-          type: string
-          nullable: true
-        period_type:
-          type: string
-          nullable: true
-        period_value:
-          type: string
-          nullable: true
-        entity_type:
-          type: string
-          nullable: true
-        entity_id:
-          type: integer
-          nullable: true
-        entity_ref:
-          type: string
-          nullable: true
-        group_ref:
-          type: string
-          nullable: true
-        category_id:
-          type: integer
-          nullable: true
-        category_label:
-          type: string
-          nullable: true
-        needs_review:
-          type: boolean
-          nullable: true
-        score:
-          type: number
-          nullable: true
-        source:
-          $ref: '#/components/schemas/DealIndexSearchSource'
   securitySchemes:
     bearerAuth:
       type: http
