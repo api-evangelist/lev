@@ -726,13 +726,6 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     PhoneIn:
       type: object
       description: Phone number input. e164 is always computed server-side from raw — caller-supplied values are ignored, so normalization cannot be bypassed.
@@ -757,13 +750,6 @@ components:
         extension:
           type: string
           description: Extension digits.
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     Phone:
       type: object
       description: Phone number as stored on a contact. e164 is the normalized canonical number (always server-computed from raw). Fields may be null on records created before phone support.
@@ -789,6 +775,13 @@ components:
         extension:
           type: string
           nullable: true
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Note:
       type: object
       properties:
@@ -812,11 +805,6 @@ components:
         updated_at:
           type: string
           nullable: true
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
     Contact:
       type: object
       properties:
@@ -903,6 +891,18 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

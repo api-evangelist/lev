@@ -178,6 +178,18 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -204,18 +216,6 @@ components:
           type: string
           format: date-time
           nullable: true
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

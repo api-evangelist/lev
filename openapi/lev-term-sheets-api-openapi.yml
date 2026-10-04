@@ -574,13 +574,18 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
-    ApiError:
+    BooleanDeleteResult:
       type: object
       properties:
-        code:
+        deleted:
+          type: boolean
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
           type: string
-        message:
-          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     TermSheet:
       type: object
       properties:
@@ -742,18 +747,13 @@ components:
           type: string
           nullable: true
           description: Interest reserve details
-    ApiErrorEnvelope:
+    ApiError:
       type: object
       properties:
-        request_id:
+        code:
           type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

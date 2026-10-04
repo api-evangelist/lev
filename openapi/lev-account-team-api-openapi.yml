@@ -216,13 +216,6 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     AccountTeamMember:
       type: object
       properties:
@@ -239,6 +232,20 @@ components:
         photo_url:
           type: string
           nullable: true
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     CurrentUserResponse:
       type: object
       properties:
@@ -252,13 +259,6 @@ components:
           type: object
         platform:
           type: object
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

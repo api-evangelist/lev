@@ -99,13 +99,6 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     ApiErrorEnvelope:
       type: object
       properties:
@@ -113,6 +106,13 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -211,6 +211,63 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
+    LenderProgram:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Program ID
+        title:
+          type: string
+          nullable: true
+          description: Program name
+        loan_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Supported loan types
+        recourse_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Recourse types
+        min_loan_amount:
+          type: number
+          nullable: true
+          description: Minimum loan amount
+        max_loan_amount:
+          type: number
+          nullable: true
+          description: Maximum loan amount
+        capital_source_type:
+          type: string
+          nullable: true
+          description: Capital source type
+        positions:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Loan positions
+        sponsor_states:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Geographic coverage
+        status:
+          type: string
+          nullable: true
+          description: Program status
     ApiError:
       type: object
       properties:
@@ -298,63 +355,6 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
-    LenderProgram:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Program ID
-        title:
-          type: string
-          nullable: true
-          description: Program name
-        loan_types:
-          type: array
-          items:
-            type: string
-          nullable: true
-          description: Supported loan types
-        recourse_types:
-          type: array
-          items:
-            type: string
-          nullable: true
-          description: Recourse types
-        min_loan_amount:
-          type: number
-          nullable: true
-          description: Minimum loan amount
-        max_loan_amount:
-          type: number
-          nullable: true
-          description: Maximum loan amount
-        capital_source_type:
-          type: string
-          nullable: true
-          description: Capital source type
-        positions:
-          type: array
-          items:
-            type: string
-          nullable: true
-          description: Loan positions
-        sponsor_states:
-          type: array
-          items:
-            type: string
-          nullable: true
-          description: Geographic coverage
-        status:
-          type: string
-          nullable: true
-          description: Program status
   securitySchemes:
     bearerAuth:
       type: http
