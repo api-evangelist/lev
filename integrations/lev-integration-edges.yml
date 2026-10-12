@@ -1,0 +1,107 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/lev/integrations
+checked:
+- https://composio.dev/toolkits/lev
+- https://monid.ai/tools/lev
+- https://n8n.io/integrations/lev/
+- https://zapier.com/apps/lev/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: lev
+  url: https://zapier.com/apps/lev/integrations
+  external_url: https://lev.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: deal_created
+    label: New Deal
+  - key: deal_note_created
+    label: New Deal Note
+  - key: deal_updated
+    label: Updated Deal
+  - key: launched_placement
+    label: Launched Placement
+  - key: placement_created
+    label: New Placement
+  - key: placement_updated
+    label: Updated Placement
+  - key: resource_action
+    label: New or Updated or Deleted Resource
+  - key: term_sheet_created
+    label: New Term Sheet
+  - key: term_sheet_updated
+    label: Updated Term Sheet
+  actions:
+  - key: create_connected_lender_contact
+    label: Create Connected Lender Contact
+  - key: create_deal_note
+    label: Create Deal Note
+  - key: create_lev_deal
+    label: Create Deal
+  searches: []
+edges:
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/lev/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/lev/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/lev/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/lev/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/lev/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+templates:
+- title: Create tasks in Asana for new deals in Lev
+  url: https://zapier.com/apps/asana/integrations/lev/255713833/create-tasks-in-asana-for-new-deals-in-lev
+  apps:
+  - lev
+  - asana
+template_total: 1
