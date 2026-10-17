@@ -232,13 +232,6 @@ components:
         photo_url:
           type: string
           nullable: true
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -246,6 +239,13 @@ components:
           type: string
         message:
           type: string
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
     CurrentUserResponse:
       type: object
       properties:

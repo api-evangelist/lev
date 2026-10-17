@@ -99,13 +99,6 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     BillingSummary:
       type: object
       properties:
@@ -113,21 +106,13 @@ components:
           $ref: '#/components/schemas/Subscription'
         credits:
           $ref: '#/components/schemas/Credits'
-    Subscription:
+    ApiError:
       type: object
       properties:
-        type:
+        code:
           type: string
-          nullable: true
-        status:
+        message:
           type: string
-          nullable: true
-        billing_cycle:
-          type: string
-          nullable: true
-        end_date:
-          type: string
-          nullable: true
     ApiErrorEnvelope:
       type: object
       properties:
@@ -145,6 +130,21 @@ components:
           nullable: true
         unit:
           type: string
+    Subscription:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        billing_cycle:
+          type: string
+          nullable: true
+        end_date:
+          type: string
+          nullable: true
   securitySchemes:
     bearerAuth:
       type: http

@@ -71,13 +71,6 @@ paths:
       - 'X-Origin-App: <client-name>'
 components:
   schemas:
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -122,6 +115,13 @@ components:
           type: string
           nullable: true
           description: Profile photo URL
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

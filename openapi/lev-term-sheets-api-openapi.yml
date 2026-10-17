@@ -574,18 +574,6 @@ paths:
       - 'Content-Type: application/json'
 components:
   schemas:
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
-    ApiErrorEnvelope:
-      type: object
-      properties:
-        request_id:
-          type: string
-        error:
-          $ref: '#/components/schemas/ApiError'
     TermSheet:
       type: object
       properties:
@@ -754,6 +742,18 @@ components:
           type: string
         message:
           type: string
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+    ApiErrorEnvelope:
+      type: object
+      properties:
+        request_id:
+          type: string
+        error:
+          $ref: '#/components/schemas/ApiError'
   securitySchemes:
     bearerAuth:
       type: http

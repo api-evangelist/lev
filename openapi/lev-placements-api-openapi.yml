@@ -705,6 +705,11 @@ components:
           type: string
           nullable: true
           description: Last update timestamp
+    BooleanDeleteResult:
+      type: object
+      properties:
+        deleted:
+          type: boolean
     Note:
       type: object
       properties:
@@ -728,11 +733,6 @@ components:
         updated_at:
           type: string
           nullable: true
-    BooleanDeleteResult:
-      type: object
-      properties:
-        deleted:
-          type: boolean
     ApiErrorEnvelope:
       type: object
       properties:
