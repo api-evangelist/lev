@@ -759,3 +759,9 @@ components:
       type: http
       scheme: bearer
       bearerFormat: API Key or JWT
+x-provenance:
+  method: harvested
+  publisher: Lev
+  source: https://www.lev.com/docs/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
