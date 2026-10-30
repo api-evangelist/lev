@@ -64,66 +64,182 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Lev is an AI platform and product system for commercial real estate (CRE) teams —
-sponsors, financing brokers, investment-sales brokers, lenders, capital-markets
-teams, and enterprise operators. The product is organized in four layers: CRE apps
-(CRM, pipeline, vault/data rooms, checklists, memos, commissions), source-backed AI
-agents (Lev Agent, Lev Memo, Lender Search, Lev Match, Lev Index), CRE data
-(lender, market, contact, property, and recent-terms data), and a developer
-platform.
+Lev is an AI platform and product system for commercial real estate (CRE) teams, used by sponsors, financing brokers, investment-sales brokers, lenders, capital-markets teams, and enterprise operators. The platform is organized in four layers: CRE apps (CRM, pipeline, vault/data rooms, checklists, memos, commissions), source-backed AI agents (Lev Agent, Lev Memo, Lender Search, Lev Match, Lev Index), CRE data (lender, market, contact, property, and recent-terms data), and a developer platform. That platform layer is the API Evangelist interest: a versioned REST API at api.lev.com covering deals, documents and vaults, checklists, contacts, companies, the lender directory, term sheets, placements, pipelines, market data, account, and billing; a hosted remote MCP server at mcp.lev.com with roughly 60 tools and OAuth 2.1 discovery; and a first-party Python CLI. The API publishes an OpenAPI 3.1 description, scoped API keys, cursor pagination, Idempotency-Key support on writes, request-id correlation, and a documented error-type and rate-limit contract.
 
-Website: https://www.lev.com/ · Docs: https://www.lev.com/docs
+**Areas:** Company · Commercial Real Estate · Real Estate · PropTech · CRE Financing · Lending · CRM · Artificial Intelligence · AI Agents · Deal Management · Market Data · Documents
 
-## Developer surface
+## Lev on APIs.io
 
-| Surface | Where |
+Everything profiled for Lev is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lev/](https://apis.io/providers/lev/)** — or go straight to one of the APIs or properties below.
+
+### APIs (16)
+
+- [Lev Account & Team API](https://apis.io/apis/lev/lev-account-team-api/) — The Account & Team API from Lev — 4 operation(s) for account & team.
+- [Lev API Keys API](https://apis.io/apis/lev/lev-api-keys-api/) — The API Keys API from Lev — 2 operation(s) for api keys.
+- [Lev Billing API](https://apis.io/apis/lev/lev-billing-api/) — The Billing API from Lev — 2 operation(s) for billing.
+- [Lev Companies API](https://apis.io/apis/lev/lev-companies-api/) — The Companies API from Lev — 4 operation(s) for companies.
+- [Lev Contacts API](https://apis.io/apis/lev/lev-contacts-api/) — The Contacts API from Lev — 5 operation(s) for contacts.
+- [Lev Deal Financials API](https://apis.io/apis/lev/lev-deal-financials-api/) — The Deal Financials API from Lev — 1 operation(s) for deal financials.
+- [Lev Deal Properties API](https://apis.io/apis/lev/lev-deal-properties-api/) — The Deal Properties API from Lev — 1 operation(s) for deal properties.
+- [Lev Deal Team API](https://apis.io/apis/lev/lev-deal-team-api/) — The Deal Team API from Lev — 1 operation(s) for deal team.
+- [Lev Deals API](https://apis.io/apis/lev/lev-deals-api/) — The Deals API from Lev — 21 operation(s) for deals.
+- [Lev Lender Directory API](https://apis.io/apis/lev/lev-lender-directory-api/) — The Lender Directory API from Lev — 3 operation(s) for lender directory.
+- [Lev API Documentation API](https://apis.io/apis/lev/lev-lev-api-documentation-api/) — The Lev API Documentation API from Lev — 1 operation(s) for lev api documentation.
+- [Lev Market Data API](https://apis.io/apis/lev/lev-market-data-api/) — The Market Data API from Lev — 2 operation(s) for market data.
+- [Lev Pipelines API](https://apis.io/apis/lev/lev-pipelines-api/) — The Pipelines API from Lev — 3 operation(s) for pipelines.
+- [Lev Placements API](https://apis.io/apis/lev/lev-placements-api/) — The Placements API from Lev — 4 operation(s) for placements.
+- [Lev Quickstart API](https://apis.io/apis/lev/lev-quickstart-api/) — The Quickstart API from Lev — 1 operation(s) for quickstart.
+- [Lev Term Sheets API](https://apis.io/apis/lev/lev-term-sheets-api/) — The Term Sheets API from Lev — 2 operation(s) for term sheets.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Lev](https://apis.io/servers/lev/lev/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Lev Agentic Access](https://apis.io/agentic-access/lev/lev-agentic-access/)
+
+#### Collections (32)
+
+Postman and Open Collection request collections.
+
+- [Lev Account & Team API](https://apis.io/collections/lev/open-lev-account-team-api/)
+- [Lev Account & Team API Keys API](https://apis.io/collections/lev/open-lev-api-keys-api/)
+- [Lev Account & Team Billing API](https://apis.io/collections/lev/open-lev-billing-api/)
+- [Lev Account & Team Companies API](https://apis.io/collections/lev/open-lev-companies-api/)
+- [Lev Account & Team Contacts API](https://apis.io/collections/lev/open-lev-contacts-api/)
+- [Lev Account & Team Deal Financials API](https://apis.io/collections/lev/open-lev-deal-financials-api/)
+- [Lev Account & Team Deal Properties API](https://apis.io/collections/lev/open-lev-deal-properties-api/)
+- [Lev Account & Team Deal Team API](https://apis.io/collections/lev/open-lev-deal-team-api/)
+- [Lev Account & Team Deals API](https://apis.io/collections/lev/open-lev-deals-api/)
+- [Lev Account & Team Lender Directory API](https://apis.io/collections/lev/open-lev-lender-directory-api/)
+- [Lev Account & Team Lev API Documentation API](https://apis.io/collections/lev/open-lev-lev-api-documentation-api/)
+- [Lev Account & Team Market Data API](https://apis.io/collections/lev/open-lev-market-data-api/)
+- [Lev Account & Team Pipelines API](https://apis.io/collections/lev/open-lev-pipelines-api/)
+- [Lev Account & Team Placements API](https://apis.io/collections/lev/open-lev-placements-api/)
+- [Lev Account & Team Quickstart API](https://apis.io/collections/lev/open-lev-quickstart-api/)
+- [Lev Account & Team Term Sheets API](https://apis.io/collections/lev/open-lev-term-sheets-api/)
+- [Lev Account & Team API](https://apis.io/collections/lev/postman-lev-account-team-api/)
+- [Lev Account & Team API Keys API](https://apis.io/collections/lev/postman-lev-api-keys-api/)
+- [Lev Account & Team Billing API](https://apis.io/collections/lev/postman-lev-billing-api/)
+- [Lev Account & Team Companies API](https://apis.io/collections/lev/postman-lev-companies-api/)
+- [Lev Account & Team Contacts API](https://apis.io/collections/lev/postman-lev-contacts-api/)
+- [Lev Account & Team Deal Financials API](https://apis.io/collections/lev/postman-lev-deal-financials-api/)
+- [Lev Account & Team Deal Properties API](https://apis.io/collections/lev/postman-lev-deal-properties-api/)
+- [Lev Account & Team Deal Team API](https://apis.io/collections/lev/postman-lev-deal-team-api/)
+- [Lev Account & Team Deals API](https://apis.io/collections/lev/postman-lev-deals-api/)
+- …and 7 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Lev Api Overlay](https://apis.io/overlays/lev/lev-api-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Lev Authentication](https://apis.io/security/lev/lev-authentication/)
+- [Lev Domain Security](https://apis.io/security/lev/lev-domain-security/)
+- [Lev Trust Center](https://apis.io/security/lev/lev-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Lev Scopes](https://apis.io/scopes/lev/lev-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Lev Plans](https://apis.io/plans/lev/lev-plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Lev Rate Limits](https://apis.io/rate-limits/lev/lev-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.lev.com/)
+- [Documentation](https://www.lev.com/docs)
+- [Getting started](https://www.lev.com/docs/build/getting-started)
+- [API reference](https://www.lev.com/docs/build/api-overview)
+- [Pricing](https://www.lev.com/pricing)
+- [Sign up](https://www.lev.com/auth/login?screen_hint=signup)
+- [Support](https://www.lev.com/docs/learn)
+- [Changelog](https://www.lev.com/docs/changelog)
+- [Blog](https://www.lev.com/blog)
+- [Security](https://www.lev.com/docs/learn/security)
+- [Compliance](https://www.lev.com/docs/learn/trust)
+- [Terms of service](https://www.lev.com/docs/learn/terms)
+- [Privacy policy](https://www.lev.com/docs/learn/privacy-policy)
+- [Status](https://lev.statuspage.io/)
+
+## API Evangelist rating
+
+**Kin Score 63.0** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| REST API | `https://api.lev.com/api/external/v2` — 81 operations, 57 paths |
-| OpenAPI 3.1 | https://www.lev.com/docs/openapi.json (version `2026-03`) |
-| MCP server | `https://mcp.lev.com/mcp` — hosted, streamable HTTP, 60 tools, OAuth 2.1 |
-| CLI | `lev-cli` (Python, early access — not yet on PyPI) |
-| llms.txt | https://www.lev.com/llms.txt |
-| Status | https://lev.statuspage.io/ |
+| Discoverability | 75.0 |
+| Contract quality | 50.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 73.7 |
+| Developer ergonomics | 67.3 |
+| Access clarity | 85.5 |
 
-The API covers deals (and their financials, properties, team, documents, vaults,
-checklists, memos, notes, and source-backed indexed facts), contacts, companies,
-placements, term sheets, pipelines, the lender directory, market data, account,
-API keys, and billing.
+**Agent readiness 55.3** — agent-native
 
-## Notable API characteristics
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
 
-- **Idempotency** — `Idempotency-Key: <uuid>` on 19 write operations, with
-  documented `409 conflict` replay semantics.
-- **Cursor pagination** by default (`cursor` / `next_cursor` / `has_more`,
-  limit max 200); switches to offset paging when `sort` is supplied.
-- **Response envelope** — every response carries `request_id` (UUID v4),
-  `timestamp`, and `data`.
-- **Typed errors** — a proprietary `{request_id, error:{status, type, message,
-  details}}` envelope, not RFC 9457 problem+json.
-- **Published rate limits** — 30/100/500 requests per minute account-wide by tier,
-  with per-endpoint sub-limits, discoverable at runtime via `getMe`.
-- **Scoped API keys** — `lev_sk_` prefix, domain-based `read`/`write` scopes plus a
-  separate `ai:actions` scope gating credit-consuming AI actions.
-- **Provenance as a first-class feature** — indexed deal facts trace back through
-  per-document observations to the source document.
+**Regulatory alignment 39.7** — Securities & Market Data
 
-## Gaps observed
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lev/](https://apis.io/providers/lev/).
 
-- No `/.well-known/security.txt` on any host, and no published vulnerability
-  disclosure or bug bounty programme.
-- No deprecation or sunset policy (RFC 8594); no operation marked deprecated.
-- No event, streaming, or webhook surface — and therefore no AsyncAPI.
-- No first-party SDK in any public package registry; `lev-cli` is documented but
-  unpublished.
-- The OpenAPI ships an empty top-level `tags[]` despite 16 tags in use, and models
-  its required headers as an `x-lev-headers` vendor array rather than as parameters.
-  Both are captured in `overlays/lev-api-overlay.yaml`.
+## How this profile is made
 
-## Artifacts in this repo
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-`openapi/` · `overlays/` · `mcp/` · `skills/` · `llms/` · `well-known/` ·
-`authentication/` · `scopes/` · `conventions/` · `errors/` · `rate-limits/` ·
-`plans/` · `lifecycle/` · `changelog/` · `cli/` · `packages/` · `conformance/` ·
-`data-model/` · `security/` · `agentic-access/`
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lev: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-Backed by: canaan-partners
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lev/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
